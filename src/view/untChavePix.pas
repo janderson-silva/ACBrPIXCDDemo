@@ -15,11 +15,11 @@ uses
 type
   TfrmChavePix = class(TForm)
     PanelBottom: TPanel;
-    btCadastrar: TButton;
-    btEditar: TButton;
-    btExcluir: TButton;
+    btnNovo: TButton;
+    btnEditar: TButton;
+    btnExcluir: TButton;
     PanelGrid: TPanel;
-    DBGridContaBancaria: TDBGrid;
+    DBGridChavePix: TDBGrid;
     qrChavePix: TFDQuery;
     dsChavePix: TDataSource;
     pnlHeader: TPanel;
@@ -59,7 +59,8 @@ type
     qrChavePixARQUIVO_CERTIFICADO_ROOT: TBlobField;
     qrChavePixAPI_VERSAO: TStringField;
     procedure FormCreate(Sender: TObject);
-    procedure btCadastrarClick(Sender: TObject);
+    procedure btnNovoClick(Sender: TObject);
+    procedure btnEditarClick(Sender: TObject);
   private
     { Private declarations }
     procedure SelectChavePix;
@@ -78,7 +79,19 @@ uses untDmConexao, untChavePixCadastro;
 
 { TfrmChavePix }
 
-procedure TfrmChavePix.btCadastrarClick(Sender: TObject);
+procedure TfrmChavePix.btnNovoClick(Sender: TObject);
+var
+  frmChavePixCadastro: TfrmChavePixCadastro;
+begin
+  frmChavePixCadastro := TfrmChavePixCadastro.Create(nil);
+  try
+    frmChavePixCadastro.ShowModal;
+  finally
+    frmChavePixCadastro.Free;
+  end;
+end;
+
+procedure TfrmChavePix.btnEditarClick(Sender: TObject);
 var
   frmChavePixCadastro: TfrmChavePixCadastro;
 begin

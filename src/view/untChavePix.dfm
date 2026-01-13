@@ -88,7 +88,7 @@ object frmChavePix: TfrmChavePix
     Color = 16448250
     ParentBackground = False
     TabOrder = 0
-    object btCadastrar: TButton
+    object btnNovo: TButton
       AlignWithMargins = True
       Left = 20
       Top = 7
@@ -106,9 +106,9 @@ object frmChavePix: TfrmChavePix
       Font.Style = []
       ParentFont = False
       TabOrder = 0
-      OnClick = btCadastrarClick
+      OnClick = btnNovoClick
     end
-    object btEditar: TButton
+    object btnEditar: TButton
       AlignWithMargins = True
       Left = 133
       Top = 7
@@ -126,8 +126,9 @@ object frmChavePix: TfrmChavePix
       Font.Style = []
       ParentFont = False
       TabOrder = 1
+      OnClick = btnEditarClick
     end
-    object btExcluir: TButton
+    object btnExcluir: TButton
       AlignWithMargins = True
       Left = 246
       Top = 7
@@ -157,7 +158,7 @@ object frmChavePix: TfrmChavePix
     Color = 16448250
     ParentBackground = False
     TabOrder = 1
-    object DBGridContaBancaria: TDBGrid
+    object DBGridChavePix: TDBGrid
       AlignWithMargins = True
       Left = 20
       Top = 20
