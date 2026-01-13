@@ -619,29 +619,12 @@ end;
 procedure TfrmChavePixCadastro.SalvarConfiguracaoPSP;
 var
   qrUpdate: TFDQuery;
-  qrMaxId: TFDQuery;
   SQL: TStringList;
-  NovoID: Integer;
 begin
   qrUpdate := TFDQuery.Create(nil);
   SQL := TStringList.Create;
   try
     qrUpdate.Connection := frmDmConexao.FDConnection;
-    
-    // Se não é modo de edição, gerar novo ID
-    if not FModoEdicao then
-    begin
-      qrMaxId := TFDQuery.Create(nil);
-      try
-        qrMaxId.Connection := frmDmConexao.FDConnection;
-        qrMaxId.SQL.Text := 'SELECT COALESCE(MAX(ID), 0) + 1 AS NOVO_ID FROM CHAVE_PIX';
-        qrMaxId.Open;
-        NovoID := qrMaxId.FieldByName('NOVO_ID').AsInteger;
-        FCodigoChavePix := IntToStr(NovoID);
-      finally
-        qrMaxId.Free;
-      end;
-    end;
     
     SQL.Clear;
     
@@ -681,9 +664,9 @@ begin
     end
     else
     begin
-      // INSERT
+      // INSERT (ID é auto incremento, não precisa informar)
       SQL.Add('INSERT INTO CHAVE_PIX (');
-      SQL.Add('  ID, RAZAO_SOCIAL, CEP, CIDADE, UF, TIPO_CHAVE, CHAVE,');
+      SQL.Add('  RAZAO_SOCIAL, CEP, CIDADE, UF, TIPO_CHAVE, CHAVE,');
       SQL.Add('  PSP_CONFIGURADO, PSP, AMBIENTE, TIMEOUT,');
       SQL.Add('  client_id, client_secret, secret_key, access_key, access_token,');
       SQL.Add('  token, developer_application_key, consumer_key, consumer_secret,');
@@ -691,7 +674,7 @@ begin
       SQL.Add('  mediator_fee, arquivo_pfx, senha_pfx, arquivo_chave_privada,');
       SQL.Add('  arquivo_certificado');
       SQL.Add(') VALUES (');
-      SQL.Add('  :ID, :RAZAO_SOCIAL, :CEP, :CIDADE, :UF, :TIPO_CHAVE, :CHAVE,');
+      SQL.Add('  :RAZAO_SOCIAL, :CEP, :CIDADE, :UF, :TIPO_CHAVE, :CHAVE,');
       SQL.Add('  1, :PSP, :AMBIENTE, :TIMEOUT,');
       SQL.Add('  :client_id, :client_secret, :secret_key, :access_key, :access_token,');
       SQL.Add('  :token, :developer_application_key, :consumer_key, :consumer_secret,');
@@ -703,8 +686,9 @@ begin
     
     qrUpdate.SQL.Text := SQL.Text;
     
-    // Setar ID
-    qrUpdate.ParamByName('ID').AsInteger := StrToIntDef(FCodigoChavePix, 0);
+    // Setar ID apenas no UPDATE
+    if FModoEdicao then
+      qrUpdate.ParamByName('ID').AsInteger := StrToIntDef(FCodigoChavePix, 0);
     
     // Setar dados básicos
     qrUpdate.ParamByName('RAZAO_SOCIAL').AsString := edtRazaoSocial.Text;
