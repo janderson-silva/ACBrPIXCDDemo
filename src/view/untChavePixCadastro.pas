@@ -631,17 +631,17 @@ begin
     if FModoEdicao then
     begin
       // UPDATE
-      SQL.Add('UPDATE CHAVE_PIX SET');
-      SQL.Add('  RAZAO_SOCIAL = :RAZAO_SOCIAL,');
-      SQL.Add('  CEP = :CEP,');
-      SQL.Add('  CIDADE = :CIDADE,');
-      SQL.Add('  UF = :UF,');
-      SQL.Add('  TIPO_CHAVE = :TIPO_CHAVE,');
-      SQL.Add('  CHAVE = :CHAVE,');
-      SQL.Add('  PSP_CONFIGURADO = 1,');
-      SQL.Add('  PSP = :PSP,');
-      SQL.Add('  AMBIENTE = :AMBIENTE,');
-      SQL.Add('  TIMEOUT = :TIMEOUT,');
+      SQL.Add('UPDATE chave_pix SET');
+      SQL.Add('  razao_social = :razao_social,');
+      SQL.Add('  cep = :cep,');
+      SQL.Add('  cidade = :cidade,');
+      SQL.Add('  uf = :uf,');
+      SQL.Add('  tipo_chave = :tipo_chave,');
+      SQL.Add('  chave = :chave,');
+      SQL.Add('  psp_configurado = 1,');
+      SQL.Add('  psp = :psp,');
+      SQL.Add('  ambiente = :ambiente,');
+      SQL.Add('  timeout = :timeout,');
       SQL.Add('  client_id = :client_id,');
       SQL.Add('  client_secret = :client_secret,');
       SQL.Add('  secret_key = :secret_key,');
@@ -660,26 +660,68 @@ begin
       SQL.Add('  senha_pfx = :senha_pfx,');
       SQL.Add('  arquivo_chave_privada = :arquivo_chave_privada,');
       SQL.Add('  arquivo_certificado = :arquivo_certificado');
-      SQL.Add('WHERE ID = :ID');
+      SQL.Add('WHERE id = :id');
     end
     else
     begin
       // INSERT (ID é auto incremento, não precisa informar)
-      SQL.Add('INSERT INTO CHAVE_PIX (');
-      SQL.Add('  RAZAO_SOCIAL, CEP, CIDADE, UF, TIPO_CHAVE, CHAVE,');
-      SQL.Add('  PSP_CONFIGURADO, PSP, AMBIENTE, TIMEOUT,');
-      SQL.Add('  client_id, client_secret, secret_key, access_key, access_token,');
-      SQL.Add('  token, developer_application_key, consumer_key, consumer_secret,');
-      SQL.Add('  account_id, authentication_api, authentication_key, secret_key_hmac,');
-      SQL.Add('  mediator_fee, arquivo_pfx, senha_pfx, arquivo_chave_privada,');
+      SQL.Add('INSERT INTO chave_pix (');
+      SQL.Add('  razao_social,');
+      SQL.Add('  cep,');
+      SQL.Add('  cidade,');
+      SQL.Add('  uf,');
+      SQL.Add('  tipo_chave,');
+      SQL.Add('  chave,');
+      SQL.Add('  psp_configurado,');
+      SQL.Add('  psp,');
+      SQL.Add('  ambiente,');
+      SQL.Add('  timeout,');
+      SQL.Add('  client_id,');
+      SQL.Add('  client_secret,');
+      SQL.Add('  secret_key,');
+      SQL.Add('  access_key,');
+      SQL.Add('  access_token,');
+      SQL.Add('  token,');
+      SQL.Add('  developer_application_key,');
+      SQL.Add('  consumer_key,');
+      SQL.Add('  consumer_secret,');
+      SQL.Add('  account_id,');
+      SQL.Add('  authentication_api,');
+      SQL.Add('  authentication_key,');
+      SQL.Add('  secret_key_hmac,');
+      SQL.Add('  mediator_fee,');
+      SQL.Add('  arquivo_pfx,');
+      SQL.Add('  senha_pfx,');
+      SQL.Add('  arquivo_chave_privada,');
       SQL.Add('  arquivo_certificado');
       SQL.Add(') VALUES (');
-      SQL.Add('  :RAZAO_SOCIAL, :CEP, :CIDADE, :UF, :TIPO_CHAVE, :CHAVE,');
-      SQL.Add('  1, :PSP, :AMBIENTE, :TIMEOUT,');
-      SQL.Add('  :client_id, :client_secret, :secret_key, :access_key, :access_token,');
-      SQL.Add('  :token, :developer_application_key, :consumer_key, :consumer_secret,');
-      SQL.Add('  :account_id, :authentication_api, :authentication_key, :secret_key_hmac,');
-      SQL.Add('  :mediator_fee, :arquivo_pfx, :senha_pfx, :arquivo_chave_privada,');
+      SQL.Add('  :razao_social,');
+      SQL.Add('  :cep,');
+      SQL.Add('  :cidade,');
+      SQL.Add('  :uf,');
+      SQL.Add('  :tipo_chave,');
+      SQL.Add('  :chave,');
+      SQL.Add('  1,');
+      SQL.Add('  :psp,');
+      SQL.Add('  :ambiente,');
+      SQL.Add('  :timeout,');
+      SQL.Add('  :client_id,');
+      SQL.Add('  :client_secret,');
+      SQL.Add('  :secret_key,');
+      SQL.Add('  :access_key,');
+      SQL.Add('  :access_token,');
+      SQL.Add('  :token,');
+      SQL.Add('  :developer_application_key,');
+      SQL.Add('  :consumer_key,');
+      SQL.Add('  :consumer_secret,');
+      SQL.Add('  :account_id,');
+      SQL.Add('  :authentication_api,');
+      SQL.Add('  :authentication_key,');
+      SQL.Add('  :secret_key_hmac,');
+      SQL.Add('  :mediator_fee,');
+      SQL.Add('  :arquivo_pfx,');
+      SQL.Add('  :senha_pfx,');
+      SQL.Add('  :arquivo_chave_privada,');
       SQL.Add('  :arquivo_certificado');
       SQL.Add(')');
     end;
@@ -688,20 +730,20 @@ begin
     
     // Setar ID apenas no UPDATE
     if FModoEdicao then
-      qrUpdate.ParamByName('ID').AsInteger := StrToIntDef(FCodigoChavePix, 0);
+      qrUpdate.ParamByName('id').AsInteger := StrToIntDef(FCodigoChavePix, 0);
     
     // Setar dados básicos
-    qrUpdate.ParamByName('RAZAO_SOCIAL').AsString := edtRazaoSocial.Text;
-    qrUpdate.ParamByName('CEP').AsString := edtCEP.Text;
-    qrUpdate.ParamByName('CIDADE').AsString := edtCidade.Text;
-    qrUpdate.ParamByName('UF').AsString := cbxUF.Text;
-    qrUpdate.ParamByName('TIPO_CHAVE').AsString := cbxTipoChave.Text;
-    qrUpdate.ParamByName('CHAVE').AsString := edtChave.Text;
+    qrUpdate.ParamByName('razao_social').AsString := edtRazaoSocial.Text;
+    qrUpdate.ParamByName('cep').AsString := edtCEP.Text;
+    qrUpdate.ParamByName('cidade').AsString := edtCidade.Text;
+    qrUpdate.ParamByName('uf').AsString := cbxUF.Text;
+    qrUpdate.ParamByName('tipo_chave').AsString := cbxTipoChave.Text;
+    qrUpdate.ParamByName('chave').AsString := edtChave.Text;
     
     // Setar o PSP selecionado e configurações gerais
-    qrUpdate.ParamByName('PSP').AsString := cbxPSPAtual.Text;
-    qrUpdate.ParamByName('AMBIENTE').AsString := cbxAmbiente.Text;
-    qrUpdate.ParamByName('TIMEOUT').AsInteger := seTimeout.Value;
+    qrUpdate.ParamByName('psp').AsString := cbxPSPAtual.Text;
+    qrUpdate.ParamByName('ambiente').AsString := cbxAmbiente.Text;
+    qrUpdate.ParamByName('timeout').AsInteger := seTimeout.Value;
     
     // Inicializar todos os parâmetros como NULL
     qrUpdate.ParamByName('client_id').Clear;
