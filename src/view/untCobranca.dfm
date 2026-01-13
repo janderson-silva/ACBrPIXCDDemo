@@ -1,9 +1,9 @@
-object frmGerarCobranca: TfrmGerarCobranca
+object frmCobranca: TfrmCobranca
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu, biMaximize]
   BorderStyle = bsSingle
-  Caption = 'frmGerarCobranca'
+  Caption = 'frmCobranca'
   ClientHeight = 441
   ClientWidth = 624
   Color = clBtnFace

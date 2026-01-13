@@ -144,7 +144,7 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="src\view\untChavePix.pas">
-            <Form>frmLocContaBancaria</Form>
+            <Form>frmChavePix</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="src\data.module\untDmConexao.pas">
@@ -154,6 +154,10 @@
         </DCCReference>
         <DCCReference Include="src\view\untGerarCobranca.pas">
             <Form>frmGerarCobranca</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="src\view\untCobranca.pas">
+            <Form>frmCobranca</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">

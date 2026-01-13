@@ -13,70 +13,83 @@ uses
   Vcl.StdCtrls;
 
 type
-  TfrmLocContaBancaria = class(TForm)
+  TfrmChavePix = class(TForm)
     PanelBottom: TPanel;
     btCadastrar: TButton;
     btEditar: TButton;
     btExcluir: TButton;
     PanelGrid: TPanel;
     DBGridContaBancaria: TDBGrid;
-    qrLocContaBancaria: TFDQuery;
-    dsLocContaBancaria: TDataSource;
-    qrLocContaBancariaCODIGO: TStringField;
-    qrLocContaBancariaCONTA: TStringField;
-    qrLocContaBancariaCODBANCO: TStringField;
-    qrLocContaBancariaAGENCIA: TStringField;
-    qrLocContaBancariaSALDO: TFloatField;
-    qrLocContaBancariaTITULAR: TStringField;
-    qrLocContaBancariaNOME_AGENCIA: TStringField;
-    qrLocContaBancariaNUMERO: TStringField;
-    qrLocContaBancariaBANCO: TStringField;
-    qrLocContaBancariaLOGO: TBlobField;
-    qrLocContaBancariaCARTAO_CREDITO: TIntegerField;
-    qrLocContaBancariaFINANCEIRA: TIntegerField;
-    qrLocContaBancariaRESSARCIMENTO: TIntegerField;
-    qrLocContaBancariaPRAZO: TIntegerField;
-    qrLocContaBancariaCOMISSAO_CREDITO: TFloatField;
-    qrLocContaBancariaCOMISSAO_DEBITO: TFloatField;
-    qrLocContaBancariaREC_DEBITO: TIntegerField;
-    qrLocContaBancariaREC_CREDITO: TIntegerField;
-    qrLocContaBancariaDIGITO: TStringField;
-    qrLocContaBancariaTAXA_CREDITO: TFloatField;
-    qrLocContaBancariaTAXA_DEBITO: TFloatField;
-    qrlancamento_conta: TFDQuery;
-    qrlancamento_contaDATA: TSQLTimeStampField;
-    qrlancamento_contaDOCUMENTO: TStringField;
-    qrlancamento_contaHISTORICO: TStringField;
-    qrlancamento_contaVALOR: TFloatField;
-    qrlancamento_contaSALDO_CUMULATIVO: TFloatField;
-    qrlancamento_contaCODIGO: TStringField;
-    qrlancamento_contaCODCONTACORRENTE: TStringField;
-    qrlancamento_contaCODCONTA: TStringField;
-    qrlancamento_contaTIPO: TStringField;
-    qrlancamento_contaCODCONTA_ORIGEM: TStringField;
-    qrlancamento_contaTRANSFERENCIA: TStringField;
-    qrlancamento_contaCONTA_RECPAG: TStringField;
-    query: TFDQuery;
-    qrLocContaBancariaCONTA_PADRAO: TIntegerField;
-    qrLocContaBancariaCONTAPADRAO: TStringField;
+    qrChavePix: TFDQuery;
+    dsChavePix: TDataSource;
     pnlHeader: TPanel;
     shpIcone: TShape;
     lblIcone: TLabel;
     lblTitulo: TLabel;
     lblSubtitulo: TLabel;
+    qrChavePixID: TIntegerField;
+    qrChavePixRAZAO_SOCIAL: TStringField;
+    qrChavePixCEP: TStringField;
+    qrChavePixCIDADE: TStringField;
+    qrChavePixUF: TStringField;
+    qrChavePixTIPO_CHAVE: TStringField;
+    qrChavePixCHAVE: TStringField;
+    qrChavePixPSP_CONFIGURADO: TIntegerField;
+    qrChavePixPSP: TStringField;
+    qrChavePixAMBIENTE: TStringField;
+    qrChavePixTIMEOUT: TIntegerField;
+    qrChavePixCLIENT_ID: TStringField;
+    qrChavePixCLIENT_SECRET: TStringField;
+    qrChavePixSECRET_KEY: TStringField;
+    qrChavePixACCESS_KEY: TStringField;
+    qrChavePixACCESS_TOKEN: TStringField;
+    qrChavePixTOKEN: TStringField;
+    qrChavePixDEVELOPER_APPLICATION_KEY: TStringField;
+    qrChavePixCONSUMER_KEY: TStringField;
+    qrChavePixCONSUMER_SECRET: TStringField;
+    qrChavePixACCOUNT_ID: TStringField;
+    qrChavePixAUTHENTICATION_API: TStringField;
+    qrChavePixAUTHENTICATION_KEY: TStringField;
+    qrChavePixSECRET_KEY_HMAC: TStringField;
+    qrChavePixMEDIATOR_FEE: TFMTBCDField;
+    qrChavePixARQUIVO_PFX: TBlobField;
+    qrChavePixSENHA_PFX: TStringField;
+    qrChavePixARQUIVO_CHAVE_PRIVADA: TBlobField;
+    qrChavePixARQUIVO_CERTIFICADO: TBlobField;
+    qrChavePixARQUIVO_CERTIFICADO_ROOT: TBlobField;
+    qrChavePixAPI_VERSAO: TStringField;
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
+    procedure SelectChavePix;
   public
     { Public declarations }
   end;
 
 var
-  frmLocContaBancaria: TfrmLocContaBancaria;
+  frmChavePix: TfrmChavePix;
 
 implementation
 
 uses untDmConexao;
 
 {$R *.dfm}
+
+{ TfrmChavePix }
+
+procedure TfrmChavePix.FormCreate(Sender: TObject);
+begin
+  SelectChavePix;
+end;
+
+procedure TfrmChavePix.SelectChavePix;
+begin
+  qrChavePix.Close;
+  qrChavePix.SQL.Clear;
+  qrChavePix.SQL.Add('select');
+  qrChavePix.SQL.Add('    *');
+  qrChavePix.SQL.Add('from chave_pix');
+  qrChavePix.Open;
+end;
 
 end.

@@ -1,9 +1,9 @@
-object frmLocContaBancaria: TfrmLocContaBancaria
+object frmChavePix: TfrmChavePix
   Left = 0
   Top = 0
-  BorderIcons = [biSystemMenu]
+  BorderIcons = [biSystemMenu, biMaximize]
   BorderStyle = bsSingle
-  Caption = 'Conta Banc'#225'ria'
+  Caption = 'Chave PIX'
   ClientHeight = 541
   ClientWidth = 944
   Color = clWhite
@@ -13,6 +13,7 @@ object frmLocContaBancaria: TfrmLocContaBancaria
   Font.Name = 'Segoe UI'
   Font.Style = []
   Position = poDefault
+  OnCreate = FormCreate
   TextHeight = 17
   object pnlHeader: TPanel
     Left = 0
@@ -89,11 +90,11 @@ object frmLocContaBancaria: TfrmLocContaBancaria
     TabOrder = 0
     object btCadastrar: TButton
       AlignWithMargins = True
-      Left = 10
+      Left = 20
       Top = 7
       Width = 100
       Height = 31
-      Margins.Left = 10
+      Margins.Left = 20
       Margins.Top = 7
       Margins.Bottom = 7
       Align = alLeft
@@ -108,7 +109,7 @@ object frmLocContaBancaria: TfrmLocContaBancaria
     end
     object btEditar: TButton
       AlignWithMargins = True
-      Left = 123
+      Left = 133
       Top = 7
       Width = 100
       Height = 31
@@ -127,7 +128,7 @@ object frmLocContaBancaria: TfrmLocContaBancaria
     end
     object btExcluir: TButton
       AlignWithMargins = True
-      Left = 236
+      Left = 246
       Top = 7
       Width = 100
       Height = 31
@@ -157,16 +158,16 @@ object frmLocContaBancaria: TfrmLocContaBancaria
     TabOrder = 1
     object DBGridContaBancaria: TDBGrid
       AlignWithMargins = True
-      Left = 10
-      Top = 10
-      Width = 924
-      Height = 406
-      Margins.Left = 10
-      Margins.Top = 10
-      Margins.Right = 10
-      Margins.Bottom = 10
+      Left = 20
+      Top = 20
+      Width = 904
+      Height = 386
+      Margins.Left = 20
+      Margins.Top = 20
+      Margins.Right = 20
+      Margins.Bottom = 20
       Align = alClient
-      DataSource = dsLocContaBancaria
+      DataSource = dsChavePix
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -13
@@ -179,236 +180,196 @@ object frmLocContaBancaria: TfrmLocContaBancaria
       TitleFont.Height = -13
       TitleFont.Name = 'Segoe UI Semibold'
       TitleFont.Style = []
-      Columns = <
-        item
-          Expanded = False
-          FieldName = 'CODIGO'
-          Title.Caption = 'C'#243'digo'
-          Width = 70
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'CONTA'
-          Title.Caption = 'Conta'
-          Width = 80
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'CODBANCO'
-          Title.Caption = 'C'#243'd. Banco'
-          Width = 70
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'BANCO'
-          Title.Caption = 'Banco'
-          Width = 150
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'AGENCIA'
-          Title.Caption = 'Ag'#234'ncia'
-          Width = 65
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'TITULAR'
-          Title.Caption = 'Titular'
-          Width = 250
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'CONTAPADRAO'
-          Title.Caption = 'Conta Padr'#227'o'
-          Width = 75
-          Visible = True
-        end>
     end
   end
-  object qrLocContaBancaria: TFDQuery
+  object qrChavePix: TFDQuery
+    Active = True
+    Connection = frmDmConexao.FDConnection
     SQL.Strings = (
-      'SELECT C.*,B.*,'
-      
-        '       CASE C.CONTA_PADRAO WHEN 1 THEN '#39'Sim'#39' ELSE '#39'N'#227'o'#39' END AS C' +
-        'ONTAPADRAO'
-      'FROM C000041 C'
-      'INNER JOIN C000013 B ON B.NUMERO = C.CODBANCO')
-    Left = 369
-    Top = 71
-    object qrLocContaBancariaCODIGO: TStringField
-      FieldName = 'CODIGO'
-      Required = True
-      Size = 6
+      'select'
+      '    *'
+      'from chave_pix')
+    Left = 417
+    Top = 183
+    object qrChavePixID: TIntegerField
+      FieldName = 'ID'
+      Origin = 'ID'
     end
-    object qrLocContaBancariaCONTA: TStringField
-      FieldName = 'CONTA'
-      Size = 15
-    end
-    object qrLocContaBancariaCODBANCO: TStringField
-      FieldName = 'CODBANCO'
-      Size = 3
-    end
-    object qrLocContaBancariaAGENCIA: TStringField
-      FieldName = 'AGENCIA'
-      Size = 10
-    end
-    object qrLocContaBancariaSALDO: TFloatField
-      FieldName = 'SALDO'
-    end
-    object qrLocContaBancariaTITULAR: TStringField
-      FieldName = 'TITULAR'
-      Size = 30
-    end
-    object qrLocContaBancariaNOME_AGENCIA: TStringField
-      FieldName = 'NOME_AGENCIA'
-      Size = 30
-    end
-    object qrLocContaBancariaNUMERO: TStringField
-      FieldName = 'NUMERO'
-      Required = True
-      Size = 6
-    end
-    object qrLocContaBancariaBANCO: TStringField
-      FieldName = 'BANCO'
-      Size = 80
-    end
-    object qrLocContaBancariaLOGO: TBlobField
-      FieldName = 'LOGO'
-    end
-    object qrLocContaBancariaCARTAO_CREDITO: TIntegerField
-      FieldName = 'CARTAO_CREDITO'
-    end
-    object qrLocContaBancariaFINANCEIRA: TIntegerField
-      FieldName = 'FINANCEIRA'
-    end
-    object qrLocContaBancariaRESSARCIMENTO: TIntegerField
-      FieldName = 'RESSARCIMENTO'
-    end
-    object qrLocContaBancariaPRAZO: TIntegerField
-      FieldName = 'PRAZO'
-    end
-    object qrLocContaBancariaCOMISSAO_CREDITO: TFloatField
-      FieldName = 'COMISSAO_CREDITO'
-    end
-    object qrLocContaBancariaCOMISSAO_DEBITO: TFloatField
-      FieldName = 'COMISSAO_DEBITO'
-    end
-    object qrLocContaBancariaREC_DEBITO: TIntegerField
-      FieldName = 'REC_DEBITO'
-    end
-    object qrLocContaBancariaREC_CREDITO: TIntegerField
-      FieldName = 'REC_CREDITO'
-    end
-    object qrLocContaBancariaDIGITO: TStringField
-      FieldName = 'DIGITO'
-      Size = 3
-    end
-    object qrLocContaBancariaTAXA_CREDITO: TFloatField
-      FieldName = 'TAXA_CREDITO'
-    end
-    object qrLocContaBancariaTAXA_DEBITO: TFloatField
-      FieldName = 'TAXA_DEBITO'
-    end
-    object qrLocContaBancariaCONTA_PADRAO: TIntegerField
-      FieldName = 'CONTA_PADRAO'
-      Origin = 'CONTA_PADRAO'
-    end
-    object qrLocContaBancariaCONTAPADRAO: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'CONTAPADRAO'
-      Origin = 'CONTAPADRAO'
-      ProviderFlags = []
-      ReadOnly = True
-      FixedChar = True
-      Size = 3
-    end
-  end
-  object dsLocContaBancaria: TDataSource
-    DataSet = qrLocContaBancaria
-    Left = 369
-    Top = 113
-  end
-  object qrlancamento_conta: TFDQuery
-    SQL.Strings = (
-      'select * from c000042')
-    Left = 128
-    Top = 133
-    object qrlancamento_contaDATA: TSQLTimeStampField
-      DisplayLabel = 'Data'
-      DisplayWidth = 10
-      FieldName = 'DATA'
-    end
-    object qrlancamento_contaDOCUMENTO: TStringField
-      DisplayLabel = 'Documento'
-      DisplayWidth = 13
-      FieldName = 'DOCUMENTO'
-      Size = 15
-    end
-    object qrlancamento_contaHISTORICO: TStringField
-      DisplayLabel = 'Hist'#243'rico'
-      DisplayWidth = 45
-      FieldName = 'HISTORICO'
+    object qrChavePixRAZAO_SOCIAL: TStringField
+      DisplayWidth = 30
+      FieldName = 'RAZAO_SOCIAL'
+      Origin = 'RAZAO_SOCIAL'
       Size = 255
     end
-    object qrlancamento_contaVALOR: TFloatField
-      DisplayLabel = 'Valor'
-      DisplayWidth = 10
-      FieldName = 'VALOR'
-      DisplayFormat = '#0.00'
-    end
-    object qrlancamento_contaSALDO_CUMULATIVO: TFloatField
-      DisplayLabel = 'Saldo'
-      DisplayWidth = 10
-      FieldKind = fkCalculated
-      FieldName = 'SALDO_CUMULATIVO'
-      DisplayFormat = '#0.00'
-      Calculated = True
-    end
-    object qrlancamento_contaCODIGO: TStringField
-      FieldName = 'CODIGO'
-      Required = True
+    object qrChavePixCEP: TStringField
+      FieldName = 'CEP'
+      Origin = 'CEP'
       Visible = False
-      Size = 6
+      Size = 10
     end
-    object qrlancamento_contaCODCONTACORRENTE: TStringField
-      FieldName = 'CODCONTACORRENTE'
+    object qrChavePixCIDADE: TStringField
+      DisplayWidth = 30
+      FieldName = 'CIDADE'
+      Origin = 'CIDADE'
       Visible = False
-      Size = 6
+      Size = 255
     end
-    object qrlancamento_contaCODCONTA: TStringField
-      FieldName = 'CODCONTA'
-      Visible = False
-      Size = 6
+    object qrChavePixUF: TStringField
+      FieldName = 'UF'
+      Origin = 'UF'
+      Size = 2
     end
-    object qrlancamento_contaTIPO: TStringField
-      FieldName = 'TIPO'
-      Visible = False
-      Size = 1
+    object qrChavePixTIPO_CHAVE: TStringField
+      FieldName = 'TIPO_CHAVE'
+      Origin = 'TIPO_CHAVE'
+      Size = 15
     end
-    object qrlancamento_contaCODCONTA_ORIGEM: TStringField
-      FieldName = 'CODCONTA_ORIGEM'
-      Visible = False
-      Size = 6
+    object qrChavePixCHAVE: TStringField
+      DisplayWidth = 30
+      FieldName = 'CHAVE'
+      Origin = 'CHAVE'
+      Size = 100
     end
-    object qrlancamento_contaTRANSFERENCIA: TStringField
-      FieldName = 'TRANSFERENCIA'
-      Visible = False
-      Size = 1
+    object qrChavePixPSP_CONFIGURADO: TIntegerField
+      FieldName = 'PSP_CONFIGURADO'
+      Origin = 'PSP_CONFIGURADO'
     end
-    object qrlancamento_contaCONTA_RECPAG: TStringField
-      FieldName = 'CONTA_RECPAG'
+    object qrChavePixPSP: TStringField
+      FieldName = 'PSP'
+      Origin = 'PSP'
+      Size = 50
+    end
+    object qrChavePixAMBIENTE: TStringField
+      FieldName = 'AMBIENTE'
+      Origin = 'AMBIENTE'
+      Size = 50
+    end
+    object qrChavePixTIMEOUT: TIntegerField
+      FieldName = 'TIMEOUT'
+      Origin = 'TIMEOUT'
       Visible = False
-      Size = 1
+    end
+    object qrChavePixCLIENT_ID: TStringField
+      FieldName = 'CLIENT_ID'
+      Origin = 'CLIENT_ID'
+      Visible = False
+      Size = 255
+    end
+    object qrChavePixCLIENT_SECRET: TStringField
+      FieldName = 'CLIENT_SECRET'
+      Origin = 'CLIENT_SECRET'
+      Visible = False
+      Size = 255
+    end
+    object qrChavePixSECRET_KEY: TStringField
+      FieldName = 'SECRET_KEY'
+      Origin = 'SECRET_KEY'
+      Visible = False
+      Size = 255
+    end
+    object qrChavePixACCESS_KEY: TStringField
+      FieldName = 'ACCESS_KEY'
+      Origin = 'ACCESS_KEY'
+      Visible = False
+      Size = 255
+    end
+    object qrChavePixACCESS_TOKEN: TStringField
+      FieldName = 'ACCESS_TOKEN'
+      Origin = 'ACCESS_TOKEN'
+      Visible = False
+      Size = 255
+    end
+    object qrChavePixTOKEN: TStringField
+      FieldName = 'TOKEN'
+      Origin = 'TOKEN'
+      Visible = False
+      Size = 255
+    end
+    object qrChavePixDEVELOPER_APPLICATION_KEY: TStringField
+      FieldName = 'DEVELOPER_APPLICATION_KEY'
+      Origin = 'DEVELOPER_APPLICATION_KEY'
+      Visible = False
+      Size = 255
+    end
+    object qrChavePixCONSUMER_KEY: TStringField
+      FieldName = 'CONSUMER_KEY'
+      Origin = 'CONSUMER_KEY'
+      Visible = False
+      Size = 255
+    end
+    object qrChavePixCONSUMER_SECRET: TStringField
+      FieldName = 'CONSUMER_SECRET'
+      Origin = 'CONSUMER_SECRET'
+      Visible = False
+      Size = 255
+    end
+    object qrChavePixACCOUNT_ID: TStringField
+      FieldName = 'ACCOUNT_ID'
+      Origin = 'ACCOUNT_ID'
+      Visible = False
+      Size = 255
+    end
+    object qrChavePixAUTHENTICATION_API: TStringField
+      FieldName = 'AUTHENTICATION_API'
+      Origin = 'AUTHENTICATION_API'
+      Visible = False
+      Size = 255
+    end
+    object qrChavePixAUTHENTICATION_KEY: TStringField
+      FieldName = 'AUTHENTICATION_KEY'
+      Origin = 'AUTHENTICATION_KEY'
+      Visible = False
+      Size = 255
+    end
+    object qrChavePixSECRET_KEY_HMAC: TStringField
+      FieldName = 'SECRET_KEY_HMAC'
+      Origin = 'SECRET_KEY_HMAC'
+      Visible = False
+      Size = 255
+    end
+    object qrChavePixMEDIATOR_FEE: TFMTBCDField
+      FieldName = 'MEDIATOR_FEE'
+      Origin = 'MEDIATOR_FEE'
+      Visible = False
+      Precision = 18
+      Size = 2
+    end
+    object qrChavePixARQUIVO_PFX: TBlobField
+      FieldName = 'ARQUIVO_PFX'
+      Origin = 'ARQUIVO_PFX'
+      Visible = False
+    end
+    object qrChavePixSENHA_PFX: TStringField
+      FieldName = 'SENHA_PFX'
+      Origin = 'SENHA_PFX'
+      Visible = False
+      Size = 255
+    end
+    object qrChavePixARQUIVO_CHAVE_PRIVADA: TBlobField
+      FieldName = 'ARQUIVO_CHAVE_PRIVADA'
+      Origin = 'ARQUIVO_CHAVE_PRIVADA'
+      Visible = False
+    end
+    object qrChavePixARQUIVO_CERTIFICADO: TBlobField
+      FieldName = 'ARQUIVO_CERTIFICADO'
+      Origin = 'ARQUIVO_CERTIFICADO'
+      Visible = False
+    end
+    object qrChavePixARQUIVO_CERTIFICADO_ROOT: TBlobField
+      FieldName = 'ARQUIVO_CERTIFICADO_ROOT'
+      Origin = 'ARQUIVO_CERTIFICADO_ROOT'
+      Visible = False
+    end
+    object qrChavePixAPI_VERSAO: TStringField
+      FieldName = 'API_VERSAO'
+      Origin = 'API_VERSAO'
+      Visible = False
+      Size = 50
     end
   end
-  object query: TFDQuery
-    Left = 48
-    Top = 128
+  object dsChavePix: TDataSource
+    DataSet = qrChavePix
+    Left = 417
+    Top = 241
   end
 end

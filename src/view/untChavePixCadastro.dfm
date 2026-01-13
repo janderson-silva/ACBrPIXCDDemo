@@ -1,7 +1,7 @@
 object frmConfigPSPPix: TfrmConfigPSPPix
   Left = 0
   Top = 0
-  BorderIcons = [biSystemMenu]
+  BorderIcons = [biSystemMenu, biMaximize]
   BorderStyle = bsSingle
   Caption = 'Configurar PSP'
   ClientHeight = 471
