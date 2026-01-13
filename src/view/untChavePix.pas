@@ -59,6 +59,7 @@ type
     qrChavePixARQUIVO_CERTIFICADO_ROOT: TBlobField;
     qrChavePixAPI_VERSAO: TStringField;
     procedure FormCreate(Sender: TObject);
+    procedure btCadastrarClick(Sender: TObject);
   private
     { Private declarations }
     procedure SelectChavePix;
@@ -71,11 +72,23 @@ var
 
 implementation
 
-uses untDmConexao;
+uses untDmConexao, untChavePixCadastro;
 
 {$R *.dfm}
 
 { TfrmChavePix }
+
+procedure TfrmChavePix.btCadastrarClick(Sender: TObject);
+var
+  frmChavePixCadastro: TfrmChavePixCadastro;
+begin
+  frmChavePixCadastro := TfrmChavePixCadastro.Create(nil);
+  try
+    frmChavePixCadastro.ShowModal;
+  finally
+    frmChavePixCadastro.Free;
+  end;
+end;
 
 procedure TfrmChavePix.FormCreate(Sender: TObject);
 begin

@@ -132,7 +132,7 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="src\view\untChavePixCadastro.pas">
-            <Form>frmConfigPSPPix</Form>
+            <Form>frmChavePixCadastro</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="src\view\untExibirDevolucaoPIX.pas">

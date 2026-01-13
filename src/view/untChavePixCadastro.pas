@@ -10,7 +10,7 @@ uses
   ACBrBase, ACBrOpenSSLUtils, DB;
 
 type
-  TfrmConfigPSPPix = class(TForm)
+  TfrmChavePixCadastro = class(TForm)
     gbPSP: TGroupBox;
     pnPSP: TPanel;
     Label16: TLabel;
@@ -90,7 +90,7 @@ type
   end;
 
 var
-  frmConfigPSPPix: TfrmConfigPSPPix;
+  frmChavePixCadastro: TfrmChavePixCadastro;
 
 implementation
 
@@ -98,7 +98,7 @@ uses untDmConexao;
 
 {$R *.dfm}
 
-procedure TfrmConfigPSPPix.btnArquivoCertificadoClick(Sender: TObject);
+procedure TfrmChavePixCadastro.btnArquivoCertificadoClick(Sender: TObject);
 begin
   OpenDialog.Filter := 'Certificado|*.pem;*.crt;*.cer|Todos os arquivos|*.*';
   OpenDialog.FileName := '';
@@ -106,7 +106,7 @@ begin
     edtArquivoCertificado.Text := OpenDialog.FileName;
 end;
 
-procedure TfrmConfigPSPPix.btnArquivoChavePrivadaClick(Sender: TObject);
+procedure TfrmChavePixCadastro.btnArquivoChavePrivadaClick(Sender: TObject);
 begin
   OpenDialog.Filter := 'Chave Privada|*.key;*.pem|Todos os arquivos|*.*';
   OpenDialog.FileName := '';
@@ -114,7 +114,7 @@ begin
     edtArquivoChavePrivada.Text := OpenDialog.FileName;
 end;
 
-procedure TfrmConfigPSPPix.btnArquivoPFXClick(Sender: TObject);
+procedure TfrmChavePixCadastro.btnArquivoPFXClick(Sender: TObject);
 begin
   OpenDialog.Filter := 'Certificado PFX/P12|*.pfx;*.p12|Todos os arquivos|*.*';
   OpenDialog.FileName := '';
@@ -122,7 +122,7 @@ begin
     edtArquivoPFX.Text := OpenDialog.FileName;
 end;
 
-procedure TfrmConfigPSPPix.btnExtrairChaveCertificadoClick(Sender: TObject);
+procedure TfrmChavePixCadastro.btnExtrairChaveCertificadoClick(Sender: TObject);
 var
   wArqPEM, wChave, wDiretorio, wNomePSP: String;
   wSL: TStringList;
@@ -192,20 +192,20 @@ begin
   end;
 end;
 
-procedure TfrmConfigPSPPix.FormCreate(Sender: TObject);
+procedure TfrmChavePixCadastro.FormCreate(Sender: TObject);
 begin
   PageControl1.ActivePageIndex := 0;
   InicializarComponentesDefault;
   OcultarTodosCampos;
 end;
 
-procedure TfrmConfigPSPPix.FormShow(Sender: TObject);
+procedure TfrmChavePixCadastro.FormShow(Sender: TObject);
 begin
   CarregarConfiguracaoPSP;
   ValidarBotaoExtrairChave;
 end;
 
-procedure TfrmConfigPSPPix.cbxPSPAtualChange(Sender: TObject);
+procedure TfrmChavePixCadastro.cbxPSPAtualChange(Sender: TObject);
 var
   PSPSelecionado: string;
   PSPsImplementados: array[0..1] of string;
@@ -249,7 +249,7 @@ begin
   ConfigurarCamposPorPSP(cbxPSPAtual.ItemIndex);
 end;
 
-procedure TfrmConfigPSPPix.bgravarClick(Sender: TObject);
+procedure TfrmChavePixCadastro.bgravarClick(Sender: TObject);
 begin
   if cbxPSPAtual.ItemIndex < 0 then
   begin
@@ -268,7 +268,7 @@ begin
   Close;
 end;
 
-procedure TfrmConfigPSPPix.OcultarTodosCampos;
+procedure TfrmChavePixCadastro.OcultarTodosCampos;
 begin
   pnlConfig1.Visible := False;
   pnlConfig2.Visible := False;
@@ -284,7 +284,7 @@ begin
   pnlArquivoCertificado.Visible := False;
 end;
 
-procedure TfrmConfigPSPPix.ConfigurarCamposPorPSP(IndicePSP: Integer);
+procedure TfrmChavePixCadastro.ConfigurarCamposPorPSP(IndicePSP: Integer);
 begin
   OcultarTodosCampos;
   
@@ -525,17 +525,17 @@ begin
   end;
 end;
 
-procedure TfrmConfigPSPPix.edtArquivoPFXChange(Sender: TObject);
+procedure TfrmChavePixCadastro.edtArquivoPFXChange(Sender: TObject);
 begin
   ValidarBotaoExtrairChave;
 end;
 
-procedure TfrmConfigPSPPix.edtSenhaPFXChange(Sender: TObject);
+procedure TfrmChavePixCadastro.edtSenhaPFXChange(Sender: TObject);
 begin
   ValidarBotaoExtrairChave;
 end;
 
-procedure TfrmConfigPSPPix.InicializarComponentesDefault;
+procedure TfrmChavePixCadastro.InicializarComponentesDefault;
 var
   j: TACBrPixCDAmbiente;
 begin
@@ -570,7 +570,7 @@ begin
   seTimeout.Value := 90000;
 end;
 
-procedure TfrmConfigPSPPix.SalvarConfiguracaoPSP;
+procedure TfrmChavePixCadastro.SalvarConfiguracaoPSP;
 var
   qrUpdate: TFDQuery;
   SQL: TStringList;
@@ -781,7 +781,7 @@ begin
   end;
 end;
 
-procedure TfrmConfigPSPPix.ValidarBotaoExtrairChave;
+procedure TfrmChavePixCadastro.ValidarBotaoExtrairChave;
 var
   ArquivoPFXValido: Boolean;
   SenhaPreenchida: Boolean;
@@ -796,7 +796,7 @@ begin
   btnExtrairChaveCertificado.Enabled := ArquivoPFXValido and SenhaPreenchida;
 end;
 
-function TfrmConfigPSPPix.ExportarBlobParaArquivo(AField: TField; const ANomeArquivo, APSP: string): string;
+function TfrmChavePixCadastro.ExportarBlobParaArquivo(AField: TField; const ANomeArquivo, APSP: string): string;
 var
   DiretorioTemp, CaminhoCompleto, NomePSP: string;
   FileStream: TFileStream;
@@ -837,7 +837,7 @@ begin
   end;
 end;
 
-procedure TfrmConfigPSPPix.CarregarConfiguracaoPSP;
+procedure TfrmChavePixCadastro.CarregarConfiguracaoPSP;
 var
   qrSelect: TFDQuery;
   PSPSelecionado: string;

@@ -3,7 +3,7 @@ program ACBrPIXCDDemo;
 uses
   Vcl.Forms,
   untPrincipal in 'src\view\untPrincipal.pas' {frmPrincipal},
-  untChavePixCadastro in 'src\view\untChavePixCadastro.pas' {frmConfigPSPPix},
+  untChavePixCadastro in 'src\view\untChavePixCadastro.pas' {frmChavePixCadastro},
   untExibirDevolucaoPIX in 'src\view\untExibirDevolucaoPIX.pas' {frmExibirDevolucaoPIX},
   untExibirQrCodePIX in 'src\view\untExibirQrCodePIX.pas' {frmExibirQrCodePIX},
   untChavePix in 'src\view\untChavePix.pas' {frmChavePix},

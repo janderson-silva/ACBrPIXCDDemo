@@ -106,6 +106,7 @@ object frmChavePix: TfrmChavePix
       Font.Style = []
       ParentFont = False
       TabOrder = 0
+      OnClick = btCadastrarClick
     end
     object btEditar: TButton
       AlignWithMargins = True
@@ -183,7 +184,6 @@ object frmChavePix: TfrmChavePix
     end
   end
   object qrChavePix: TFDQuery
-    Active = True
     Connection = frmDmConexao.FDConnection
     SQL.Strings = (
       'select'
@@ -192,178 +192,211 @@ object frmChavePix: TfrmChavePix
     Left = 417
     Top = 183
     object qrChavePixID: TIntegerField
+      DisplayLabel = 'C'#243'digo'
+      DisplayWidth = 8
       FieldName = 'ID'
       Origin = 'ID'
     end
     object qrChavePixRAZAO_SOCIAL: TStringField
-      DisplayWidth = 30
+      DisplayLabel = 'Raz'#227'o Social'
+      DisplayWidth = 40
       FieldName = 'RAZAO_SOCIAL'
       Origin = 'RAZAO_SOCIAL'
       Size = 255
     end
     object qrChavePixCEP: TStringField
+      DisplayWidth = 12
       FieldName = 'CEP'
       Origin = 'CEP'
-      Visible = False
       Size = 10
     end
     object qrChavePixCIDADE: TStringField
-      DisplayWidth = 30
+      DisplayLabel = 'Cidade'
+      DisplayWidth = 25
       FieldName = 'CIDADE'
       Origin = 'CIDADE'
-      Visible = False
       Size = 255
     end
     object qrChavePixUF: TStringField
+      DisplayWidth = 5
       FieldName = 'UF'
       Origin = 'UF'
       Size = 2
     end
     object qrChavePixTIPO_CHAVE: TStringField
+      DisplayLabel = 'Tipo de Chave'
+      DisplayWidth = 15
       FieldName = 'TIPO_CHAVE'
       Origin = 'TIPO_CHAVE'
       Size = 15
     end
     object qrChavePixCHAVE: TStringField
-      DisplayWidth = 30
+      DisplayLabel = 'Chave PIX'
+      DisplayWidth = 35
       FieldName = 'CHAVE'
       Origin = 'CHAVE'
       Size = 100
     end
     object qrChavePixPSP_CONFIGURADO: TIntegerField
+      DisplayLabel = 'PSP Configurado'
+      DisplayWidth = 15
       FieldName = 'PSP_CONFIGURADO'
       Origin = 'PSP_CONFIGURADO'
     end
     object qrChavePixPSP: TStringField
+      DisplayWidth = 20
       FieldName = 'PSP'
       Origin = 'PSP'
       Size = 50
     end
     object qrChavePixAMBIENTE: TStringField
+      DisplayLabel = 'Ambiente'
+      DisplayWidth = 15
       FieldName = 'AMBIENTE'
       Origin = 'AMBIENTE'
       Size = 50
     end
     object qrChavePixTIMEOUT: TIntegerField
+      DisplayLabel = 'Timeout'
+      DisplayWidth = 10
       FieldName = 'TIMEOUT'
       Origin = 'TIMEOUT'
-      Visible = False
     end
     object qrChavePixCLIENT_ID: TStringField
+      DisplayLabel = 'Client ID'
+      DisplayWidth = 30
       FieldName = 'CLIENT_ID'
       Origin = 'CLIENT_ID'
-      Visible = False
       Size = 255
     end
     object qrChavePixCLIENT_SECRET: TStringField
+      DisplayLabel = 'Client Secret'
+      DisplayWidth = 30
       FieldName = 'CLIENT_SECRET'
       Origin = 'CLIENT_SECRET'
-      Visible = False
       Size = 255
     end
     object qrChavePixSECRET_KEY: TStringField
+      DisplayLabel = 'Secret Key'
+      DisplayWidth = 30
       FieldName = 'SECRET_KEY'
       Origin = 'SECRET_KEY'
-      Visible = False
       Size = 255
     end
     object qrChavePixACCESS_KEY: TStringField
+      DisplayLabel = 'Access Key'
+      DisplayWidth = 30
       FieldName = 'ACCESS_KEY'
       Origin = 'ACCESS_KEY'
-      Visible = False
       Size = 255
     end
     object qrChavePixACCESS_TOKEN: TStringField
+      DisplayLabel = 'Access Token'
+      DisplayWidth = 30
       FieldName = 'ACCESS_TOKEN'
       Origin = 'ACCESS_TOKEN'
-      Visible = False
       Size = 255
     end
     object qrChavePixTOKEN: TStringField
+      DisplayLabel = 'Token'
+      DisplayWidth = 30
       FieldName = 'TOKEN'
       Origin = 'TOKEN'
-      Visible = False
       Size = 255
     end
     object qrChavePixDEVELOPER_APPLICATION_KEY: TStringField
+      DisplayLabel = 'Developer Application Key'
+      DisplayWidth = 35
       FieldName = 'DEVELOPER_APPLICATION_KEY'
       Origin = 'DEVELOPER_APPLICATION_KEY'
-      Visible = False
       Size = 255
     end
     object qrChavePixCONSUMER_KEY: TStringField
+      DisplayLabel = 'Consumer Key'
+      DisplayWidth = 30
       FieldName = 'CONSUMER_KEY'
       Origin = 'CONSUMER_KEY'
-      Visible = False
       Size = 255
     end
     object qrChavePixCONSUMER_SECRET: TStringField
+      DisplayLabel = 'Consumer Secret'
+      DisplayWidth = 30
       FieldName = 'CONSUMER_SECRET'
       Origin = 'CONSUMER_SECRET'
-      Visible = False
       Size = 255
     end
     object qrChavePixACCOUNT_ID: TStringField
+      DisplayLabel = 'Account ID'
+      DisplayWidth = 25
       FieldName = 'ACCOUNT_ID'
       Origin = 'ACCOUNT_ID'
-      Visible = False
       Size = 255
     end
     object qrChavePixAUTHENTICATION_API: TStringField
+      DisplayLabel = 'Authentication API'
+      DisplayWidth = 30
       FieldName = 'AUTHENTICATION_API'
       Origin = 'AUTHENTICATION_API'
-      Visible = False
       Size = 255
     end
     object qrChavePixAUTHENTICATION_KEY: TStringField
+      DisplayLabel = 'Authentication Key'
+      DisplayWidth = 30
       FieldName = 'AUTHENTICATION_KEY'
       Origin = 'AUTHENTICATION_KEY'
-      Visible = False
       Size = 255
     end
     object qrChavePixSECRET_KEY_HMAC: TStringField
+      DisplayLabel = 'Secret Key HMAC'
+      DisplayWidth = 30
       FieldName = 'SECRET_KEY_HMAC'
       Origin = 'SECRET_KEY_HMAC'
-      Visible = False
       Size = 255
     end
     object qrChavePixMEDIATOR_FEE: TFMTBCDField
+      DisplayLabel = 'Taxa Mediador'
+      DisplayWidth = 15
       FieldName = 'MEDIATOR_FEE'
       Origin = 'MEDIATOR_FEE'
-      Visible = False
       Precision = 18
       Size = 2
     end
     object qrChavePixARQUIVO_PFX: TBlobField
+      DisplayLabel = 'Arquivo PFX'
+      DisplayWidth = 20
       FieldName = 'ARQUIVO_PFX'
       Origin = 'ARQUIVO_PFX'
-      Visible = False
     end
     object qrChavePixSENHA_PFX: TStringField
+      DisplayLabel = 'Senha PFX'
+      DisplayWidth = 20
       FieldName = 'SENHA_PFX'
       Origin = 'SENHA_PFX'
-      Visible = False
       Size = 255
     end
     object qrChavePixARQUIVO_CHAVE_PRIVADA: TBlobField
+      DisplayLabel = 'Arquivo Chave Privada'
+      DisplayWidth = 25
       FieldName = 'ARQUIVO_CHAVE_PRIVADA'
       Origin = 'ARQUIVO_CHAVE_PRIVADA'
-      Visible = False
     end
     object qrChavePixARQUIVO_CERTIFICADO: TBlobField
+      DisplayLabel = 'Arquivo Certificado'
+      DisplayWidth = 25
       FieldName = 'ARQUIVO_CERTIFICADO'
       Origin = 'ARQUIVO_CERTIFICADO'
-      Visible = False
     end
     object qrChavePixARQUIVO_CERTIFICADO_ROOT: TBlobField
+      DisplayLabel = 'Arquivo Certificado Root'
+      DisplayWidth = 30
       FieldName = 'ARQUIVO_CERTIFICADO_ROOT'
       Origin = 'ARQUIVO_CERTIFICADO_ROOT'
-      Visible = False
     end
     object qrChavePixAPI_VERSAO: TStringField
+      DisplayLabel = 'Vers'#227'o da API'
+      DisplayWidth = 15
       FieldName = 'API_VERSAO'
       Origin = 'API_VERSAO'
-      Visible = False
       Size = 50
     end
   end

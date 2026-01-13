@@ -1,9 +1,9 @@
-object frmConfigPSPPix: TfrmConfigPSPPix
+object frmChavePixCadastro: TfrmChavePixCadastro
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu, biMaximize]
   BorderStyle = bsSingle
-  Caption = 'Configurar PSP'
+  Caption = 'Cadastro da Chave PIX e Configura'#231#227'o do PSP'
   ClientHeight = 471
   ClientWidth = 544
   Color = clWhite
@@ -347,7 +347,7 @@ object frmConfigPSPPix: TfrmConfigPSPPix
           AlignWithMargins = True
           Left = 10
           Top = 10
-          Width = 516
+          Width = 152
           Height = 16
           Margins.Left = 10
           Margins.Top = 10
@@ -362,7 +362,6 @@ object frmConfigPSPPix: TfrmConfigPSPPix
           Font.Style = [fsBold]
           ParentColor = False
           ParentFont = False
-          ExplicitWidth = 152
         end
         object pnlArquivoPFX: TPanel
           Left = 0
@@ -377,7 +376,7 @@ object frmConfigPSPPix: TfrmConfigPSPPix
             AlignWithMargins = True
             Left = 10
             Top = 5
-            Width = 516
+            Width = 144
             Height = 16
             Margins.Left = 10
             Margins.Top = 5
@@ -386,7 +385,6 @@ object frmConfigPSPPix: TfrmConfigPSPPix
             Caption = 'Arquivo PFX (Certificado)'
             Color = clBtnFace
             ParentColor = False
-            ExplicitWidth = 144
           end
           object edtArquivoPFX: TEdit
             AlignWithMargins = True
@@ -429,7 +427,7 @@ object frmConfigPSPPix: TfrmConfigPSPPix
             AlignWithMargins = True
             Left = 10
             Top = 5
-            Width = 516
+            Width = 80
             Height = 16
             Margins.Left = 10
             Margins.Top = 5
@@ -438,7 +436,6 @@ object frmConfigPSPPix: TfrmConfigPSPPix
             Caption = 'Senha do PFX'
             Color = clBtnFace
             ParentColor = False
-            ExplicitWidth = 80
           end
           object edtSenhaPFX: TEdit
             AlignWithMargins = True
@@ -468,7 +465,7 @@ object frmConfigPSPPix: TfrmConfigPSPPix
             AlignWithMargins = True
             Left = 10
             Top = 5
-            Width = 516
+            Width = 165
             Height = 16
             Margins.Left = 10
             Margins.Top = 5
@@ -477,7 +474,6 @@ object frmConfigPSPPix: TfrmConfigPSPPix
             Caption = 'Arquivo Chave Privada (.key)'
             Color = clBtnFace
             ParentColor = False
-            ExplicitWidth = 165
           end
           object edtArquivoChavePrivada: TEdit
             AlignWithMargins = True
@@ -519,7 +515,7 @@ object frmConfigPSPPix: TfrmConfigPSPPix
             AlignWithMargins = True
             Left = 10
             Top = 5
-            Width = 516
+            Width = 183
             Height = 16
             Margins.Left = 10
             Margins.Top = 5
@@ -528,7 +524,6 @@ object frmConfigPSPPix: TfrmConfigPSPPix
             Caption = 'Arquivo Certificado (.pem / .crt)'
             Color = clBtnFace
             ParentColor = False
-            ExplicitWidth = 183
           end
           object edtArquivoCertificado: TEdit
             AlignWithMargins = True
