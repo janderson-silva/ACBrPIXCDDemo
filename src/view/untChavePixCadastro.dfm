@@ -3,583 +3,946 @@ object frmChavePixCadastro: TfrmChavePixCadastro
   Top = 0
   BorderIcons = [biSystemMenu, biMaximize]
   BorderStyle = bsSingle
-  Caption = 'Cadastro da Chave PIX e Configura'#231#227'o do PSP'
-  ClientHeight = 471
-  ClientWidth = 544
+  Caption = 'Cadastro de Chave PIX'
+  ClientHeight = 700
+  ClientWidth = 900
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -13
-  Font.Name = 'Tahoma'
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
   Font.Style = []
   Position = poOwnerFormCenter
   OnCreate = FormCreate
   OnShow = FormShow
-  TextHeight = 16
-  object gbPSP: TGroupBox
+  TextHeight = 15
+  object pnlHeader: TPanel
     Left = 0
     Top = 0
-    Width = 544
-    Height = 72
+    Width = 900
+    Height = 70
     Align = alTop
-    Caption = 'PSP'
+    BevelOuter = bvNone
+    Color = 2829099
+    ParentBackground = False
     TabOrder = 0
-    object pnPSP: TPanel
-      Left = 2
+    object shpIcone: TShape
+      Left = 20
+      Top = 15
+      Width = 40
+      Height = 40
+      Brush.Color = 3947580
+      Pen.Style = psClear
+      Shape = stCircle
+    end
+    object lblIcone: TLabel
+      Left = 20
+      Top = 15
+      Width = 40
+      Height = 40
+      Alignment = taCenter
+      AutoSize = False
+      Caption = #62737
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -27
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+      Layout = tlCenter
+    end
+    object lblTitulo: TLabel
+      Left = 70
       Top = 18
-      Width = 540
-      Height = 52
-      Align = alClient
-      BevelOuter = bvNone
-      ParentColor = True
-      TabOrder = 0
-      object Label16: TLabel
-        Left = 8
-        Top = 3
-        Width = 55
-        Height = 16
-        Caption = 'PSP Atual'
-        Color = clBtnFace
-        ParentColor = False
-      end
-      object Label17: TLabel
-        Left = 197
-        Top = 3
-        Width = 54
-        Height = 16
-        Caption = 'Ambiente'
-        Color = clBtnFace
-        ParentColor = False
-      end
-      object Label18: TLabel
-        Left = 373
-        Top = 3
-        Width = 47
-        Height = 16
-        Caption = 'Timeout'
-        Color = clBtnFace
-        ParentColor = False
-      end
-      object cbxPSPAtual: TComboBox
-        Left = 8
-        Top = 19
-        Width = 182
-        Height = 24
-        Style = csDropDownList
-        TabOrder = 0
-        OnChange = cbxPSPAtualChange
-      end
-      object cbxAmbiente: TComboBox
-        Left = 197
-        Top = 19
-        Width = 170
-        Height = 24
-        Style = csDropDownList
-        TabOrder = 1
-      end
-      object seTimeout: TSpinEdit
-        Left = 373
-        Top = 19
-        Width = 113
-        Height = 23
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -12
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        Increment = 10
-        MaxValue = 999999
-        MinValue = 0
-        ParentFont = False
-        TabOrder = 2
-        Value = 0
-      end
+      Width = 164
+      Height = 21
+      Caption = 'Cadastro de Chave PIX'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -16
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblSubtitulo: TLabel
+      Left = 70
+      Top = 42
+      Width = 265
+      Height = 15
+      Caption = 'Preencha os dados da chave PIX e configure o PSP'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 12895428
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
     end
   end
-  object PageControl1: TPageControl
+  object ScrollBox1: TScrollBox
     Left = 0
-    Top = 72
-    Width = 544
-    Height = 359
-    ActivePage = TabSheet2
+    Top = 70
+    Width = 900
+    Height = 580
     Align = alClient
-    Images = img_icon_preto_pgc
-    TabHeight = 35
+    BorderStyle = bsNone
+    Color = 15987699
+    ParentColor = False
     TabOrder = 1
-    object TabSheet2: TTabSheet
-      Caption = 'Configura'#231#227'o PSP'
-      object pnlConfig4: TPanel
-        Left = 0
-        Top = 0
-        Width = 536
-        Height = 51
-        Align = alTop
+    DesignSize = (
+      883
+      580)
+    object gbDadosBasicos: TGroupBox
+      AlignWithMargins = True
+      Left = 20
+      Top = 20
+      Width = 840
+      Height = 170
+      Margins.Left = 20
+      Margins.Top = 20
+      Margins.Right = 20
+      Margins.Bottom = 0
+      Anchors = [akLeft, akTop, akRight]
+      Caption = ' Dados B'#225'sicos '
+      Color = clWhite
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 5395026
+      Font.Height = -13
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = [fsBold]
+      ParentBackground = False
+      ParentColor = False
+      ParentFont = False
+      TabOrder = 0
+      object pnlRazaoSocial: TPanel
+        Left = 10
+        Top = 25
+        Width = 820
+        Height = 45
         BevelOuter = bvNone
-        ParentColor = True
+        Color = clWhite
+        ParentBackground = False
         TabOrder = 0
-        object lblTitulo4: TLabel
-          AlignWithMargins = True
-          Left = 10
-          Top = 5
-          Width = 516
-          Height = 16
-          Margins.Left = 10
-          Margins.Top = 5
-          Margins.Right = 10
-          Align = alTop
-          Caption = 'Access Key / Authentication Key'
-          Color = clBtnFace
-          ParentColor = False
-          ExplicitWidth = 181
+        object lblRazaoSocial: TLabel
+          Left = 0
+          Top = 0
+          Width = 65
+          Height = 15
+          Caption = 'Raz'#227'o Social'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
         end
-        object edtConfig4: TEdit
-          AlignWithMargins = True
-          Left = 10
-          Top = 24
-          Width = 516
-          Height = 24
-          Margins.Left = 10
-          Margins.Top = 0
-          Margins.Right = 10
-          Align = alTop
+        object edtRazaoSocial: TEdit
+          Left = 0
+          Top = 20
+          Width = 820
+          Height = 23
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
           TabOrder = 0
         end
       end
-      object pnlConfig5: TPanel
-        Left = 0
-        Top = 51
-        Width = 536
-        Height = 51
-        Align = alTop
+      object pnlCEP: TPanel
+        Left = 10
+        Top = 75
+        Width = 150
+        Height = 45
         BevelOuter = bvNone
-        ParentColor = True
+        Color = clWhite
+        ParentBackground = False
         TabOrder = 1
-        object lblTitulo5: TLabel
-          AlignWithMargins = True
-          Left = 10
-          Top = 5
-          Width = 516
-          Height = 16
-          Margins.Left = 10
-          Margins.Top = 5
-          Margins.Right = 10
-          Align = alTop
-          Caption = 'Access Token / Account ID'
-          Color = clBtnFace
-          ParentColor = False
-          ExplicitWidth = 152
+        object lblCEP: TLabel
+          Left = 0
+          Top = 0
+          Width = 21
+          Height = 15
+          Caption = 'CEP'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
         end
-        object edtConfig5: TEdit
-          AlignWithMargins = True
-          Left = 10
-          Top = 24
-          Width = 516
-          Height = 24
-          Margins.Left = 10
-          Margins.Top = 0
-          Margins.Right = 10
-          Align = alTop
+        object edtCEP: TEdit
+          Left = 0
+          Top = 20
+          Width = 150
+          Height = 23
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
           TabOrder = 0
         end
       end
-      object pnlConfig6: TPanel
-        Left = 0
-        Top = 255
-        Width = 536
-        Height = 51
-        Align = alTop
+      object pnlCidade: TPanel
+        Left = 170
+        Top = 75
+        Width = 560
+        Height = 45
         BevelOuter = bvNone
-        ParentColor = True
+        Color = clWhite
+        ParentBackground = False
         TabOrder = 2
-        object lblTitulo6: TLabel
-          AlignWithMargins = True
-          Left = 10
-          Top = 5
-          Width = 516
-          Height = 16
-          Margins.Left = 10
-          Margins.Top = 5
-          Margins.Right = 10
-          Align = alTop
-          Caption = 'Token / Mediator Fee / Secret Key HMAC'
-          Color = clBtnFace
-          ParentColor = False
-          ExplicitWidth = 235
+        object lblCidade: TLabel
+          Left = 0
+          Top = 0
+          Width = 37
+          Height = 15
+          Caption = 'Cidade'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
         end
-        object edtConfig6: TEdit
-          AlignWithMargins = True
-          Left = 10
-          Top = 24
-          Width = 516
-          Height = 24
-          Margins.Left = 10
-          Margins.Top = 0
-          Margins.Right = 10
-          Align = alTop
+        object edtCidade: TEdit
+          Left = 0
+          Top = 20
+          Width = 560
+          Height = 23
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
           TabOrder = 0
         end
       end
-      object pnlConfig1: TPanel
-        Left = 0
-        Top = 102
-        Width = 536
-        Height = 51
-        Align = alTop
+      object pnlUF: TPanel
+        Left = 740
+        Top = 75
+        Width = 90
+        Height = 45
         BevelOuter = bvNone
-        ParentColor = True
+        Color = clWhite
+        ParentBackground = False
         TabOrder = 3
-        object lblTitulo1: TLabel
-          AlignWithMargins = True
-          Left = 10
-          Top = 5
-          Width = 516
-          Height = 16
-          Margins.Left = 10
-          Margins.Top = 5
-          Margins.Right = 10
-          Align = alTop
-          Caption = 'Client ID / Consumer Key'
-          Color = clBtnFace
-          ParentColor = False
-          ExplicitWidth = 143
+        object lblUF: TLabel
+          Left = 0
+          Top = 0
+          Width = 14
+          Height = 15
+          Caption = 'UF'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
         end
-        object edtConfig1: TEdit
-          AlignWithMargins = True
-          Left = 10
-          Top = 24
-          Width = 516
-          Height = 24
-          Margins.Left = 10
-          Margins.Top = 0
-          Margins.Right = 10
-          Align = alTop
+        object cbxUF: TComboBox
+          Left = 0
+          Top = 20
+          Width = 90
+          Height = 23
+          Style = csDropDownList
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
           TabOrder = 0
+          Items.Strings = (
+            'AC'
+            'AL'
+            'AP'
+            'AM'
+            'BA'
+            'CE'
+            'DF'
+            'ES'
+            'GO'
+            'MA'
+            'MT'
+            'MS'
+            'MG'
+            'PA'
+            'PB'
+            'PR'
+            'PE'
+            'PI'
+            'RJ'
+            'RN'
+            'RS'
+            'RO'
+            'RR'
+            'SC'
+            'SP'
+            'SE'
+            'TO')
         end
       end
-      object pnlConfig2: TPanel
-        Left = 0
-        Top = 153
-        Width = 536
-        Height = 51
-        Align = alTop
+      object pnlTipoChave: TPanel
+        Left = 10
+        Top = 120
+        Width = 200
+        Height = 45
         BevelOuter = bvNone
-        ParentColor = True
+        Color = clWhite
+        ParentBackground = False
         TabOrder = 4
-        object lblTitulo2: TLabel
-          AlignWithMargins = True
-          Left = 10
-          Top = 5
-          Width = 516
-          Height = 16
-          Margins.Left = 10
-          Margins.Top = 5
-          Margins.Right = 10
-          Align = alTop
-          Caption = 'Client Secret / Consumer Secret'
-          Color = clBtnFace
-          ParentColor = False
-          ExplicitWidth = 185
+        object lblTipoChave: TLabel
+          Left = 0
+          Top = 0
+          Width = 75
+          Height = 15
+          Caption = 'Tipo de Chave'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
         end
-        object edtConfig2: TEdit
-          AlignWithMargins = True
-          Left = 10
-          Top = 24
-          Width = 516
-          Height = 24
-          Margins.Left = 10
-          Margins.Top = 0
-          Margins.Right = 10
-          Align = alTop
+        object cbxTipoChave: TComboBox
+          Left = 0
+          Top = 20
+          Width = 200
+          Height = 23
+          Style = csDropDownList
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
           TabOrder = 0
+          Items.Strings = (
+            'CPF'
+            'CNPJ'
+            'Email'
+            'Telefone'
+            'Chave Aleat'#243'ria')
         end
       end
-      object pnlConfig3: TPanel
-        Left = 0
-        Top = 204
-        Width = 536
-        Height = 51
-        Align = alTop
+      object pnlChave: TPanel
+        Left = 220
+        Top = 120
+        Width = 610
+        Height = 45
         BevelOuter = bvNone
-        ParentColor = True
+        Color = clWhite
+        ParentBackground = False
         TabOrder = 5
-        object lblTitulo3: TLabel
-          AlignWithMargins = True
-          Left = 10
-          Top = 5
-          Width = 516
-          Height = 16
-          Margins.Left = 10
-          Margins.Top = 5
-          Margins.Right = 10
-          Align = alTop
-          Caption = 'Secret Key / Developer Application Key'
-          Color = clBtnFace
-          ParentColor = False
-          ExplicitWidth = 221
+        object lblChave: TLabel
+          Left = 0
+          Top = 0
+          Width = 53
+          Height = 15
+          Caption = 'Chave PIX'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
         end
-        object edtConfig3: TEdit
-          AlignWithMargins = True
-          Left = 10
-          Top = 24
-          Width = 516
-          Height = 24
-          Margins.Left = 10
-          Margins.Top = 0
-          Margins.Right = 10
-          Align = alTop
+        object edtChave: TEdit
+          Left = 0
+          Top = 20
+          Width = 610
+          Height = 23
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
           TabOrder = 0
         end
       end
     end
-    object tsCertificado: TTabSheet
-      Caption = 'Certificados'
-      ImageIndex = 1
-      object pnlCertificados: TPanel
-        Left = 0
-        Top = 0
-        Width = 536
-        Height = 314
-        Align = alClient
+    object gbPSP: TGroupBox
+      AlignWithMargins = True
+      Left = 20
+      Top = 210
+      Width = 840
+      Height = 100
+      Margins.Left = 20
+      Margins.Top = 20
+      Margins.Right = 20
+      Margins.Bottom = 0
+      Anchors = [akLeft, akTop, akRight]
+      Caption = ' Configura'#231#227'o PSP '
+      Color = clWhite
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 5395026
+      Font.Height = -13
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = [fsBold]
+      ParentBackground = False
+      ParentColor = False
+      ParentFont = False
+      TabOrder = 1
+      object pnPSP: TPanel
+        Left = 10
+        Top = 25
+        Width = 820
+        Height = 65
         BevelOuter = bvNone
-        ParentColor = True
+        Color = clWhite
+        ParentBackground = False
         TabOrder = 0
-        object lblCertificados: TLabel
-          AlignWithMargins = True
-          Left = 10
-          Top = 10
-          Width = 152
-          Height = 16
-          Margins.Left = 10
-          Margins.Top = 10
-          Margins.Right = 10
-          Align = alTop
-          Caption = 'CERTIFICADOS DIGITAIS'
-          Color = clBtnFace
-          Font.Charset = ANSI_CHARSET
+        object Label16: TLabel
+          Left = 0
+          Top = 0
+          Width = 51
+          Height = 15
+          Caption = 'PSP Atual'
+          Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentColor = False
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
           ParentFont = False
         end
-        object pnlArquivoPFX: TPanel
+        object Label17: TLabel
+          Left = 350
+          Top = 0
+          Width = 52
+          Height = 15
+          Caption = 'Ambiente'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label18: TLabel
+          Left = 600
+          Top = 0
+          Width = 44
+          Height = 15
+          Caption = 'Timeout'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+        end
+        object cbxPSPAtual: TComboBox
           Left = 0
-          Top = 29
-          Width = 536
-          Height = 50
-          Align = alTop
-          BevelOuter = bvNone
-          ParentColor = True
+          Top = 20
+          Width = 340
+          Height = 23
+          Style = csDropDownList
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
           TabOrder = 0
-          object lblArquivoPFX: TLabel
-            AlignWithMargins = True
-            Left = 10
-            Top = 5
-            Width = 144
-            Height = 16
-            Margins.Left = 10
-            Margins.Top = 5
-            Margins.Right = 10
-            Align = alTop
-            Caption = 'Arquivo PFX (Certificado)'
-            Color = clBtnFace
-            ParentColor = False
-          end
-          object edtArquivoPFX: TEdit
-            AlignWithMargins = True
-            Left = 10
-            Top = 24
-            Width = 467
-            Height = 23
-            Margins.Left = 10
-            Margins.Top = 0
-            Margins.Right = 0
-            Align = alLeft
-            TabOrder = 0
-            OnChange = edtArquivoPFXChange
-            ExplicitHeight = 24
-          end
-          object btnArquivoPFX: TButton
-            AlignWithMargins = True
-            Left = 480
-            Top = 24
-            Width = 52
-            Height = 23
-            Margins.Top = 0
-            Margins.Right = 10
-            Align = alLeft
-            Caption = '...'
-            TabOrder = 1
-            OnClick = btnArquivoPFXClick
-          end
+          OnChange = cbxPSPAtualChange
         end
-        object pnlSenhaPFX: TPanel
-          Left = 0
-          Top = 79
-          Width = 536
-          Height = 50
-          Align = alTop
-          BevelOuter = bvNone
-          ParentColor = True
+        object cbxAmbiente: TComboBox
+          Left = 350
+          Top = 20
+          Width = 240
+          Height = 23
+          Style = csDropDownList
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
           TabOrder = 1
-          object lblSenhaPFX: TLabel
-            AlignWithMargins = True
-            Left = 10
-            Top = 5
-            Width = 80
-            Height = 16
-            Margins.Left = 10
-            Margins.Top = 5
-            Margins.Right = 10
-            Align = alTop
-            Caption = 'Senha do PFX'
-            Color = clBtnFace
-            ParentColor = False
-          end
-          object edtSenhaPFX: TEdit
-            AlignWithMargins = True
-            Left = 10
-            Top = 24
-            Width = 516
-            Height = 24
-            Margins.Left = 10
-            Margins.Top = 0
-            Margins.Right = 10
-            Align = alTop
-            PasswordChar = '*'
-            TabOrder = 0
-            OnChange = edtSenhaPFXChange
-          end
         end
-        object pnlArquivoChavePrivada: TPanel
-          Left = 0
-          Top = 184
-          Width = 536
-          Height = 50
-          Align = alTop
-          BevelOuter = bvNone
-          ParentColor = True
-          TabOrder = 3
-          object lblArquivoChavePrivada: TLabel
-            AlignWithMargins = True
-            Left = 10
-            Top = 5
-            Width = 165
-            Height = 16
-            Margins.Left = 10
-            Margins.Top = 5
-            Margins.Right = 10
-            Align = alTop
-            Caption = 'Arquivo Chave Privada (.key)'
-            Color = clBtnFace
-            ParentColor = False
-          end
-          object edtArquivoChavePrivada: TEdit
-            AlignWithMargins = True
-            Left = 10
-            Top = 24
-            Width = 467
-            Height = 23
-            Margins.Left = 10
-            Margins.Top = 0
-            Margins.Right = 0
-            Align = alLeft
-            TabOrder = 0
-            ExplicitHeight = 24
-          end
-          object btnArquivoChavePrivada: TButton
-            AlignWithMargins = True
-            Left = 480
-            Top = 24
-            Width = 52
-            Height = 23
-            Margins.Top = 0
-            Margins.Right = 10
-            Align = alLeft
-            Caption = '...'
-            TabOrder = 1
-            OnClick = btnArquivoChavePrivadaClick
-          end
-        end
-        object pnlArquivoCertificado: TPanel
-          Left = 0
-          Top = 234
-          Width = 536
-          Height = 50
-          Align = alTop
-          BevelOuter = bvNone
-          ParentColor = True
-          TabOrder = 4
-          object lblArquivoCertificado: TLabel
-            AlignWithMargins = True
-            Left = 10
-            Top = 5
-            Width = 183
-            Height = 16
-            Margins.Left = 10
-            Margins.Top = 5
-            Margins.Right = 10
-            Align = alTop
-            Caption = 'Arquivo Certificado (.pem / .crt)'
-            Color = clBtnFace
-            ParentColor = False
-          end
-          object edtArquivoCertificado: TEdit
-            AlignWithMargins = True
-            Left = 10
-            Top = 24
-            Width = 467
-            Height = 23
-            Margins.Left = 10
-            Margins.Top = 0
-            Margins.Right = 0
-            Align = alLeft
-            TabOrder = 0
-            ExplicitHeight = 24
-          end
-          object btnArquivoCertificado: TButton
-            AlignWithMargins = True
-            Left = 480
-            Top = 24
-            Width = 52
-            Height = 23
-            Margins.Top = 0
-            Margins.Right = 10
-            Align = alLeft
-            Caption = '...'
-            TabOrder = 1
-            OnClick = btnArquivoCertificadoClick
-          end
-        end
-        object pnlExtrairChaveCertificado: TPanel
-          Left = 0
-          Top = 129
-          Width = 536
-          Height = 55
-          Align = alTop
-          BevelOuter = bvNone
-          ParentColor = True
+        object seTimeout: TSpinEdit
+          Left = 600
+          Top = 20
+          Width = 150
+          Height = 24
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          Increment = 1000
+          MaxValue = 999999
+          MinValue = 0
+          ParentFont = False
           TabOrder = 2
-          object btnExtrairChaveCertificado: TButton
-            AlignWithMargins = True
-            Left = 10
-            Top = 10
-            Width = 160
-            Height = 35
-            Margins.Left = 10
-            Margins.Top = 10
-            Margins.Bottom = 10
-            Align = alLeft
-            Caption = 'Extrair Chave/Certificao'
-            Font.Charset = ANSI_CHARSET
+          Value = 0
+        end
+      end
+    end
+    object PageControl1: TPageControl
+      AlignWithMargins = True
+      Left = 20
+      Top = 330
+      Width = 840
+      Height = 400
+      Margins.Left = 20
+      Margins.Top = 20
+      Margins.Right = 20
+      Margins.Bottom = 20
+      ActivePage = TabSheet2
+      Anchors = [akLeft, akTop, akRight]
+      Images = img_icon_preto_pgc
+      TabHeight = 30
+      TabOrder = 2
+      object TabSheet2: TTabSheet
+        Caption = 'Configura'#231#227'o PSP'
+        object pnlConfig1: TPanel
+          Left = 10
+          Top = 10
+          Width = 812
+          Height = 50
+          BevelOuter = bvNone
+          Color = clWhite
+          ParentBackground = False
+          TabOrder = 0
+          object lblTitulo1: TLabel
+            Left = 0
+            Top = 0
+            Width = 133
+            Height = 15
+            Caption = 'Client ID / Consumer Key'
+            Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'Tahoma'
+            Font.Height = -12
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+          end
+          object edtConfig1: TEdit
+            Left = 0
+            Top = 20
+            Width = 812
+            Height = 23
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -12
+            Font.Name = 'Segoe UI'
             Font.Style = []
             ParentFont = False
             TabOrder = 0
-            OnClick = btnExtrairChaveCertificadoClick
+          end
+        end
+        object pnlConfig2: TPanel
+          Left = 10
+          Top = 70
+          Width = 812
+          Height = 50
+          BevelOuter = bvNone
+          Color = clWhite
+          ParentBackground = False
+          TabOrder = 1
+          object lblTitulo2: TLabel
+            Left = 0
+            Top = 0
+            Width = 167
+            Height = 15
+            Caption = 'Client Secret / Consumer Secret'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -12
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+          end
+          object edtConfig2: TEdit
+            Left = 0
+            Top = 20
+            Width = 812
+            Height = 23
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -12
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+          end
+        end
+        object pnlConfig3: TPanel
+          Left = 10
+          Top = 130
+          Width = 812
+          Height = 50
+          BevelOuter = bvNone
+          Color = clWhite
+          ParentBackground = False
+          TabOrder = 2
+          object lblTitulo3: TLabel
+            Left = 0
+            Top = 0
+            Width = 204
+            Height = 15
+            Caption = 'Secret Key / Developer Application Key'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -12
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+          end
+          object edtConfig3: TEdit
+            Left = 0
+            Top = 20
+            Width = 812
+            Height = 23
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -12
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+          end
+        end
+        object pnlConfig4: TPanel
+          Left = 10
+          Top = 190
+          Width = 812
+          Height = 50
+          BevelOuter = bvNone
+          Color = clWhite
+          ParentBackground = False
+          TabOrder = 3
+          object lblTitulo4: TLabel
+            Left = 0
+            Top = 0
+            Width = 170
+            Height = 15
+            Caption = 'Access Key / Authentication Key'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -12
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+          end
+          object edtConfig4: TEdit
+            Left = 0
+            Top = 20
+            Width = 812
+            Height = 23
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -12
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+          end
+        end
+        object pnlConfig5: TPanel
+          Left = 10
+          Top = 250
+          Width = 812
+          Height = 50
+          BevelOuter = bvNone
+          Color = clWhite
+          ParentBackground = False
+          TabOrder = 4
+          object lblTitulo5: TLabel
+            Left = 0
+            Top = 0
+            Width = 140
+            Height = 15
+            Caption = 'Access Token / Account ID'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -12
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+          end
+          object edtConfig5: TEdit
+            Left = 0
+            Top = 20
+            Width = 812
+            Height = 23
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -12
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+          end
+        end
+        object pnlConfig6: TPanel
+          Left = 10
+          Top = 310
+          Width = 812
+          Height = 50
+          BevelOuter = bvNone
+          Color = clWhite
+          ParentBackground = False
+          TabOrder = 5
+          object lblTitulo6: TLabel
+            Left = 0
+            Top = 0
+            Width = 215
+            Height = 15
+            Caption = 'Token / Mediator Fee / Secret Key HMAC'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -12
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+          end
+          object edtConfig6: TEdit
+            Left = 0
+            Top = 20
+            Width = 812
+            Height = 23
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -12
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+          end
+        end
+      end
+      object tsCertificado: TTabSheet
+        Caption = 'Certificados'
+        ImageIndex = 1
+        object pnlCertificados: TPanel
+          Left = 0
+          Top = 0
+          Width = 832
+          Height = 360
+          Align = alClient
+          BevelOuter = bvNone
+          Color = clWhite
+          ParentBackground = False
+          TabOrder = 0
+          object lblCertificados: TLabel
+            Left = 10
+            Top = 10
+            Width = 144
+            Height = 17
+            Caption = 'CERTIFICADOS DIGITAIS'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Segoe UI Semibold'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object pnlArquivoPFX: TPanel
+            Left = 10
+            Top = 40
+            Width = 812
+            Height = 50
+            BevelOuter = bvNone
+            Color = clWhite
+            ParentBackground = False
+            TabOrder = 0
+            object lblArquivoPFX: TLabel
+              Left = 0
+              Top = 0
+              Width = 134
+              Height = 15
+              Caption = 'Arquivo PFX (Certificado)'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              ParentFont = False
+            end
+            object edtArquivoPFX: TEdit
+              Left = 0
+              Top = 20
+              Width = 740
+              Height = 23
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 0
+              OnChange = edtArquivoPFXChange
+            end
+            object btnArquivoPFX: TButton
+              Left = 750
+              Top = 20
+              Width = 60
+              Height = 23
+              Caption = '...'
+              TabOrder = 1
+              OnClick = btnArquivoPFXClick
+            end
+          end
+          object pnlSenhaPFX: TPanel
+            Left = 10
+            Top = 100
+            Width = 812
+            Height = 50
+            BevelOuter = bvNone
+            Color = clWhite
+            ParentBackground = False
+            TabOrder = 1
+            object lblSenhaPFX: TLabel
+              Left = 0
+              Top = 0
+              Width = 72
+              Height = 15
+              Caption = 'Senha do PFX'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              ParentFont = False
+            end
+            object edtSenhaPFX: TEdit
+              Left = 0
+              Top = 20
+              Width = 812
+              Height = 23
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              ParentFont = False
+              PasswordChar = '*'
+              TabOrder = 0
+              OnChange = edtSenhaPFXChange
+            end
+          end
+          object pnlExtrairChaveCertificado: TPanel
+            Left = 10
+            Top = 160
+            Width = 812
+            Height = 50
+            BevelOuter = bvNone
+            Color = clWhite
+            ParentBackground = False
+            TabOrder = 2
+            object btnExtrairChaveCertificado: TButton
+              Left = 0
+              Top = 10
+              Width = 200
+              Height = 35
+              Caption = 'Extrair Chave/Certificado'
+              Font.Charset = ANSI_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -11
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 0
+              OnClick = btnExtrairChaveCertificadoClick
+            end
+          end
+          object pnlArquivoChavePrivada: TPanel
+            Left = 10
+            Top = 220
+            Width = 812
+            Height = 50
+            BevelOuter = bvNone
+            Color = clWhite
+            ParentBackground = False
+            TabOrder = 3
+            object lblArquivoChavePrivada: TLabel
+              Left = 0
+              Top = 0
+              Width = 152
+              Height = 15
+              Caption = 'Arquivo Chave Privada (.key)'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              ParentFont = False
+            end
+            object edtArquivoChavePrivada: TEdit
+              Left = 0
+              Top = 20
+              Width = 740
+              Height = 23
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 0
+            end
+            object btnArquivoChavePrivada: TButton
+              Left = 750
+              Top = 20
+              Width = 60
+              Height = 23
+              Caption = '...'
+              TabOrder = 1
+              OnClick = btnArquivoChavePrivadaClick
+            end
+          end
+          object pnlArquivoCertificado: TPanel
+            Left = 10
+            Top = 280
+            Width = 812
+            Height = 50
+            BevelOuter = bvNone
+            Color = clWhite
+            ParentBackground = False
+            TabOrder = 4
+            object lblArquivoCertificado: TLabel
+              Left = 0
+              Top = 0
+              Width = 169
+              Height = 15
+              Caption = 'Arquivo Certificado (.pem / .crt)'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              ParentFont = False
+            end
+            object edtArquivoCertificado: TEdit
+              Left = 0
+              Top = 20
+              Width = 740
+              Height = 23
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 0
+            end
+            object btnArquivoCertificado: TButton
+              Left = 750
+              Top = 20
+              Width = 60
+              Height = 23
+              Caption = '...'
+              TabOrder = 1
+              OnClick = btnArquivoCertificadoClick
+            end
           end
         end
       end
@@ -587,26 +950,30 @@ object frmChavePixCadastro: TfrmChavePixCadastro
   end
   object PanelBotao: TPanel
     Left = 0
-    Top = 431
-    Width = 544
-    Height = 40
+    Top = 650
+    Width = 900
+    Height = 50
     Align = alBottom
     BevelOuter = bvNone
-    ParentColor = True
+    Color = 15987699
+    ParentBackground = False
     TabOrder = 2
     object bgravar: TButton
       AlignWithMargins = True
-      Left = 3
-      Top = 3
-      Width = 107
-      Height = 34
+      Left = 20
+      Top = 8
+      Width = 120
+      Height = 35
+      Margins.Left = 20
+      Margins.Top = 8
+      Margins.Bottom = 7
       Align = alLeft
       Caption = 'Salvar'
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = []
+      Font.Height = -13
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 0
       OnClick = bgravarClick
@@ -614,276 +981,19 @@ object frmChavePixCadastro: TfrmChavePixCadastro
   end
   object OpenDialog: TOpenDialog
     Filter = 'Certificados|*.pfx;*.p12;*.pem;*.crt;*.key|Todos os arquivos|*.*'
-    Left = 376
-    Top = 112
+    Left = 800
+    Top = 100
   end
   object img_icon_preto_pgc: TImageList
     ColorDepth = cd32Bit
     DrawingStyle = dsTransparent
     Height = 22
     Width = 22
-    Left = 375
-    Top = 168
-    Bitmap = {
-      494C010102001800040016001600FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
-      000000000000360000002800000058000000160000000100200000000000401E
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000606
-      0607000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      000000000000000000000000001B0000005100000000000000000000004E0000
-      001E000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000001616
-      16E61B1B1BDF3D3D3D9730303041000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      00000000000000000007000000C9000000F10000000E00000009000000EC0000
-      00D00000000A0000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000202
-      02032626262F31313144313131443131314431313144313131441818181B2D2D
-      2DC4000000FF000000FF000000FF3F3F3F7F0000000000000000000000000000
-      00000000000000000000000000000000000000000000000000000000004B0000
-      005500000055000000A7000000FF000000FF0000006E0000005F000000FF0000
-      00FF000000AD00000055000000550000004E0000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000111111132727
-      27CE000000FF000000FF000000FF000000FF000000FF000000FF3E3E3E913F3F
-      3F7B000000FF000000FF000000FF000000FF3F3F3F7F00000000000000000000
-      0000000000000000000000000000000000000000000000000000000000DF0000
-      00FF000000FF000000FF000000FF000000FF000000DB0000002F000000FE0000
-      00FF000000FF000000FF000000FF000000E40000000100000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      00000000000000000000000000000000000000000000000000003F3F3F881414
-      14E82C2C2C3A1D1D1D221D1D1D221D1D1D221D1D1D221D1D1D22161616192020
-      2026040404FA000000FF000000FF000000FF000000FF3F3F3F7F000000000000
-      00000000000000000000000000000000000000000000000000000000006F0000
-      00FF000000FF000000FF000000FF000000FF000000FF0000004C000000BD0000
-      00FF000000FF000000FF000000FF000000750000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000353535B23737
-      37AC00000000000000000D0D0D0E0101010200000000020202030F0F0F110D0D
-      0D0E39393958020202FC000000FF000000FF000000FF000000FF3F3F3F7F0000
-      00000000000000000000000000000000000000000000000000000000000B0000
-      00EC000000FF000000FF000000E8000000C0000000EC000000AD000000450000
-      00F1000000FF000000FF000000F00000000E0000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000343434B43838
-      38AA000000003D3D3D66000000FF363636B000000000353535B2000000FF0101
-      01FD3C3C3C6139393958020202FC000000FF000000FF000000FF000000FF3F3F
-      3F7F000000000000000000000000000000000000000000000000000000000000
-      0081000000FF000000A000000021000000550000002300000024000000590000
-      0025000000AC000000FF00000088000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000343434B43838
-      38AA0000000011111113383838542323232A000000002323232A383838553838
-      385538383853040404053A3A3A59020202FC000000FF000000FF000000FF0000
-      00FF3F3F3F750000000000000000000000000000000000000000000000000000
-      00130000004E0000002B000000E9000000FF000000FE000000FE000000FF0000
-      00EC0000002B0000004F00000015000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000343434B43838
-      38AA000000000D0D0D0E313131441D1D1D22000000001D1D1D22313131443131
-      31443131314431313144282828323A3A3A59020202FC000000FF000000FF0000
-      00FF070707F70707070800000000000000000000000000000000000000000000
-      0041000000CC000000F8000000FF000000FF000000FF000000FF000000FF0000
-      00FF000000F8000000CC00000040000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000343434B43838
-      38AA000000003E3E3E6A000000FF343434B400000000343434B5000000FF0000
-      00FF000000FF000000FF010101FD3C3C3C613A3A3A59020202FC000000FF0000
-      00FF0E0E0EF00202020300000000000000000000000000000000000000000000
-      00DD000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FF000000FF000000FF000000DC000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000343434B43838
-      38AA00000000000000000F0F0F110404040500000000040404050F0F0F110F0F
-      0F110F0F0F110F0F0F110F0F0F110E0E0E0F0000000037373752161616E61717
-      17E5373737510000000000000000000000000000000000000000000000260000
-      00FD000000FF000000FF000000FF000000F900000069000000E9000000FF0000
-      00FF000000FF000000FF000000FD000000260000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000343434B43838
-      38AA000000002323232A3F3F3F883737375000000000393939563F3F3F883F3F
-      3F883F3F3F883F3F3F883F3F3F883F3F3F882323232A00000000131313151414
-      1416000000000000000000000000000000000000000000000023000000EC0000
-      00FF000000FF000000FF000000F1000000430000004300000058000000FF0000
-      00FF000000FF000000FF000000FF000000EB0000002100000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000343434B43838
-      38AA000000003636364F282828CC3F3F3F8A000000003E3E3E93282828CC2828
-      28CC282828CC282828CC282828CC282828CC3636364F00000000383838AA3434
-      34B4000000000000000000000000000000000000000000000070000000FF0000
-      00FF000000FF000000E70000003300000093000000FE00000040000000B40000
-      00FF000000FF000000FF000000FF000000FF0000006E00000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000343434B43838
-      38AA000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000383838AA3434
-      34B4000000000000000000000000000000000000000000000037000000FF0000
-      00FF000000FF00000059000000AA000000FF000000FF000000DA000000270000
-      00F2000000FF000000FF000000FF000000FF0000003700000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000343434B42B2B
-      2BC7383838553838385538383855383838553838385538383855383838553838
-      38553838385538383855383838553838385538383855383838552B2B2BC73434
-      34B400000000000000000000000000000000000000000000002A000000FF0000
-      00FF000000FF000000FD000000FF000000FF000000FF000000FF000000860000
-      006D000000FF000000FF000000FF000000FF0000002900000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000343434B40000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF3434
-      34B400000000000000000000000000000000000000000000006E000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FA0000
-      0031000000C7000000FF000000FF000000FF0000006C00000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000353535B20000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF3535
-      35B2000000000000000000000000000000000000000000000034000000F90000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00CA0000004C000000FF000000FF000000F90000003200000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      00000000000000000000000000000000000000000000000000003F3F3F880000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF3F3F
-      3F87000000000000000000000000000000000000000000000000000000420000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FF000000FB000000FF000000FF000000420000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000111111132626
-      26CF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF272727CE1010
-      1012000000000000000000000000000000000000000000000000000000000000
-      00E7000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FF000000FF000000FF000000E6000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000202
-      0203272727303131314431313144313131443131314431313144313131443131
-      3144313131443131314431313144313131443131314427272730020202030000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0061000000F4000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FF000000FF000000F40000005F000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      00000000000400000047000000F7000000FF000000FF000000FF000000FF0000
-      00F7000000460000000400000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      00000000000000000000000000360000007E00000043000000430000007E0000
-      0035000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      000000000000000000000000000000000000424D3E000000000000003E000000
-      2800000058000000160000000100010000000000080100000000000000000000
-      000000000000000000000000FFFFFF00FFEFFFFCCFF0000000000000FFE1FFF8
-      07F0000000000000E000FFC000F0000000000000C0007FC00070000000000000
-      C0003FC000F0000000000000CC801FC000F0000000000000C8800FE001F00000
-      00000000C88007E001F0000000000000C88003E001F0000000000000C88003E0
-      01F0000000000000CC8087C000F0000000000000C8804F800070000000000000
-      C8804F800070000000000000CFFFCF800070000000000000C0000F8000700000
-      00000000C0000F800070000000000000C0000F800070000000000000C0000FC0
-      00F0000000000000C0000FE001F0000000000000E0001FE001F0000000000000
-      FFFFFFF003F0000000000000FFFFFFFC0FF00000000000000000000000000000
-      0000000000000000000000000000}
+    Left = 800
+    Top = 150
   end
   object ACBrOpenSSLUtils1: TACBrOpenSSLUtils
-    Left = 376
-    Top = 219
+    Left = 800
+    Top = 200
   end
 end

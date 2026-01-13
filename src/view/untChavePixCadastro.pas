@@ -11,6 +11,31 @@ uses
 
 type
   TfrmChavePixCadastro = class(TForm)
+    pnlHeader: TPanel;
+    shpIcone: TShape;
+    lblIcone: TLabel;
+    lblTitulo: TLabel;
+    lblSubtitulo: TLabel;
+    ScrollBox1: TScrollBox;
+    gbDadosBasicos: TGroupBox;
+    pnlRazaoSocial: TPanel;
+    lblRazaoSocial: TLabel;
+    edtRazaoSocial: TEdit;
+    pnlCEP: TPanel;
+    lblCEP: TLabel;
+    edtCEP: TEdit;
+    pnlCidade: TPanel;
+    lblCidade: TLabel;
+    edtCidade: TEdit;
+    pnlUF: TPanel;
+    lblUF: TLabel;
+    cbxUF: TComboBox;
+    pnlTipoChave: TPanel;
+    lblTipoChave: TLabel;
+    cbxTipoChave: TComboBox;
+    pnlChave: TPanel;
+    lblChave: TLabel;
+    edtChave: TEdit;
     gbPSP: TGroupBox;
     pnPSP: TPanel;
     Label16: TLabel;
