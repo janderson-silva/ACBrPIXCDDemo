@@ -323,11 +323,12 @@ object frmChavePixCadastro: TfrmChavePixCadastro
           ParentFont = False
           TabOrder = 0
           Items.Strings = (
+            'Nenhuma'
+            'Email'
             'CPF'
             'CNPJ'
-            'Email'
-            'Telefone'
-            'Chave Aleat'#243'ria')
+            'Celular'
+            'Aleat'#243'ria')
         end
       end
       object pnlChave: TPanel
@@ -364,6 +365,7 @@ object frmChavePixCadastro: TfrmChavePixCadastro
           Font.Style = []
           ParentFont = False
           TabOrder = 0
+          OnChange = edtChaveChange
         end
       end
     end

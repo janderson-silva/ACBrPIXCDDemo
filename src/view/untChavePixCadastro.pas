@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls,
   Vcl.Samples.Spin, Vcl.ExtCtrls, System.ImageList, Vcl.ImgList,
   ACBrPIXCD, TypInfo, FireDAC.Comp.Client, FireDAC.Stan.Param, ACBrUtil.Base, ACBrUtil.Strings,
-  ACBrBase, ACBrOpenSSLUtils, DB;
+  ACBrBase, ACBrOpenSSLUtils, Data.DB, ACBrPIXUtil;
 
 type
   TfrmChavePixCadastro = class(TForm)
@@ -99,6 +99,7 @@ type
     procedure edtArquivoPFXChange(Sender: TObject);
     procedure edtSenhaPFXChange(Sender: TObject);
     procedure btnExtrairChaveCertificadoClick(Sender: TObject);
+    procedure edtChaveChange(Sender: TObject);
   private
     { Private declarations }
     FCodigoChavePix: String;
@@ -574,6 +575,11 @@ end;
 procedure TfrmChavePixCadastro.edtArquivoPFXChange(Sender: TObject);
 begin
   ValidarBotaoExtrairChave;
+end;
+
+procedure TfrmChavePixCadastro.edtChaveChange(Sender: TObject);
+begin
+  cbxTipoChave.ItemIndex := Integer(ACBrPIXUtil.DetectarTipoChave(edtChave.Text));
 end;
 
 procedure TfrmChavePixCadastro.edtSenhaPFXChange(Sender: TObject);
