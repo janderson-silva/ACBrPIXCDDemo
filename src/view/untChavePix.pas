@@ -85,7 +85,10 @@ var
 begin
   frmChavePixCadastro := TfrmChavePixCadastro.Create(nil);
   try
-    frmChavePixCadastro.ShowModal;
+    frmChavePixCadastro.ModoEdicao := False;
+    frmChavePixCadastro.CodigoChavePix := '';
+    if frmChavePixCadastro.ShowModal = mrOk then
+      SelectChavePix; // Atualizar a grid
   finally
     frmChavePixCadastro.Free;
   end;
@@ -95,9 +98,18 @@ procedure TfrmChavePix.btnEditarClick(Sender: TObject);
 var
   frmChavePixCadastro: TfrmChavePixCadastro;
 begin
+  if qrChavePix.IsEmpty then
+  begin
+    Application.MessageBox('Selecione uma Chave PIX para editar!', 'Atenção', MB_OK + MB_ICONEXCLAMATION);
+    Exit;
+  end;
+
   frmChavePixCadastro := TfrmChavePixCadastro.Create(nil);
   try
-    frmChavePixCadastro.ShowModal;
+    frmChavePixCadastro.ModoEdicao := True;
+    frmChavePixCadastro.CodigoChavePix := qrChavePixID.AsString;
+    if frmChavePixCadastro.ShowModal = mrOk then
+      SelectChavePix; // Atualizar a grid
   finally
     frmChavePixCadastro.Free;
   end;

@@ -102,16 +102,20 @@ type
   private
     { Private declarations }
     FCodigoChavePix: String;
+    FModoEdicao: Boolean;
     procedure InicializarComponentesDefault;
     procedure ConfigurarCamposPorPSP(IndicePSP: Integer);
     procedure OcultarTodosCampos;
     procedure SalvarConfiguracaoPSP;
     procedure CarregarConfiguracaoPSP;
+    procedure LimparFormulario;
+    procedure CarregarDados;
     procedure ValidarBotaoExtrairChave;
     function ExportarBlobParaArquivo(AField: TField; const ANomeArquivo, APSP: string): string;
   public
     { Public declarations }
     property CodigoChavePix: String read FCodigoChavePix write FCodigoChavePix;
+    property ModoEdicao: Boolean read FModoEdicao write FModoEdicao;
   end;
 
 var
@@ -226,7 +230,7 @@ end;
 
 procedure TfrmChavePixCadastro.FormShow(Sender: TObject);
 begin
-  CarregarConfiguracaoPSP;
+  CarregarDados;
   ValidarBotaoExtrairChave;
 end;
 
@@ -276,6 +280,28 @@ end;
 
 procedure TfrmChavePixCadastro.bgravarClick(Sender: TObject);
 begin
+  // Validar campos obrigatórios
+  if Trim(edtRazaoSocial.Text) = '' then
+  begin
+    Application.MessageBox('Informe a Razão Social!', 'Atenção', MB_OK + MB_ICONEXCLAMATION);
+    edtRazaoSocial.SetFocus;
+    Exit;
+  end;
+  
+  if cbxTipoChave.ItemIndex < 0 then
+  begin
+    Application.MessageBox('Selecione o Tipo de Chave!', 'Atenção', MB_OK + MB_ICONEXCLAMATION);
+    cbxTipoChave.SetFocus;
+    Exit;
+  end;
+  
+  if Trim(edtChave.Text) = '' then
+  begin
+    Application.MessageBox('Informe a Chave PIX!', 'Atenção', MB_OK + MB_ICONEXCLAMATION);
+    edtChave.SetFocus;
+    Exit;
+  end;
+  
   if cbxPSPAtual.ItemIndex < 0 then
   begin
     Application.MessageBox('Selecione um PSP!', 'Atenção', MB_OK + MB_ICONEXCLAMATION);
@@ -283,13 +309,8 @@ begin
     Exit;
   end;
 
-  if Trim(FCodigoChavePix) = '' then
-  begin
-    Application.MessageBox('Código da Chave PIX não informado!', 'Atenção', MB_OK + MB_ICONEXCLAMATION);
-    Exit;
-  end;
-
   SalvarConfiguracaoPSP;
+  ModalResult := mrOk;
   Close;
 end;
 
@@ -598,40 +619,100 @@ end;
 procedure TfrmChavePixCadastro.SalvarConfiguracaoPSP;
 var
   qrUpdate: TFDQuery;
+  qrMaxId: TFDQuery;
   SQL: TStringList;
+  NovoID: Integer;
 begin
   qrUpdate := TFDQuery.Create(nil);
   SQL := TStringList.Create;
   try
     qrUpdate.Connection := frmDmConexao.FDConnection;
     
+    // Se não é modo de edição, gerar novo ID
+    if not FModoEdicao then
+    begin
+      qrMaxId := TFDQuery.Create(nil);
+      try
+        qrMaxId.Connection := frmDmConexao.FDConnection;
+        qrMaxId.SQL.Text := 'SELECT COALESCE(MAX(ID), 0) + 1 AS NOVO_ID FROM CHAVE_PIX';
+        qrMaxId.Open;
+        NovoID := qrMaxId.FieldByName('NOVO_ID').AsInteger;
+        FCodigoChavePix := IntToStr(NovoID);
+      finally
+        qrMaxId.Free;
+      end;
+    end;
+    
     SQL.Clear;
-    SQL.Add('UPDATE CHAVE_PIX SET');
-    SQL.Add('  PSP_CONFIGURADO = 1,');
-    SQL.Add('  PSP = :PSP,');
-    SQL.Add('  AMBIENTE = :AMBIENTE,');
-    SQL.Add('  TIMEOUT = :TIMEOUT,');
-    SQL.Add('  client_id = :client_id,');
-    SQL.Add('  client_secret = :client_secret,');
-    SQL.Add('  secret_key = :secret_key,');
-    SQL.Add('  access_key = :access_key,');
-    SQL.Add('  access_token = :access_token,');
-    SQL.Add('  token = :token,');
-    SQL.Add('  developer_application_key = :developer_application_key,');
-    SQL.Add('  consumer_key = :consumer_key,');
-    SQL.Add('  consumer_secret = :consumer_secret,');
-    SQL.Add('  account_id = :account_id,');
-    SQL.Add('  authentication_api = :authentication_api,');
-    SQL.Add('  authentication_key = :authentication_key,');
-    SQL.Add('  secret_key_hmac = :secret_key_hmac,');
-    SQL.Add('  mediator_fee = :mediator_fee,');
-    SQL.Add('  arquivo_pfx = :arquivo_pfx,');
-    SQL.Add('  senha_pfx = :senha_pfx,');
-    SQL.Add('  arquivo_chave_privada = :arquivo_chave_privada,');
-    SQL.Add('  arquivo_certificado = :arquivo_certificado');
-    SQL.Add('WHERE CODIGO = :CODIGO');
+    
+    if FModoEdicao then
+    begin
+      // UPDATE
+      SQL.Add('UPDATE CHAVE_PIX SET');
+      SQL.Add('  RAZAO_SOCIAL = :RAZAO_SOCIAL,');
+      SQL.Add('  CEP = :CEP,');
+      SQL.Add('  CIDADE = :CIDADE,');
+      SQL.Add('  UF = :UF,');
+      SQL.Add('  TIPO_CHAVE = :TIPO_CHAVE,');
+      SQL.Add('  CHAVE = :CHAVE,');
+      SQL.Add('  PSP_CONFIGURADO = 1,');
+      SQL.Add('  PSP = :PSP,');
+      SQL.Add('  AMBIENTE = :AMBIENTE,');
+      SQL.Add('  TIMEOUT = :TIMEOUT,');
+      SQL.Add('  client_id = :client_id,');
+      SQL.Add('  client_secret = :client_secret,');
+      SQL.Add('  secret_key = :secret_key,');
+      SQL.Add('  access_key = :access_key,');
+      SQL.Add('  access_token = :access_token,');
+      SQL.Add('  token = :token,');
+      SQL.Add('  developer_application_key = :developer_application_key,');
+      SQL.Add('  consumer_key = :consumer_key,');
+      SQL.Add('  consumer_secret = :consumer_secret,');
+      SQL.Add('  account_id = :account_id,');
+      SQL.Add('  authentication_api = :authentication_api,');
+      SQL.Add('  authentication_key = :authentication_key,');
+      SQL.Add('  secret_key_hmac = :secret_key_hmac,');
+      SQL.Add('  mediator_fee = :mediator_fee,');
+      SQL.Add('  arquivo_pfx = :arquivo_pfx,');
+      SQL.Add('  senha_pfx = :senha_pfx,');
+      SQL.Add('  arquivo_chave_privada = :arquivo_chave_privada,');
+      SQL.Add('  arquivo_certificado = :arquivo_certificado');
+      SQL.Add('WHERE ID = :ID');
+    end
+    else
+    begin
+      // INSERT
+      SQL.Add('INSERT INTO CHAVE_PIX (');
+      SQL.Add('  ID, RAZAO_SOCIAL, CEP, CIDADE, UF, TIPO_CHAVE, CHAVE,');
+      SQL.Add('  PSP_CONFIGURADO, PSP, AMBIENTE, TIMEOUT,');
+      SQL.Add('  client_id, client_secret, secret_key, access_key, access_token,');
+      SQL.Add('  token, developer_application_key, consumer_key, consumer_secret,');
+      SQL.Add('  account_id, authentication_api, authentication_key, secret_key_hmac,');
+      SQL.Add('  mediator_fee, arquivo_pfx, senha_pfx, arquivo_chave_privada,');
+      SQL.Add('  arquivo_certificado');
+      SQL.Add(') VALUES (');
+      SQL.Add('  :ID, :RAZAO_SOCIAL, :CEP, :CIDADE, :UF, :TIPO_CHAVE, :CHAVE,');
+      SQL.Add('  1, :PSP, :AMBIENTE, :TIMEOUT,');
+      SQL.Add('  :client_id, :client_secret, :secret_key, :access_key, :access_token,');
+      SQL.Add('  :token, :developer_application_key, :consumer_key, :consumer_secret,');
+      SQL.Add('  :account_id, :authentication_api, :authentication_key, :secret_key_hmac,');
+      SQL.Add('  :mediator_fee, :arquivo_pfx, :senha_pfx, :arquivo_chave_privada,');
+      SQL.Add('  :arquivo_certificado');
+      SQL.Add(')');
+    end;
     
     qrUpdate.SQL.Text := SQL.Text;
+    
+    // Setar ID
+    qrUpdate.ParamByName('ID').AsInteger := StrToIntDef(FCodigoChavePix, 0);
+    
+    // Setar dados básicos
+    qrUpdate.ParamByName('RAZAO_SOCIAL').AsString := edtRazaoSocial.Text;
+    qrUpdate.ParamByName('CEP').AsString := edtCEP.Text;
+    qrUpdate.ParamByName('CIDADE').AsString := edtCidade.Text;
+    qrUpdate.ParamByName('UF').AsString := cbxUF.Text;
+    qrUpdate.ParamByName('TIPO_CHAVE').AsString := cbxTipoChave.Text;
+    qrUpdate.ParamByName('CHAVE').AsString := edtChave.Text;
     
     // Setar o PSP selecionado e configurações gerais
     qrUpdate.ParamByName('PSP').AsString := cbxPSPAtual.Text;
@@ -794,11 +875,14 @@ begin
       qrUpdate.ParamByName('arquivo_certificado').LoadFromFile(edtArquivoCertificado.Text, ftBlob)
     else
       qrUpdate.ParamByName('arquivo_certificado').Clear;
-
-    qrUpdate.ParamByName('CODIGO').AsString := FCodigoChavePix;
     
     qrUpdate.ExecSQL;
     qrUpdate.Connection.Commit;
+    
+    if not FModoEdicao then
+      Application.MessageBox('Chave PIX cadastrada com sucesso!', 'Sucesso', MB_OK + MB_ICONINFORMATION)
+    else
+      Application.MessageBox('Chave PIX atualizada com sucesso!', 'Sucesso', MB_OK + MB_ICONINFORMATION);
     
   finally
     SQL.Free;
@@ -876,12 +960,35 @@ begin
     qrSelect.Connection := frmDmConexao.FDConnection;
     
     qrSelect.SQL.Clear;
-    qrSelect.SQL.Add('SELECT * FROM CHAVE_PIX WHERE CODIGO = :CODIGO');
-    qrSelect.ParamByName('CODIGO').AsString := FCodigoChavePix;
+    qrSelect.SQL.Add('SELECT * FROM CHAVE_PIX WHERE ID = :ID');
+    qrSelect.ParamByName('ID').AsString := FCodigoChavePix;
     qrSelect.Open;
     
     if not qrSelect.IsEmpty then
     begin
+      // Carregar dados básicos
+      edtRazaoSocial.Text := qrSelect.FieldByName('RAZAO_SOCIAL').AsString;
+      edtCEP.Text := qrSelect.FieldByName('CEP').AsString;
+      edtCidade.Text := qrSelect.FieldByName('CIDADE').AsString;
+      
+      // Selecionar UF
+      if not qrSelect.FieldByName('UF').IsNull then
+      begin
+        IndicePSP := cbxUF.Items.IndexOf(qrSelect.FieldByName('UF').AsString);
+        if IndicePSP >= 0 then
+          cbxUF.ItemIndex := IndicePSP;
+      end;
+      
+      // Selecionar Tipo de Chave
+      if not qrSelect.FieldByName('TIPO_CHAVE').IsNull then
+      begin
+        IndicePSP := cbxTipoChave.Items.IndexOf(qrSelect.FieldByName('TIPO_CHAVE').AsString);
+        if IndicePSP >= 0 then
+          cbxTipoChave.ItemIndex := IndicePSP;
+      end;
+      
+      edtChave.Text := qrSelect.FieldByName('CHAVE').AsString;
+      
       // Buscar o PSP salvo
       PSPSelecionado := qrSelect.FieldByName('PSP').AsString;
       
@@ -1051,6 +1158,55 @@ begin
     
   finally
     qrSelect.Free;
+  end;
+end;
+
+procedure TfrmChavePixCadastro.LimparFormulario;
+begin
+  // Limpar dados básicos
+  edtRazaoSocial.Clear;
+  edtCEP.Clear;
+  edtCidade.Clear;
+  cbxUF.ItemIndex := -1;
+  cbxTipoChave.ItemIndex := -1;
+  edtChave.Clear;
+  
+  // Limpar PSP
+  cbxPSPAtual.ItemIndex := -1;
+  cbxAmbiente.ItemIndex := 0; // Produção
+  seTimeout.Value := 60000;
+  
+  // Limpar campos de configuração
+  edtConfig1.Clear;
+  edtConfig2.Clear;
+  edtConfig3.Clear;
+  edtConfig4.Clear;
+  edtConfig5.Clear;
+  edtConfig6.Clear;
+  
+  // Limpar certificados
+  edtArquivoPFX.Clear;
+  edtSenhaPFX.Clear;
+  edtArquivoChavePrivada.Clear;
+  edtArquivoCertificado.Clear;
+  
+  // Ocultar todos os campos
+  OcultarTodosCampos;
+end;
+
+procedure TfrmChavePixCadastro.CarregarDados;
+begin
+  if FModoEdicao then
+  begin
+    lblTitulo.Caption := 'Editar Chave PIX';
+    lblSubtitulo.Caption := 'Atualize as informações da chave PIX selecionada';
+    CarregarConfiguracaoPSP;
+  end
+  else
+  begin
+    lblTitulo.Caption := 'Nova Chave PIX';
+    lblSubtitulo.Caption := 'Cadastre uma nova chave PIX no sistema';
+    LimparFormulario;
   end;
 end;
 
