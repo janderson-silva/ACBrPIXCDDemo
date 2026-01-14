@@ -12,6 +12,7 @@ object frmPrincipal: TfrmPrincipal
   Font.Name = 'Segoe UI'
   Font.Style = []
   Position = poScreenCenter
+  WindowState = wsMaximized
   OnCreate = FormCreate
   TextHeight = 15
   object pnlTop: TPanel
@@ -89,8 +90,6 @@ object frmPrincipal: TfrmPrincipal
       Color = clWhite
       ParentBackground = False
       TabOrder = 0
-      ExplicitTop = 50
-      ExplicitHeight = 380
       object pnlSeparator1: TPanel
         Left = 0
         Top = 95
@@ -126,7 +125,6 @@ object frmPrincipal: TfrmPrincipal
         ParentFont = False
         TabOrder = 1
         OnClick = btnChavesPixClick
-        ExplicitTop = 111
       end
       object pnlSeparator2: TPanel
         Left = 0
@@ -163,7 +161,6 @@ object frmPrincipal: TfrmPrincipal
         ParentFont = False
         TabOrder = 3
         OnClick = btnGerarCobrancaClick
-        ExplicitTop = 182
       end
       object pnlSeparator3: TPanel
         Left = 0
@@ -179,7 +176,6 @@ object frmPrincipal: TfrmPrincipal
         Color = 15132390
         ParentBackground = False
         TabOrder = 4
-        ExplicitTop = 238
       end
       object btnCobrancas: TButton
         AlignWithMargins = True
@@ -201,7 +197,6 @@ object frmPrincipal: TfrmPrincipal
         ParentFont = False
         TabOrder = 5
         OnClick = btnCobrancasClick
-        ExplicitTop = 253
       end
       object btnConfiguracoes: TButton
         AlignWithMargins = True
@@ -223,7 +218,6 @@ object frmPrincipal: TfrmPrincipal
         ParentFont = False
         TabOrder = 6
         OnClick = btnConfiguracoesClick
-        ExplicitTop = 323
       end
     end
   end

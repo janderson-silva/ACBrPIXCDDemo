@@ -84,18 +84,20 @@ object frmChavePixCadastro: TfrmChavePixCadastro
     Top = 70
     Width = 900
     Height = 580
+    VertScrollBar.Position = 130
     Align = alClient
     BorderStyle = bsNone
     Color = 15987699
     ParentColor = False
     TabOrder = 1
+    ExplicitTop = 18
     DesignSize = (
       883
       580)
     object gbDadosBasicos: TGroupBox
       AlignWithMargins = True
       Left = 20
-      Top = 20
+      Top = -110
       Width = 840
       Height = 170
       Margins.Left = 20
@@ -114,15 +116,22 @@ object frmChavePixCadastro: TfrmChavePixCadastro
       ParentColor = False
       ParentFont = False
       TabOrder = 0
+      DesignSize = (
+        840
+        170)
       object pnlRazaoSocial: TPanel
         Left = 10
         Top = 25
         Width = 820
         Height = 45
+        Anchors = [akLeft, akTop, akRight]
         BevelOuter = bvNone
         Color = clWhite
         ParentBackground = False
         TabOrder = 0
+        DesignSize = (
+          820
+          45)
         object lblRazaoSocial: TLabel
           Left = 0
           Top = 0
@@ -141,6 +150,7 @@ object frmChavePixCadastro: TfrmChavePixCadastro
           Top = 20
           Width = 820
           Height = 23
+          Anchors = [akLeft, akTop, akRight]
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -12
@@ -152,7 +162,7 @@ object frmChavePixCadastro: TfrmChavePixCadastro
       end
       object pnlCEP: TPanel
         Left = 10
-        Top = 75
+        Top = 70
         Width = 150
         Height = 45
         BevelOuter = bvNone
@@ -188,13 +198,17 @@ object frmChavePixCadastro: TfrmChavePixCadastro
       end
       object pnlCidade: TPanel
         Left = 170
-        Top = 75
+        Top = 70
         Width = 560
         Height = 45
+        Anchors = [akLeft, akTop, akRight]
         BevelOuter = bvNone
         Color = clWhite
         ParentBackground = False
         TabOrder = 2
+        DesignSize = (
+          560
+          45)
         object lblCidade: TLabel
           Left = 0
           Top = 0
@@ -213,6 +227,7 @@ object frmChavePixCadastro: TfrmChavePixCadastro
           Top = 20
           Width = 560
           Height = 23
+          Anchors = [akLeft, akTop, akRight]
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -12
@@ -224,18 +239,23 @@ object frmChavePixCadastro: TfrmChavePixCadastro
       end
       object pnlUF: TPanel
         Left = 740
-        Top = 75
+        Top = 70
         Width = 90
         Height = 45
+        Anchors = [akTop, akRight]
         BevelOuter = bvNone
         Color = clWhite
         ParentBackground = False
         TabOrder = 3
+        DesignSize = (
+          90
+          45)
         object lblUF: TLabel
           Left = 0
           Top = 0
           Width = 14
           Height = 15
+          Anchors = [akTop, akRight]
           Caption = 'UF'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -250,6 +270,7 @@ object frmChavePixCadastro: TfrmChavePixCadastro
           Width = 90
           Height = 23
           Style = csDropDownList
+          Anchors = [akTop, akRight]
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -12
@@ -289,7 +310,7 @@ object frmChavePixCadastro: TfrmChavePixCadastro
       end
       object pnlTipoChave: TPanel
         Left = 10
-        Top = 120
+        Top = 115
         Width = 200
         Height = 45
         BevelOuter = bvNone
@@ -333,13 +354,17 @@ object frmChavePixCadastro: TfrmChavePixCadastro
       end
       object pnlChave: TPanel
         Left = 220
-        Top = 120
+        Top = 115
         Width = 610
         Height = 45
+        Anchors = [akLeft, akTop, akRight]
         BevelOuter = bvNone
         Color = clWhite
         ParentBackground = False
         TabOrder = 5
+        DesignSize = (
+          610
+          45)
         object lblChave: TLabel
           Left = 0
           Top = 0
@@ -358,6 +383,7 @@ object frmChavePixCadastro: TfrmChavePixCadastro
           Top = 20
           Width = 610
           Height = 23
+          Anchors = [akLeft, akTop, akRight]
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -12
@@ -372,9 +398,9 @@ object frmChavePixCadastro: TfrmChavePixCadastro
     object gbPSP: TGroupBox
       AlignWithMargins = True
       Left = 20
-      Top = 210
+      Top = 80
       Width = 840
-      Height = 100
+      Height = 80
       Margins.Left = 20
       Margins.Top = 20
       Margins.Right = 20
@@ -395,7 +421,7 @@ object frmChavePixCadastro: TfrmChavePixCadastro
         Left = 10
         Top = 25
         Width = 820
-        Height = 65
+        Height = 45
         BevelOuter = bvNone
         Color = clWhite
         ParentBackground = False
@@ -490,29 +516,36 @@ object frmChavePixCadastro: TfrmChavePixCadastro
     object PageControl1: TPageControl
       AlignWithMargins = True
       Left = 20
-      Top = 330
+      Top = 180
       Width = 840
       Height = 400
       Margins.Left = 20
       Margins.Top = 20
       Margins.Right = 20
       Margins.Bottom = 20
-      ActivePage = TabSheet2
+      ActivePage = tsCertificado
       Anchors = [akLeft, akTop, akRight]
       Images = img_icon_preto_pgc
       TabHeight = 30
       TabOrder = 2
       object TabSheet2: TTabSheet
         Caption = 'Configura'#231#227'o PSP'
+        DesignSize = (
+          832
+          360)
         object pnlConfig1: TPanel
           Left = 10
           Top = 10
           Width = 812
           Height = 50
+          Anchors = [akLeft, akTop, akRight]
           BevelOuter = bvNone
           Color = clWhite
           ParentBackground = False
           TabOrder = 0
+          DesignSize = (
+            812
+            50)
           object lblTitulo1: TLabel
             Left = 0
             Top = 0
@@ -531,6 +564,7 @@ object frmChavePixCadastro: TfrmChavePixCadastro
             Top = 20
             Width = 812
             Height = 23
+            Anchors = [akLeft, akTop, akRight]
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -12
@@ -545,10 +579,14 @@ object frmChavePixCadastro: TfrmChavePixCadastro
           Top = 70
           Width = 812
           Height = 50
+          Anchors = [akLeft, akTop, akRight]
           BevelOuter = bvNone
           Color = clWhite
           ParentBackground = False
           TabOrder = 1
+          DesignSize = (
+            812
+            50)
           object lblTitulo2: TLabel
             Left = 0
             Top = 0
@@ -567,6 +605,7 @@ object frmChavePixCadastro: TfrmChavePixCadastro
             Top = 20
             Width = 812
             Height = 23
+            Anchors = [akLeft, akTop, akRight]
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -12
@@ -581,10 +620,14 @@ object frmChavePixCadastro: TfrmChavePixCadastro
           Top = 130
           Width = 812
           Height = 50
+          Anchors = [akLeft, akTop, akRight]
           BevelOuter = bvNone
           Color = clWhite
           ParentBackground = False
           TabOrder = 2
+          DesignSize = (
+            812
+            50)
           object lblTitulo3: TLabel
             Left = 0
             Top = 0
@@ -603,6 +646,7 @@ object frmChavePixCadastro: TfrmChavePixCadastro
             Top = 20
             Width = 812
             Height = 23
+            Anchors = [akLeft, akTop, akRight]
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -12
@@ -617,10 +661,14 @@ object frmChavePixCadastro: TfrmChavePixCadastro
           Top = 190
           Width = 812
           Height = 50
+          Anchors = [akLeft, akTop, akRight]
           BevelOuter = bvNone
           Color = clWhite
           ParentBackground = False
           TabOrder = 3
+          DesignSize = (
+            812
+            50)
           object lblTitulo4: TLabel
             Left = 0
             Top = 0
@@ -639,6 +687,7 @@ object frmChavePixCadastro: TfrmChavePixCadastro
             Top = 20
             Width = 812
             Height = 23
+            Anchors = [akLeft, akTop, akRight]
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -12
@@ -653,10 +702,14 @@ object frmChavePixCadastro: TfrmChavePixCadastro
           Top = 250
           Width = 812
           Height = 50
+          Anchors = [akLeft, akTop, akRight]
           BevelOuter = bvNone
           Color = clWhite
           ParentBackground = False
           TabOrder = 4
+          DesignSize = (
+            812
+            50)
           object lblTitulo5: TLabel
             Left = 0
             Top = 0
@@ -675,6 +728,7 @@ object frmChavePixCadastro: TfrmChavePixCadastro
             Top = 20
             Width = 812
             Height = 23
+            Anchors = [akLeft, akTop, akRight]
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -12
@@ -689,10 +743,14 @@ object frmChavePixCadastro: TfrmChavePixCadastro
           Top = 310
           Width = 812
           Height = 50
+          Anchors = [akLeft, akTop, akRight]
           BevelOuter = bvNone
           Color = clWhite
           ParentBackground = False
           TabOrder = 5
+          DesignSize = (
+            812
+            50)
           object lblTitulo6: TLabel
             Left = 0
             Top = 0
@@ -711,6 +769,7 @@ object frmChavePixCadastro: TfrmChavePixCadastro
             Top = 20
             Width = 812
             Height = 23
+            Anchors = [akLeft, akTop, akRight]
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -12
@@ -734,6 +793,9 @@ object frmChavePixCadastro: TfrmChavePixCadastro
           Color = clWhite
           ParentBackground = False
           TabOrder = 0
+          DesignSize = (
+            832
+            360)
           object lblCertificados: TLabel
             Left = 10
             Top = 10
@@ -752,10 +814,14 @@ object frmChavePixCadastro: TfrmChavePixCadastro
             Top = 40
             Width = 812
             Height = 50
+            Anchors = [akLeft, akTop, akRight]
             BevelOuter = bvNone
             Color = clWhite
             ParentBackground = False
             TabOrder = 0
+            DesignSize = (
+              812
+              50)
             object lblArquivoPFX: TLabel
               Left = 0
               Top = 0
@@ -774,6 +840,7 @@ object frmChavePixCadastro: TfrmChavePixCadastro
               Top = 20
               Width = 740
               Height = 23
+              Anchors = [akLeft, akTop, akRight]
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
               Font.Height = -12
@@ -788,6 +855,7 @@ object frmChavePixCadastro: TfrmChavePixCadastro
               Top = 20
               Width = 60
               Height = 23
+              Anchors = [akTop, akRight]
               Caption = '...'
               TabOrder = 1
               OnClick = btnArquivoPFXClick
@@ -798,10 +866,14 @@ object frmChavePixCadastro: TfrmChavePixCadastro
             Top = 100
             Width = 812
             Height = 50
+            Anchors = [akLeft, akTop, akRight]
             BevelOuter = bvNone
             Color = clWhite
             ParentBackground = False
             TabOrder = 1
+            DesignSize = (
+              812
+              50)
             object lblSenhaPFX: TLabel
               Left = 0
               Top = 0
@@ -820,6 +892,7 @@ object frmChavePixCadastro: TfrmChavePixCadastro
               Top = 20
               Width = 812
               Height = 23
+              Anchors = [akLeft, akTop, akRight]
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
               Font.Height = -12
@@ -861,10 +934,14 @@ object frmChavePixCadastro: TfrmChavePixCadastro
             Top = 220
             Width = 812
             Height = 50
+            Anchors = [akLeft, akTop, akRight]
             BevelOuter = bvNone
             Color = clWhite
             ParentBackground = False
             TabOrder = 3
+            DesignSize = (
+              812
+              50)
             object lblArquivoChavePrivada: TLabel
               Left = 0
               Top = 0
@@ -883,6 +960,7 @@ object frmChavePixCadastro: TfrmChavePixCadastro
               Top = 20
               Width = 740
               Height = 23
+              Anchors = [akLeft, akTop, akRight]
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
               Font.Height = -12
@@ -896,6 +974,7 @@ object frmChavePixCadastro: TfrmChavePixCadastro
               Top = 20
               Width = 60
               Height = 23
+              Anchors = [akTop, akRight]
               Caption = '...'
               TabOrder = 1
               OnClick = btnArquivoChavePrivadaClick
@@ -906,10 +985,14 @@ object frmChavePixCadastro: TfrmChavePixCadastro
             Top = 280
             Width = 812
             Height = 50
+            Anchors = [akLeft, akTop, akRight]
             BevelOuter = bvNone
             Color = clWhite
             ParentBackground = False
             TabOrder = 4
+            DesignSize = (
+              812
+              50)
             object lblArquivoCertificado: TLabel
               Left = 0
               Top = 0
@@ -928,6 +1011,7 @@ object frmChavePixCadastro: TfrmChavePixCadastro
               Top = 20
               Width = 740
               Height = 23
+              Anchors = [akLeft, akTop, akRight]
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
               Font.Height = -12
@@ -941,6 +1025,7 @@ object frmChavePixCadastro: TfrmChavePixCadastro
               Top = 20
               Width = 60
               Height = 23
+              Anchors = [akTop, akRight]
               Caption = '...'
               TabOrder = 1
               OnClick = btnArquivoCertificadoClick

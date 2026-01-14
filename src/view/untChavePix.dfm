@@ -12,7 +12,8 @@ object frmChavePix: TfrmChavePix
   Font.Height = -13
   Font.Name = 'Segoe UI'
   Font.Style = []
-  Position = poDefault
+  Position = poOwnerFormCenter
+  WindowState = wsMaximized
   OnCreate = FormCreate
   TextHeight = 17
   object pnlHeader: TPanel
@@ -170,11 +171,13 @@ object frmChavePix: TfrmChavePix
       Margins.Bottom = 20
       Align = alClient
       DataSource = dsChavePix
+      DrawingStyle = gdsClassic
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -13
       Font.Name = 'Segoe UI'
       Font.Style = []
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
       ParentFont = False
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
