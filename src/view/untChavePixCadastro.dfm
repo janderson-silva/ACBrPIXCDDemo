@@ -90,6 +90,7 @@ object frmChavePixCadastro: TfrmChavePixCadastro
     Color = 15987699
     ParentColor = False
     TabOrder = 1
+    OnMouseWheel = ScrollBox1MouseWheel
     ExplicitTop = 18
     DesignSize = (
       883

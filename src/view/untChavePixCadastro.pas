@@ -100,6 +100,8 @@ type
     procedure edtSenhaPFXChange(Sender: TObject);
     procedure btnExtrairChaveCertificadoClick(Sender: TObject);
     procedure edtChaveChange(Sender: TObject);
+    procedure ScrollBox1MouseWheel(Sender: TObject; Shift: TShiftState;
+      WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
   private
     { Private declarations }
     FCodigoChavePix: String;
@@ -1240,6 +1242,22 @@ begin
     lblSubtitulo.Caption := 'Cadastre uma nova chave PIX no sistema';
     LimparFormulario;
   end;
+end;
+
+procedure TfrmChavePixCadastro.ScrollBox1MouseWheel(Sender: TObject;
+  Shift: TShiftState; WheelDelta: Integer; MousePos: TPoint;
+  var Handled: Boolean);
+var
+  ScrollAmount: Integer;
+begin
+  // Define o quanto vai rolar (valor negativo rola para baixo, positivo para cima)
+  ScrollAmount := -WheelDelta div 4;
+  
+  // Aplica o scroll vertical
+  ScrollBox1.VertScrollBar.Position := ScrollBox1.VertScrollBar.Position + ScrollAmount;
+  
+  // Marca como handled para evitar que o evento seja processado novamente
+  Handled := True;
 end;
 
 end.
