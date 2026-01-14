@@ -126,36 +126,14 @@ begin
     Exit;
   end;
   
-  try
-    Valor := StrToFloat(StringReplace(edtValor.Text, ',', '.', [rfReplaceAll]));
-    if Valor <= 0 then
-    begin
-      Application.MessageBox('O valor da cobrança deve ser maior que zero!', 'Atenção', MB_OK + MB_ICONEXCLAMATION);
-      edtValor.SetFocus;
-      Exit;
-    end;
-  except
-    Application.MessageBox('Valor inválido!', 'Atenção', MB_OK + MB_ICONEXCLAMATION);
+  Valor := StrToFloatDef(edtValor.Text, 0);
+  if Valor <= 0 then
+  begin
+    Application.MessageBox('O valor da cobrança deve ser maior que zero!', 'Atenção', MB_OK + MB_ICONEXCLAMATION);
     edtValor.SetFocus;
     Exit;
   end;
-  
-  // Validar Nome do Cliente
-  if Trim(edtNomeCliente.Text) = '' then
-  begin
-    Application.MessageBox('Informe o nome do cliente!', 'Atenção', MB_OK + MB_ICONEXCLAMATION);
-    edtNomeCliente.SetFocus;
-    Exit;
-  end;
-  
-  // Validar Documento
-  if Trim(edtDocumento.Text) = '' then
-  begin
-    Application.MessageBox('Informe o documento do cliente!', 'Atenção', MB_OK + MB_ICONEXCLAMATION);
-    edtDocumento.SetFocus;
-    Exit;
-  end;
-  
+
   Result := True;
 end;
 
@@ -214,12 +192,37 @@ begin
 end;
 
 procedure TfrmGerarCobranca.btnGerarClick(Sender: TObject);
+var
+  Valor: Currency;
+  ChavePix: string;
+  frmExibirQrCodePIX: TfrmExibirQrCodePIX;
 begin
   if ValidarCampos then
   begin
-    // Aqui será implementada a geração da cobrança PIX
-    ShowMessage('Cobrança gerada com sucesso!');
-    LimparFormulario;
+    // Converter valor
+    Valor := StrToCurr(edtValor.Text);
+    
+    // Extrair apenas a chave PIX do texto selecionado (formato: "Razão Social - Chave")
+    ChavePix := cbxChavePix.Text;
+    if Pos(' - ', ChavePix) > 0 then
+      ChavePix := Copy(ChavePix, Pos(' - ', ChavePix) + 3, Length(ChavePix));
+    
+    // Criar e exibir a tela de QR Code
+    frmExibirQrCodePIX := TfrmExibirQrCodePIX.Create(Self);
+    try
+      frmExibirQrCodePIX.Iniciar(
+        ChavePix,
+        Valor,
+        edtNomeCliente.Text,
+        edtDocumento.Text
+      );
+      frmExibirQrCodePIX.ShowModal;
+      
+      // Limpar formulário após fechar a tela de QR Code
+      LimparFormulario;
+    finally
+      frmExibirQrCodePIX.Free;
+    end;
   end;
 end;
 

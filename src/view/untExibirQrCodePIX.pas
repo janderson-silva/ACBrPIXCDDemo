@@ -30,7 +30,6 @@ type
     ChavePix: String;
     NomeCliente: String;
     DocumentoCliente: String;
-    CodigoLancamento: String;
   end;
 
   TfrmExibirQrCodePIX = class(TForm)
@@ -105,8 +104,7 @@ type
   public
     { Public declarations }
     procedure Iniciar(AChavePix: string;
-                      AValor: Currency; ANomeCliente, ADocumentoCliente: string;
-                      const ACodigoLancamento: string = '');
+                      AValor: Currency; ANomeCliente, ADocumentoCliente: string);
   end;
 
 var
@@ -119,15 +117,13 @@ uses untDmConexao;
 {$R *.dfm}
 
 procedure TfrmExibirQrCodePIX.Iniciar(AChavePix: string;
-                                      AValor: Currency; ANomeCliente, ADocumentoCliente: string;
-                                      const ACodigoLancamento: string = '');
+                                      AValor: Currency; ANomeCliente, ADocumentoCliente: string);
 begin
   // Inicializar dados do fluxo
   fFluxoDados.ChavePix := AChavePix;
   fFluxoDados.Total := AValor;
   fFluxoDados.NomeCliente := ANomeCliente;
   fFluxoDados.DocumentoCliente := ADocumentoCliente;
-  fFluxoDados.CodigoLancamento := ACodigoLancamento;
   fFluxoDados.EmErro := False;
   fFluxoDados.QtdConsultas := 0;
   fFluxoDados.StatusCobranca := stcNENHUM;
@@ -541,13 +537,7 @@ begin
       //pnlTitulo.Caption := 'PIX - TxID: ' + fFluxoDados.TxID;
       edtCopiaECola.Text := fFluxoDados.QRCode;
       PintarQRCode(fFluxoDados.QRCode, imgQRCode.Picture.Bitmap, qrUTF8BOM);
-
-      // Gravar transação no banco de dados
-      if fFluxoDados.CodigoLancamento <> '' then
-      begin
-        GravarTransacaoPIX;
-      end;
-
+      GravarTransacaoPIX;
       ConsultarCobranca;
     end
     else
@@ -579,11 +569,6 @@ var
   Expiracao: Integer;
 begin
   Result := False;
-
-  if fFluxoDados.CodigoLancamento = '' then
-  begin
-    Exit;
-  end;
 
   qryUpdate := TFDQuery.Create(nil);
   try
@@ -635,7 +620,6 @@ begin
     qryUpdate.ParamByName('CHAVE_PIX_UTILIZADA').AsString := fFluxoDados.ChavePix;
     qryUpdate.ParamByName('AMBIENTE').AsString := Ambiente;
     qryUpdate.ParamByName('EXPIRACAO_SEGUNDOS').AsInteger := Expiracao;
-    qryUpdate.ParamByName('CODIGO').AsString := fFluxoDados.CodigoLancamento;
 
     qryUpdate.ExecSQL;
 
@@ -675,7 +659,7 @@ begin
       fFluxoDados.E2E := ACBrPixCD1.PSP.epCob.CobCompleta.pix[0].endToEndId;
 
     // Atualizar banco de dados se status mudou para CONCLUIDA
-    if (ACBrPixCD1.PSP.epCob.CobCompleta.status = stcCONCLUIDA) and (fFluxoDados.CodigoLancamento <> '') then
+    if ACBrPixCD1.PSP.epCob.CobCompleta.status = stcCONCLUIDA then
     begin
       AtualizarStatusPIX('CONCLUIDA');
     end;
@@ -691,11 +675,6 @@ var
   qryUpdate: TFDQuery;
 begin
   Result := False;
-
-  if fFluxoDados.CodigoLancamento = '' then
-  begin
-    Exit;
-  end;
 
   qryUpdate := TFDQuery.Create(nil);
   try
@@ -741,7 +720,6 @@ begin
       end;
     end;
 
-    qryUpdate.ParamByName('CODIGO').AsString := fFluxoDados.CodigoLancamento;
     qryUpdate.ExecSQL;
 
     Result := True;
@@ -822,10 +800,7 @@ begin
       ConsultarCobranca;
       
       // Atualizar status no banco de dados
-      if fFluxoDados.CodigoLancamento <> '' then
-      begin
-        AtualizarStatusPIX('CANCELADA');
-      end;
+      AtualizarStatusPIX('CANCELADA');
     end;
   finally
 
