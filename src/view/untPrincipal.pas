@@ -40,7 +40,7 @@ var
 implementation
 
 uses
-  untChavePix, untGerarCobranca, untCobranca;
+  untChavePix, untGerarCobranca, untCobranca, untConfigBancoDados;
 
 {$R *.dfm}
 
@@ -86,9 +86,15 @@ begin
 end;
 
 procedure TfrmPrincipal.btnConfiguracoesClick(Sender: TObject);
+var
+  frmConfigBancoDados: TfrmConfigBancoDados;
 begin
-  // TODO: Implementar acesso às configurações
-  ShowMessage('Funcionalidade de Configurações em desenvolvimento');
+  frmConfigBancoDados := TfrmConfigBancoDados.Create(nil);
+  try
+    frmConfigBancoDados.ShowModal;
+  finally
+    frmConfigBancoDados.Free;
+  end;
 end;
 
 end.

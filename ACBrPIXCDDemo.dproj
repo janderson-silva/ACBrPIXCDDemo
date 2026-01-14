@@ -160,6 +160,10 @@
             <Form>frmCobranca</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="src\view\untConfigBancoDados.pas">
+            <Form>frmConfigBancoDados</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

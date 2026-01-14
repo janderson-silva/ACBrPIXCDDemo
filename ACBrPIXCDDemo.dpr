@@ -9,7 +9,8 @@ uses
   untChavePix in 'src\view\untChavePix.pas' {frmChavePix},
   untDmConexao in 'src\data.module\untDmConexao.pas' {frmDmConexao: TDataModule},
   untGerarCobranca in 'src\view\untGerarCobranca.pas' {frmGerarCobranca},
-  untCobranca in 'src\view\untCobranca.pas' {frmCobranca};
+  untCobranca in 'src\view\untCobranca.pas' {frmCobranca},
+  untConfigBancoDados in 'src\view\untConfigBancoDados.pas' {frmConfigBancoDados};
 
 {$R *.res}
 

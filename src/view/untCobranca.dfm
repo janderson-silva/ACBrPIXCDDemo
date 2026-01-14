@@ -26,12 +26,12 @@ object frmCobranca: TfrmCobranca
     Color = 2829099
     ParentBackground = False
     TabOrder = 0
-    ExplicitWidth = 1200
     object shpIcone: TShape
       Left = 20
       Top = 15
       Width = 40
       Height = 40
+      Brush.Color = 3947580
       Pen.Style = psClear
       Shape = stCircle
     end
@@ -44,7 +44,7 @@ object frmCobranca: TfrmCobranca
       AutoSize = False
       Caption = #8377
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = 2829099
+      Font.Color = clWhite
       Font.Height = -24
       Font.Name = 'Segoe UI'
       Font.Style = [fsBold]
@@ -89,8 +89,6 @@ object frmCobranca: TfrmCobranca
     Color = 15987699
     ParentBackground = False
     TabOrder = 1
-    ExplicitWidth = 1200
-    ExplicitHeight = 520
     object DBGridMovimentoPix: TDBGrid
       AlignWithMargins = True
       Left = 20
@@ -146,9 +144,6 @@ object frmCobranca: TfrmCobranca
       ParentFont = False
       TabOrder = 0
       OnClick = btnAtualizarClick
-      ExplicitLeft = 950
-      ExplicitTop = 12
-      ExplicitHeight = 36
     end
     object btnFechar: TButton
       AlignWithMargins = True
@@ -166,9 +161,6 @@ object frmCobranca: TfrmCobranca
       ParentFont = False
       TabOrder = 1
       OnClick = btnFecharClick
-      ExplicitLeft = 1070
-      ExplicitTop = 12
-      ExplicitHeight = 36
     end
     object btnEstornar: TButton
       AlignWithMargins = True
@@ -186,7 +178,6 @@ object frmCobranca: TfrmCobranca
       ParentFont = False
       TabOrder = 2
       OnClick = btnEstornarClick
-      ExplicitLeft = 196
     end
   end
   object qrMovimentoPix: TFDQuery
