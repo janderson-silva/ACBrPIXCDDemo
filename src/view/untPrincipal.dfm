@@ -138,7 +138,7 @@ object frmPrincipal: TfrmPrincipal
       Width = 700
       Height = 340
       Margins.Left = 100
-      Margins.Top = 70
+      Margins.Top = 0
       Margins.Right = 100
       Margins.Bottom = 70
       Align = alClient
