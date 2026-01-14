@@ -185,6 +185,7 @@ object frmCobranca: TfrmCobranca
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 2
+      OnClick = btnEstornarClick
       ExplicitLeft = 196
     end
   end

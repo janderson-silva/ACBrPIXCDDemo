@@ -1,4 +1,4 @@
-unit untCobranca;
+﻿unit untCobranca;
 
 interface
 
@@ -42,6 +42,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure btnAtualizarClick(Sender: TObject);
     procedure btnFecharClick(Sender: TObject);
+    procedure btnEstornarClick(Sender: TObject);
   private
     { Private declarations }
     procedure CarregarMovimentos;
@@ -54,7 +55,7 @@ var
 
 implementation
 
-uses untDmConexao;
+uses untDmConexao, untExibirDevolucaoPIX;
 
 {$R *.dfm}
 
@@ -96,6 +97,57 @@ end;
 procedure TfrmCobranca.btnFecharClick(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TfrmCobranca.btnEstornarClick(Sender: TObject);
+var
+  frmExibirDevolucaoPIX: TfrmExibirDevolucaoPIX;
+begin
+  // Validar se há registro selecionado
+  if qrMovimentoPix.IsEmpty then
+  begin
+    Application.MessageBox('Selecione uma cobrança para estornar!', 'Atenção', MB_OK + MB_ICONEXCLAMATION);
+    Exit;
+  end;
+  
+  // Validar se a cobrança foi paga
+  if qrMovimentoPixSTATUS_PIX.AsString <> 'CONCLUIDA' then
+  begin
+    Application.MessageBox('Somente cobranças com status CONCLUIDA podem ser estornadas!', 'Atenção', MB_OK + MB_ICONEXCLAMATION);
+    Exit;
+  end;
+  
+  // Validar se tem E2E
+  if Trim(qrMovimentoPixE2E.AsString) = '' then
+  begin
+    Application.MessageBox('Cobrança sem E2E não pode ser estornada!', 'Atenção', MB_OK + MB_ICONEXCLAMATION);
+    Exit;
+  end;
+  
+  // Validar se tem TXID
+  if Trim(qrMovimentoPixTXID.AsString) = '' then
+  begin
+    Application.MessageBox('Cobrança sem TXID não pode ser estornada!', 'Atenção', MB_OK + MB_ICONEXCLAMATION);
+    Exit;
+  end;
+
+  frmExibirDevolucaoPIX := TfrmExibirDevolucaoPIX.Create(Self);
+  try
+    frmExibirDevolucaoPIX.Iniciar(
+      qrMovimentoPixID.AsString,
+      qrMovimentoPixCHAVE_PIX_UTILIZADA.AsString,
+      qrMovimentoPixPSP_UTILIZADO.AsString,
+      qrMovimentoPixTXID.AsString,
+      qrMovimentoPixE2E.AsString,
+      qrMovimentoPixVALOR_PAGO.AsCurrency
+    );
+    frmExibirDevolucaoPIX.ShowModal;
+    
+    // Atualizar a grid após fechar a tela de devolução
+    CarregarMovimentos;
+  finally
+    FreeAndNil(frmExibirDevolucaoPIX);
+  end;
 end;
 
 end.

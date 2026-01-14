@@ -18,7 +18,6 @@ uses
 type
   TFluxoPagtoDados = record
     CodigoLancamento: String;
-    ContaBancaria: String;
     ChavePix: String;
     TipoChave: String;
     PSP: String;
@@ -76,7 +75,7 @@ type
     { Private declarations }
   public
     { Public declarations }
-    procedure Iniciar(ACodigoLancamento, AContaBancaria, AChavePix, APsp, ATXID, AE2E: string; AValorPago: Currency);
+    procedure Iniciar(ACodigoLancamento, AChavePix, APsp, ATXID, AE2E: string; AValorPago: Currency);
   end;
 
 var
@@ -88,12 +87,11 @@ uses untDmConexao;
 
 {$R *.dfm}
 
-procedure TfrmExibirDevolucaoPIX.Iniciar(ACodigoLancamento, AContaBancaria, AChavePix, APsp, ATXID, AE2E: string;
+procedure TfrmExibirDevolucaoPIX.Iniciar(ACodigoLancamento, AChavePix, APsp, ATXID, AE2E: string;
                                          AValorPago: Currency);
 begin
   // Apenas inicializar dados do fluxo
   fFluxoDados.CodigoLancamento := ACodigoLancamento;
-  fFluxoDados.ContaBancaria := AContaBancaria;
   fFluxoDados.ChavePix := AChavePix;
   fFluxoDados.PSP := APsp;
   fFluxoDados.TxID := ATXID;
@@ -229,9 +227,7 @@ begin
   qrConfigPSP.SQL.Clear;
   qrConfigPSP.SQL.Add('SELECT *');
   qrConfigPSP.SQL.Add('FROM CHAVE_PIX');
-  qrConfigPSP.SQL.Add('WHERE CODCONTA = :CODCONTA');
-  qrConfigPSP.SQL.Add('AND CHAVE = :CHAVE');
-  qrConfigPSP.ParamByName('CODCONTA').AsString := fFluxoDados.ContaBancaria;
+  qrConfigPSP.SQL.Add('WHERE CHAVE = :CHAVE');
   qrConfigPSP.ParamByName('CHAVE').AsString := fFluxoDados.ChavePix;
   qrConfigPSP.Open;
 
