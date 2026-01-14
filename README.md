@@ -1,1 +1,225 @@
-# ACBrPIXCDDemo
+# ACBrPIXCD Demo
+
+Sistema completo de gestão de pagamentos PIX desenvolvido em Delphi utilizando os componentes ACBr (Automação Comercial Brasil).
+
+## 📋 Sobre o Projeto
+
+O ACBrPIXCD Demo é uma aplicação desktop que demonstra a integração com diversos PSPs (Provedores de Serviço de Pagamento) para gerenciamento completo de transações PIX, incluindo geração de cobranças, consultas, estornos e configurações avançadas.
+
+## ✨ Funcionalidades
+
+### 🔑 Gerenciamento de Chaves PIX
+- Cadastro completo de chaves PIX (CPF, CNPJ, E-mail, Telefone, Chave Aleatória)
+- Configuração individualizada de PSP por chave
+- Edição e exclusão de chaves
+- Visualização em grade com todos os dados
+
+### 🏦 PSPs Suportados
+- **Banco do Brasil**
+- **Sicoob**
+- **Sicredi**
+- **Santander**
+- **Itaú**
+- **Gerencianet (Efí)**
+- **PagSeguro**
+- **Shipay**
+- **AppLess**
+- E outros via ACBr
+
+### 💰 Gestão de Cobranças
+- Geração de cobranças PIX com QR Code
+- Definição de valor, nome e documento do pagador
+- Exibição de QR Code para pagamento
+- Cópia rápida do código PIX Copia e Cola
+- Consulta automática de status do pagamento
+- Cancelamento de cobranças
+
+### 📊 Controle de Movimentos
+- Visualização completa de todas as transações PIX
+- 35 campos de informação por movimento:
+  - Dados da transação (TxID, E2E, Status)
+  - Valores (original, pago, juros, multa, desconto)
+  - Informações do pagador
+  - Dados de devolução/estorno
+  - Metadados e problemas
+- Filtros e ordenação
+- Atualização em tempo real
+
+### 🔄 Estorno/Devolução
+- Estorno parcial ou total de transações
+- Informação de motivo da devolução
+- Acompanhamento do status de devolução
+- Histórico completo
+
+### ⚙️ Configurações
+- **Banco de Dados**: Configuração do Firebird (local ou remoto)
+- **PSP por Chave**: Certificados digitais, tokens, credenciais
+- **Ambiente**: Produção ou Homologação
+- **Timeouts e parâmetros**: Configuráveis por PSP
+
+## 🛠️ Tecnologias Utilizadas
+
+- **Delphi** (VCL)
+- **FireDAC** (Acesso a dados)
+- **Firebird 3.0+** (Banco de dados)
+- **ACBr (Projeto ACBr)** - Componentes:
+  - ACBrPixCD
+  - ACBrOpenSSLUtils
+  - Múltiplos PSPs (ACBrPSP*)
+- **INI Files** (Configurações)
+
+## 📦 Estrutura do Projeto
+
+```
+ACBrPIXCDDemo/
+├── src/
+│   ├── view/                    # Formulários da aplicação
+│   │   ├── unt.view.principal   # Tela principal com menu
+│   │   ├── untChavePix          # Listagem de chaves PIX
+│   │   ├── untChavePixCadastro  # Cadastro/edição de chaves
+│   │   ├── untGerarCobranca     # Geração de cobranças
+│   │   ├── untExibirQrCodePIX   # Exibição de QR Code
+│   │   ├── untCobranca          # Listagem de movimentos
+│   │   ├── untExibirDevolucaoPIX # Estorno de transações
+│   │   └── untConfigBancoDados  # Configuração do banco
+│   └── data.module/
+│       └── untDmConexao         # Módulo de conexão com BD
+├── db/                          # Banco de dados Firebird
+├── temp/                        # Arquivos temporários
+├── log/                         # Logs de transações
+└── config.ini                   # Configurações da aplicação
+```
+
+## 🗄️ Banco de Dados
+
+### Tabelas Principais
+
+**CHAVE_PIX** (31 campos)
+- Dados básicos (razão social, endereço, tipo/chave)
+- Configurações do PSP escolhido
+- Credenciais e certificados (armazenados como BLOB)
+
+**MOVIMENTO_PIX** (35 campos)
+- Informações completas da transação
+- Controle de status e valores
+- Dados do pagador e devolução
+- Metadados e rastreabilidade
+
+## 🚀 Como Usar
+
+### Pré-requisitos
+- Delphi 10.3 ou superior
+- Firebird 3.0 ou superior
+- Componentes ACBr instalados
+- Credenciais válidas de um PSP
+
+### Instalação
+
+1. Clone o repositório:
+```bash
+git clone https://github.com/seu-usuario/ACBrPIXCDDemo.git
+```
+
+2. Abra o projeto `ACBrPIXCDDemo.dproj` no Delphi
+
+3. Configure o banco de dados:
+   - Execute o script SQL para criar as tabelas
+   - Ou use o banco de exemplo em `db/ACBRPIXCDDEMO.FDB`
+
+4. Compile e execute o projeto
+
+### Configuração Inicial
+
+1. **Configurar Banco de Dados**
+   - Menu: Configurações → Banco de Dados
+   - Informe: caminho do arquivo .fdb, servidor, porta, usuário e senha
+   - Teste a conexão antes de salvar
+
+2. **Cadastrar Chave PIX**
+   - Menu: Chaves PIX
+   - Clique em "Novo"
+   - Preencha os dados básicos
+   - Selecione o PSP e configure as credenciais
+   - Configure certificados digitais (se necessário)
+
+3. **Gerar Cobrança**
+   - Menu: Gerar Cobrança
+   - Selecione a chave PIX
+   - Informe valor e dados do pagador
+   - Clique em "Gerar QR Code"
+   - Compartilhe o QR Code ou código Copia e Cola
+
+## 📝 Configuração de PSPs
+
+Cada PSP possui requisitos específicos:
+
+### Banco do Brasil
+- Client ID e Client Secret (OAuth2)
+- Chave PIX vinculada à conta
+- Developer Application Key
+
+### Sicoob
+- Client ID
+- Certificado digital A1 (.pfx)
+
+### Gerencianet (Efí)
+- Client ID e Client Secret
+- Certificado digital (.p12)
+
+### PagSeguro
+- Token de integração
+- E-mail da conta
+
+*Consulte a documentação de cada PSP para obter as credenciais necessárias.*
+
+## 🔐 Segurança
+
+- Credenciais armazenadas de forma segura no banco de dados
+- Certificados digitais armazenados como BLOB
+- Senhas protegidas
+- Logs detalhados de todas as operações
+- Arquivos temporários organizados por PSP
+
+## 📁 Arquivos Gerados
+
+### temp/pix/{psp}/
+- Certificados extraídos (.key, .pem)
+- QR Codes gerados
+
+### log/pix/{psp}/
+- Logs diários das operações (formato: YYYYMMDD.log)
+- Requisições e respostas HTTP
+- Erros e exceções
+
+## 🤝 Contribuindo
+
+Contribuições são bem-vindas! Sinta-se à vontade para:
+- Reportar bugs
+- Sugerir novas funcionalidades
+- Enviar pull requests
+- Melhorar a documentação
+
+## 📄 Licença
+
+Este projeto é licenciado sob os termos especificados no arquivo [LICENSE](LICENSE).
+
+## 🔗 Links Úteis
+
+- [Projeto ACBr](https://projetoacbr.com.br/)
+- [Documentação ACBrPixCD](https://acbr.sourceforge.io/ACBrPixCD/)
+- [Especificação PIX - Banco Central](https://www.bcb.gov.br/estabilidadefinanceira/pix)
+
+## 👥 Autores
+
+Desenvolvido como demonstração das capacidades do componente ACBrPixCD.
+
+## 📞 Suporte
+
+Para dúvidas e suporte:
+- Issues do GitHub
+- Fórum do Projeto ACBr
+- Documentação oficial do ACBr
+
+---
+
+**Nota**: Este é um projeto de demonstração. Para uso em produção, implemente medidas adicionais de segurança e valide todas as operações conforme as normas do Banco Central do Brasil.
