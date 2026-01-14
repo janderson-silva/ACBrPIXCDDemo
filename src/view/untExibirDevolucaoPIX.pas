@@ -705,27 +705,27 @@ begin
       RtrId := '';
     end;
 
-    // Atualizar campos de devolu��o
+    // Atualizar campos de devolução
     qryUpdate.SQL.Text :=
-      'UPDATE C000042 SET ' +
-      '  STATUS_DEVOLUCAO = :STATUS_DEVOLUCAO, ' +
-      '  VALOR_DEVOLVIDO = :VALOR_DEVOLVIDO, ' +
-      '  ID_DEVOLUCAO = :ID_DEVOLUCAO, ' +
-      '  RTR_ID = :RTR_ID, ' +
-      '  DATA_DEVOLUCAO = :DATA_DEVOLUCAO ' +
-      'WHERE CODIGO = :CODIGO';
+      'UPDATE movimento_pix SET ' +
+      '  status_devolucao = :status_devolucao, ' +
+      '  valor_devolvido = :valor_devolvido, ' +
+      '  id_devolucao = :id_devolucao, ' +
+      '  rtr_id = :rtr_id, ' +
+      '  data_devolucao = :data_devolucao ' +
+      'WHERE id = :id';
 
-    qryUpdate.ParamByName('STATUS_DEVOLUCAO').AsString := StatusDevolucaoStr;
-    qryUpdate.ParamByName('VALOR_DEVOLVIDO').AsCurrency := ValorDevolvido;
-    qryUpdate.ParamByName('ID_DEVOLUCAO').AsString := fFluxoDados.IdDevolucao;
-    qryUpdate.ParamByName('RTR_ID').AsString := RtrId;
+    qryUpdate.ParamByName('status_devolucao').AsString := StatusDevolucaoStr;
+    qryUpdate.ParamByName('valor_devolvido').AsCurrency := ValorDevolvido;
+    qryUpdate.ParamByName('id_devolucao').AsString := fFluxoDados.IdDevolucao;
+    qryUpdate.ParamByName('rtr_id').AsString := RtrId;
 
     if fFluxoDados.StatusDevolucao = stdDEVOLVIDO then
-      qryUpdate.ParamByName('DATA_DEVOLUCAO').AsDateTime := Now
+      qryUpdate.ParamByName('data_devolucao').AsDateTime := Now
     else
-      qryUpdate.ParamByName('DATA_DEVOLUCAO').Clear;
+      qryUpdate.ParamByName('data_devolucao').Clear;
 
-    qryUpdate.ParamByName('CODIGO').AsString := CodigoLancamento;
+    qryUpdate.ParamByName('id').AsString := CodigoLancamento;
 
     qryUpdate.ExecSQL;
     qryUpdate.Connection.Commit;
