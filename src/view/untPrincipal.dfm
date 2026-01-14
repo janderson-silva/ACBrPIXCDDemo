@@ -281,7 +281,7 @@ object frmPrincipal: TfrmPrincipal
     Left = 0
     Top = 600
     Width = 900
-    Height = 50
+    Height = 70
     Align = alBottom
     BevelOuter = bvNone
     Color = 15987699
@@ -290,14 +290,14 @@ object frmPrincipal: TfrmPrincipal
     object lblVersao: TLabel
       AlignWithMargins = True
       Left = 20
-      Top = 10
+      Top = 5
       Width = 860
-      Height = 30
+      Height = 20
       Margins.Left = 20
-      Margins.Top = 10
+      Margins.Top = 5
       Margins.Right = 20
-      Margins.Bottom = 10
-      Align = alClient
+      Margins.Bottom = 0
+      Align = alTop
       Alignment = taCenter
       Caption = 'Vers'#227'o 1.0.0 - ACBr'
       Font.Charset = DEFAULT_CHARSET
@@ -308,7 +308,28 @@ object frmPrincipal: TfrmPrincipal
       ParentFont = False
       Layout = tlCenter
       ExplicitWidth = 99
-      ExplicitHeight = 15
+    end
+    object lblCreditos: TLabel
+      AlignWithMargins = True
+      Left = 20
+      Top = 28
+      Width = 860
+      Height = 20
+      Margins.Left = 20
+      Margins.Top = 3
+      Margins.Right = 20
+      Margins.Bottom = 5
+      Align = alTop
+      Alignment = taCenter
+      Caption = 'Desenvolvido por Janderson Silva | Licen'#231'a MIT'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGray
+      Font.Height = -11
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+      Layout = tlCenter
+      ExplicitWidth = 234
     end
   end
 end

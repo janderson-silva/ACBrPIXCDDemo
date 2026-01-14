@@ -20,6 +20,7 @@ type
     btnConfiguracoes: TButton;
     pnlFooter: TPanel;
     lblVersao: TLabel;
+    lblCreditos: TLabel;
     pnlSeparator1: TPanel;
     pnlSeparator2: TPanel;
     pnlSeparator3: TPanel;
