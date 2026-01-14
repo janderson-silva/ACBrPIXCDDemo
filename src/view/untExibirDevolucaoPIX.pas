@@ -62,7 +62,6 @@ type
   private
     fFluxoDados: TFluxoPagtoDados;
     fInicializado: Boolean;
-    function FormatarChavePIX(const AChave, ATipoChave: string): string;
     procedure AtualizarStatus(aStatusDevolucao: TACBrPIXStatusDevolucao);
     procedure EstornarPagamento;
     function ExportarBlobParaArquivo(const ANomeCampo, ANomeArquivo, APSP: string): string;
@@ -101,54 +100,6 @@ begin
   fFluxoDados.EmErro := False;
   fFluxoDados.IdDevolucao := '';
   fInicializado := False;
-end;
-
-function TfrmExibirDevolucaoPIX.FormatarChavePIX(const AChave, ATipoChave: string): string;
-var
-  ChaveFormatada: string;
-begin
-  Result := AChave;
-
-  // Se tipo de chave não foi informado, retorna a chave original
-  if Trim(ATipoChave) = '' then
-    Exit;
-
-  ChaveFormatada := Trim(AChave);
-
-  // Formatar conforme o tipo de chave
-  if (ATipoChave = 'CPF/CNPJ') or (ATipoChave = 'CPF') or (ATipoChave = 'CNPJ') then
-  begin
-    // Remover formatação: pontos, traços, barras e espaços
-    ChaveFormatada := StringReplace(ChaveFormatada, '.', '', [rfReplaceAll]);
-    ChaveFormatada := StringReplace(ChaveFormatada, '-', '', [rfReplaceAll]);
-    ChaveFormatada := StringReplace(ChaveFormatada, '/', '', [rfReplaceAll]);
-    ChaveFormatada := StringReplace(ChaveFormatada, ' ', '', [rfReplaceAll]);
-    Result := ChaveFormatada;
-  end
-  else if (ATipoChave = 'Celular') or (ATipoChave = 'Telefone') then
-  begin
-    // Remover formatação: parênteses, espaços, traços
-    ChaveFormatada := StringReplace(ChaveFormatada, '(', '', [rfReplaceAll]);
-    ChaveFormatada := StringReplace(ChaveFormatada, ')', '', [rfReplaceAll]);
-    ChaveFormatada := StringReplace(ChaveFormatada, ' ', '', [rfReplaceAll]);
-    ChaveFormatada := StringReplace(ChaveFormatada, '-', '', [rfReplaceAll]);
-
-    // Adicionar +55 no início se não tiver
-    if not ChaveFormatada.StartsWith('+55') then
-    begin
-      if ChaveFormatada.StartsWith('55') then
-        ChaveFormatada := '+' + ChaveFormatada
-      else
-        ChaveFormatada := '+55' + ChaveFormatada;
-    end;
-
-    Result := ChaveFormatada;
-  end
-  else if (ATipoChave = 'E-mail') or (ATipoChave = 'Email') or (ATipoChave = 'Aleatória') or (ATipoChave = 'Aleatoria') then
-  begin
-    // Manter sem alteração
-    Result := ChaveFormatada;
-  end;
 end;
 
 procedure TfrmExibirDevolucaoPIX.FormShow(Sender: TObject);
@@ -230,13 +181,6 @@ begin
   qrConfigPSP.SQL.Add('WHERE CHAVE = :CHAVE');
   qrConfigPSP.ParamByName('CHAVE').AsString := fFluxoDados.ChavePix;
   qrConfigPSP.Open;
-
-  // Carregar o tipo de chave e formatar adequadamente
-  if not qrConfigPSP.IsEmpty then
-  begin
-    fFluxoDados.TipoChave := qrConfigPSP.FieldByName('TIPO_CHAVE').AsString;
-    fFluxoDados.ChavePix := FormatarChavePIX(fFluxoDados.ChavePix, fFluxoDados.TipoChave);
-  end;
 end;
 
 procedure TfrmExibirDevolucaoPIX.VerificarConfiguracao;
@@ -545,8 +489,8 @@ begin
   // Formatar nome do PSP
   NomePSP := LowerCase(StringReplace(APSP, ' ', '', [rfReplaceAll]));
 
-  // Criar estrutura de diretórios C:\Atron\temp\pix\{psp}
-  DiretorioTemp := 'C:\Atron\temp\pix\' + NomePSP + '\';
+  // Criar estrutura de diretórios temp\pix\{psp} na pasta do executável
+  DiretorioTemp := ExtractFilePath(ParamStr(0)) + 'temp\pix\' + NomePSP + '\';
 
   if not DirectoryExists(DiretorioTemp) then
     ForceDirectories(DiretorioTemp);
@@ -585,8 +529,8 @@ begin
     NomePSPLog := LowerCase(StringReplace(qrConfigPSP.FieldByName('PSP').AsString, ' ', '', [rfReplaceAll]));
   end;
 
-  // Criar estrutura de diret�rios C:\Atron\log\pix\{psp}
-  DiretorioLog := 'C:\Atron\log\pix\' + NomePSPLog + '\';
+  // Criar estrutura de diretórios log\pix\{psp} na pasta do executável
+  DiretorioLog := ExtractFilePath(ParamStr(0)) + 'log\pix\' + NomePSPLog + '\';
 
   if not DirectoryExists(DiretorioLog) then
     ForceDirectories(DiretorioLog);

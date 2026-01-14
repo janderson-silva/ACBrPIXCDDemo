@@ -37,6 +37,7 @@ object frmExibirDevolucaoPIX: TfrmExibirDevolucaoPIX
     TabOrder = 0
   end
   object qrConfigPSP: TFDQuery
+    Connection = frmDmConexao.FDConnection
     Left = 64
     Top = 12
   end

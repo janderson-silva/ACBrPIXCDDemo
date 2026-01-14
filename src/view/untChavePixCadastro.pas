@@ -174,8 +174,8 @@ begin
   // Obter nome do PSP selecionado e formatar para nome de pasta
   wNomePSP := LowerCase(StringReplace(cbxPSPAtual.Text, ' ', '', [rfReplaceAll]));
   
-  // Criar estrutura de diretórios C:\Atron\temp\pix\{psp}
-  wDiretorio := 'C:\Atron\temp\pix\' + wNomePSP + '\';
+  // Criar estrutura de diretórios temp\pix\{psp} na pasta do executável
+  wDiretorio := ExtractFilePath(ParamStr(0)) + 'temp\pix\' + wNomePSP + '\';
   
   if not DirectoryExists(wDiretorio) then
     ForceDirectories(wDiretorio);
@@ -953,8 +953,8 @@ begin
   // Formatar nome do PSP
   NomePSP := LowerCase(StringReplace(APSP, ' ', '', [rfReplaceAll]));
 
-  // Criar estrutura de diretórios C:\Atron\temp\pix\{psp}
-  DiretorioTemp := 'C:\Atron\temp\pix\' + NomePSP + '\';
+  // Criar estrutura de diretórios temp\pix\{psp} na pasta do executável
+  DiretorioTemp := ExtractFilePath(ParamStr(0)) + 'temp\pix\' + NomePSP + '\';
 
   if not DirectoryExists(DiretorioTemp) then
     ForceDirectories(DiretorioTemp);

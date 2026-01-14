@@ -237,8 +237,8 @@ begin
   // Formatar nome do PSP
   NomePSP := LowerCase(StringReplace(APSP, ' ', '', [rfReplaceAll]));
 
-  // Criar estrutura de diretórios C:\Atron\temp\pix\{psp}
-  DiretorioTemp := 'C:\Atron\temp\pix\' + NomePSP + '\';
+  // Criar estrutura de diretórios temp\pix\{psp} na pasta do executável
+  DiretorioTemp := ExtractFilePath(ParamStr(0)) + 'temp\pix\' + NomePSP + '\';
 
   if not DirectoryExists(DiretorioTemp) then
     ForceDirectories(DiretorioTemp);
@@ -277,8 +277,8 @@ begin
     NomePSPLog := LowerCase(StringReplace(qrConfigPSP.FieldByName('PSP').AsString, ' ', '', [rfReplaceAll]));
   end;
 
-  // Criar estrutura de diretórios C:\Atron\log\pix\{psp}
-  DiretorioLog := 'C:\Atron\log\pix\' + NomePSPLog + '\';
+  // Criar estrutura de diretórios log\pix\{psp} na pasta do executável
+  DiretorioLog := ExtractFilePath(ParamStr(0)) + 'log\pix\' + NomePSPLog + '\';
 
   if not DirectoryExists(DiretorioLog) then
     ForceDirectories(DiretorioLog);

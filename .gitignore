@@ -80,3 +80,7 @@ __recovery/
 
 # Boss dependency manager vendor folder https://github.com/HashLoad/boss
 modules/
+
+# Dispensavel para o projeto, pois o servico cria conforme a necessidade
+bin/log/
+bin/temp/
