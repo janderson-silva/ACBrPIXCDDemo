@@ -218,6 +218,12 @@ object frmCobranca: TfrmCobranca
       FieldName = 'DATA_CRIACAO_PIX'
       Origin = 'DATA_CRIACAO_PIX'
     end
+    object qrMovimentoPixDATA_VENCIMENTO_PIX: TDateField
+      DisplayLabel = 'Data Vencimento'
+      DisplayWidth = 14
+      FieldName = 'DATA_VENCIMENTO_PIX'
+      Origin = 'DATA_VENCIMENTO_PIX'
+    end
     object qrMovimentoPixDATA_PAGAMENTO_PIX: TDateField
       DisplayLabel = 'Data Pagamento'
       DisplayWidth = 14
@@ -229,6 +235,32 @@ object frmCobranca: TfrmCobranca
       DisplayWidth = 16
       FieldName = 'DATA_CANCELAMENTO_PIX'
       Origin = 'DATA_CANCELAMENTO_PIX'
+    end
+    object qrMovimentoPixQR_CODE_COPIA_COLA: TBlobField
+      DisplayLabel = 'QR Code'
+      DisplayWidth = 10
+      FieldName = 'QR_CODE_COPIA_COLA'
+      Origin = 'QR_CODE_COPIA_COLA'
+      Size = 1
+    end
+    object qrMovimentoPixLOCATION_ID: TIntegerField
+      DisplayLabel = 'Location ID'
+      DisplayWidth = 12
+      FieldName = 'LOCATION_ID'
+      Origin = 'LOCATION_ID'
+    end
+    object qrMovimentoPixLOCATION_URL: TStringField
+      DisplayLabel = 'Location URL'
+      DisplayWidth = 40
+      FieldName = 'LOCATION_URL'
+      Origin = 'LOCATION_URL'
+      Size = 200
+    end
+    object qrMovimentoPixREVISAO: TIntegerField
+      DisplayLabel = 'Revis'#227'o'
+      DisplayWidth = 10
+      FieldName = 'REVISAO'
+      Origin = 'REVISAO'
     end
     object qrMovimentoPixVALOR_ORIGINAL: TFMTBCDField
       DisplayLabel = 'Valor Original'
@@ -247,6 +279,76 @@ object frmCobranca: TfrmCobranca
       currency = True
       Precision = 15
       Size = 2
+    end
+    object qrMovimentoPixVALOR_JUROS: TFMTBCDField
+      DisplayLabel = 'Valor Juros'
+      DisplayWidth = 14
+      FieldName = 'VALOR_JUROS'
+      Origin = 'VALOR_JUROS'
+      currency = True
+      Precision = 15
+      Size = 2
+    end
+    object qrMovimentoPixVALOR_MULTA: TFMTBCDField
+      DisplayLabel = 'Valor Multa'
+      DisplayWidth = 14
+      FieldName = 'VALOR_MULTA'
+      Origin = 'VALOR_MULTA'
+      currency = True
+      Precision = 15
+      Size = 2
+    end
+    object qrMovimentoPixVALOR_DESCONTO: TFMTBCDField
+      DisplayLabel = 'Valor Desconto'
+      DisplayWidth = 14
+      FieldName = 'VALOR_DESCONTO'
+      Origin = 'VALOR_DESCONTO'
+      currency = True
+      Precision = 15
+      Size = 2
+    end
+    object qrMovimentoPixSTATUS_DEVOLUCAO: TStringField
+      DisplayLabel = 'Status Devolu'#231#227'o'
+      DisplayWidth = 18
+      FieldName = 'STATUS_DEVOLUCAO'
+      Origin = 'STATUS_DEVOLUCAO'
+      Size = 30
+    end
+    object qrMovimentoPixVALOR_DEVOLVIDO: TFMTBCDField
+      DisplayLabel = 'Valor Devolvido'
+      DisplayWidth = 14
+      FieldName = 'VALOR_DEVOLVIDO'
+      Origin = 'VALOR_DEVOLVIDO'
+      currency = True
+      Precision = 15
+      Size = 2
+    end
+    object qrMovimentoPixID_DEVOLUCAO: TStringField
+      DisplayLabel = 'ID Devolu'#231#227'o'
+      DisplayWidth = 35
+      FieldName = 'ID_DEVOLUCAO'
+      Origin = 'ID_DEVOLUCAO'
+      Size = 35
+    end
+    object qrMovimentoPixRTR_ID: TStringField
+      DisplayLabel = 'RTR ID'
+      DisplayWidth = 35
+      FieldName = 'RTR_ID'
+      Origin = 'RTR_ID'
+      Size = 35
+    end
+    object qrMovimentoPixDATA_DEVOLUCAO: TDateField
+      DisplayLabel = 'Data Devolu'#231#227'o'
+      DisplayWidth = 14
+      FieldName = 'DATA_DEVOLUCAO'
+      Origin = 'DATA_DEVOLUCAO'
+    end
+    object qrMovimentoPixMOTIVO_DEVOLUCAO: TStringField
+      DisplayLabel = 'Motivo Devolu'#231#227'o'
+      DisplayWidth = 40
+      FieldName = 'MOTIVO_DEVOLUCAO'
+      Origin = 'MOTIVO_DEVOLUCAO'
+      Size = 200
     end
     object qrMovimentoPixPAGADOR_NOME: TStringField
       DisplayLabel = 'Nome do Pagador'
@@ -288,6 +390,47 @@ object frmCobranca: TfrmCobranca
       DisplayWidth = 12
       FieldName = 'AMBIENTE'
       Origin = 'AMBIENTE'
+    end
+    object qrMovimentoPixEXPIRACAO_SEGUNDOS: TIntegerField
+      DisplayLabel = 'Expira'#231#227'o (seg)'
+      DisplayWidth = 14
+      FieldName = 'EXPIRACAO_SEGUNDOS'
+      Origin = 'EXPIRACAO_SEGUNDOS'
+    end
+    object qrMovimentoPixPERMITE_ALTERAR_VALOR: TStringField
+      DisplayLabel = 'Permite Alterar Valor'
+      DisplayWidth = 18
+      FieldName = 'PERMITE_ALTERAR_VALOR'
+      Origin = 'PERMITE_ALTERAR_VALOR'
+      Size = 1
+    end
+    object qrMovimentoPixSOLICITACAO_PAGADOR: TStringField
+      DisplayLabel = 'Solicita'#231#227'o Pagador'
+      DisplayWidth = 40
+      FieldName = 'SOLICITACAO_PAGADOR'
+      Origin = 'SOLICITACAO_PAGADOR'
+      Size = 200
+    end
+    object qrMovimentoPixINFO_ADICIONAL: TStringField
+      DisplayLabel = 'Informa'#231#245'es Adicionais'
+      DisplayWidth = 40
+      FieldName = 'INFO_ADICIONAL'
+      Origin = 'INFO_ADICIONAL'
+      Size = 500
+    end
+    object qrMovimentoPixPROBLEMA_TITULO: TStringField
+      DisplayLabel = 'Problema T'#237'tulo'
+      DisplayWidth = 30
+      FieldName = 'PROBLEMA_TITULO'
+      Origin = 'PROBLEMA_TITULO'
+      Size = 100
+    end
+    object qrMovimentoPixPROBLEMA_DETALHE: TStringField
+      DisplayLabel = 'Problema Detalhe'
+      DisplayWidth = 40
+      FieldName = 'PROBLEMA_DETALHE'
+      Origin = 'PROBLEMA_DETALHE'
+      Size = 500
     end
   end
   object dsMovimentoPix: TDataSource

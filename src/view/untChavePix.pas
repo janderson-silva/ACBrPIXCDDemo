@@ -18,6 +18,7 @@ type
     btnNovo: TButton;
     btnEditar: TButton;
     btnExcluir: TButton;
+    btnAtualizar: TButton;
     PanelGrid: TPanel;
     DBGridChavePix: TDBGrid;
     qrChavePix: TFDQuery;
@@ -61,6 +62,8 @@ type
     procedure FormCreate(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
+    procedure btnAtualizarClick(Sender: TObject);
   private
     { Private declarations }
     procedure SelectChavePix;
@@ -113,6 +116,49 @@ begin
   finally
     frmChavePixCadastro.Free;
   end;
+end;
+
+procedure TfrmChavePix.btnExcluirClick(Sender: TObject);
+var
+  qrExcluir: TFDQuery;
+  IDChave: Integer;
+begin
+  if qrChavePix.IsEmpty then
+  begin
+    Application.MessageBox('Selecione uma Chave PIX para excluir!', 'Atenção', MB_OK + MB_ICONEXCLAMATION);
+    Exit;
+  end;
+
+  if Application.MessageBox('Deseja realmente excluir esta Chave PIX?', 'Confirmação', 
+     MB_YESNO + MB_ICONQUESTION) <> IDYES then
+    Exit;
+
+  IDChave := qrChavePixID.AsInteger;
+  
+  qrExcluir := TFDQuery.Create(nil);
+  try
+    qrExcluir.Connection := frmDmConexao.FDConnection;
+    qrExcluir.SQL.Clear;
+    qrExcluir.SQL.Add('DELETE FROM chave_pix WHERE id = :id');
+    qrExcluir.ParamByName('id').AsInteger := IDChave;
+    
+    try
+      qrExcluir.ExecSQL;
+      Application.MessageBox('Chave PIX excluída com sucesso!', 'Sucesso', MB_OK + MB_ICONINFORMATION);
+      SelectChavePix; // Atualizar a grid
+    except
+      on E: Exception do
+        Application.MessageBox(PChar('Erro ao excluir a Chave PIX:' + #13#10 + E.Message), 
+                             'Erro', MB_OK + MB_ICONERROR);
+    end;
+  finally
+    qrExcluir.Free;
+  end;
+end;
+
+procedure TfrmChavePix.btnAtualizarClick(Sender: TObject);
+begin
+  SelectChavePix;
 end;
 
 procedure TfrmChavePix.FormCreate(Sender: TObject);

@@ -144,9 +144,27 @@ object frmChavePix: TfrmChavePix
       Font.Style = []
       ParentFont = False
       TabOrder = 2
+      OnClick = btnExcluirClick
       ExplicitLeft = 246
       ExplicitTop = 7
       ExplicitHeight = 31
+    end
+    object btnAtualizar: TButton
+      AlignWithMargins = True
+      Left = 338
+      Top = 3
+      Width = 100
+      Height = 39
+      Align = alLeft
+      Caption = 'Atualizar'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 3
+      OnClick = btnAtualizarClick
     end
   end
   object PanelGrid: TPanel
