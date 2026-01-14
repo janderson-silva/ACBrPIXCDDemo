@@ -17,7 +17,7 @@ uses
 
 type
   TFluxoPagtoDados = record
-    CodigoLancamento: String;
+    ID: Integer;
     ChavePix: String;
     TipoChave: String;
     PSP: String;
@@ -75,7 +75,7 @@ type
     { Private declarations }
   public
     { Public declarations }
-    procedure Iniciar(ACodigoLancamento, AChavePix, APsp, ATXID, AE2E: string; AValorPago: Currency);
+    procedure Iniciar(AID: Integer; AChavePix, APsp, ATXID, AE2E: string; AValorPago: Currency);
   end;
 
 var
@@ -87,11 +87,11 @@ uses untDmConexao;
 
 {$R *.dfm}
 
-procedure TfrmExibirDevolucaoPIX.Iniciar(ACodigoLancamento, AChavePix, APsp, ATXID, AE2E: string;
+procedure TfrmExibirDevolucaoPIX.Iniciar(AID: Integer; AChavePix, APsp, ATXID, AE2E: string;
                                          AValorPago: Currency);
 begin
   // Apenas inicializar dados do fluxo
-  fFluxoDados.CodigoLancamento := ACodigoLancamento;
+  fFluxoDados.ID := AID;
   fFluxoDados.ChavePix := AChavePix;
   fFluxoDados.PSP := APsp;
   fFluxoDados.TxID := ATXID;
@@ -665,7 +665,8 @@ end;
 function TfrmExibirDevolucaoPIX.AtualizarDevolucaoPIX: Boolean;
 var
   qryUpdate: TFDQuery;
-  StatusDevolucaoStr, RtrId, CodigoLancamento: string;
+  StatusDevolucaoStr, RtrId: string;
+  ID: Integer;
   ValorDevolvido: Currency;
 begin
   Result := False;
@@ -674,12 +675,12 @@ begin
   try
     qryUpdate.Connection := frmDmConexao.FDConnection;
 
-    // Obter c�digo do lan�amento
-    CodigoLancamento := fFluxoDados.CodigoLancamento;
+    // Obter ID do lançamento
+    ID := fFluxoDados.ID;
 
-    if Trim(CodigoLancamento) = '' then
+    if ID <= 0 then
     begin
-      ShowMessage('Código do lançamento não encontrado');
+      ShowMessage('ID do lançamento não encontrado');
       Exit;
     end;
 
@@ -725,7 +726,7 @@ begin
     else
       qryUpdate.ParamByName('data_devolucao').Clear;
 
-    qryUpdate.ParamByName('id').AsString := CodigoLancamento;
+    qryUpdate.ParamByName('id').AsInteger := ID;
 
     qryUpdate.ExecSQL;
     qryUpdate.Connection.Commit;

@@ -134,7 +134,7 @@ begin
   frmExibirDevolucaoPIX := TfrmExibirDevolucaoPIX.Create(Self);
   try
     frmExibirDevolucaoPIX.Iniciar(
-      qrMovimentoPixID.AsString,
+      qrMovimentoPixID.AsInteger,
       qrMovimentoPixCHAVE_PIX_UTILIZADA.AsString,
       qrMovimentoPixPSP_UTILIZADO.AsString,
       qrMovimentoPixTXID.AsString,
