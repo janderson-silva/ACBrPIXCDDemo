@@ -1,9 +1,9 @@
 object frmDmConexao: TfrmDmConexao
+  OnCreate = DataModuleCreate
   Height = 263
   Width = 216
   object FDConnection: TFDConnection
     Params.Strings = (
-      'Database=C:\Atron Projetos\ACBrPIXCDDemo\db\ACBRPIXCDDEMO.FDB'
       'User_Name=sysdba'
       'Password=masterkey'
       'Server=localhost'

@@ -168,7 +168,7 @@ begin
     Conexao.Params.Add('User_Name=' + edtUsuario.Text);
     Conexao.Params.Add('Password=' + edtSenha.Text);
     Conexao.Params.Add('Port=' + edtPorta.Text);
-    Conexao.Params.Add('CharacterSet=UTF8');
+    //Conexao.Params.Add('CharacterSet=UTF8');
     
     try
       Conexao.Connected := True;
