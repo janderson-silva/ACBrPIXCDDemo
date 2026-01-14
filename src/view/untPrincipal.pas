@@ -23,6 +23,9 @@ type
     pnlSeparator1: TPanel;
     pnlSeparator2: TPanel;
     pnlSeparator3: TPanel;
+    pnlIntegracoes: TPanel;
+    lblIntegracoesTitulo: TLabel;
+    lblIntegracoesLista: TLabel;
     procedure btnChavesPixClick(Sender: TObject);
     procedure btnGerarCobrancaClick(Sender: TObject);
     procedure btnCobrancasClick(Sender: TObject);

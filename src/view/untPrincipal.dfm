@@ -75,6 +75,62 @@ object frmPrincipal: TfrmPrincipal
     Color = 15987699
     ParentBackground = False
     TabOrder = 1
+    object pnlIntegracoes: TPanel
+      AlignWithMargins = True
+      Left = 100
+      Top = 20
+      Width = 700
+      Height = 45
+      Margins.Left = 100
+      Margins.Top = 20
+      Margins.Right = 100
+      Margins.Bottom = 5
+      Align = alTop
+      BevelOuter = bvNone
+      Color = 15395562
+      ParentBackground = False
+      TabOrder = 1
+      object lblIntegracoesTitulo: TLabel
+        AlignWithMargins = True
+        Left = 15
+        Top = 8
+        Width = 120
+        Height = 29
+        Margins.Left = 15
+        Margins.Top = 8
+        Margins.Right = 10
+        Margins.Bottom = 8
+        Align = alLeft
+        Caption = 'Integra'#231#245'es:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = 5395026
+        Font.Height = -13
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        Layout = tlCenter
+      end
+      object lblIntegracoesLista: TLabel
+        AlignWithMargins = True
+        Left = 148
+        Top = 8
+        Width = 537
+        Height = 29
+        Margins.Left = 3
+        Margins.Top = 8
+        Margins.Right = 15
+        Margins.Bottom = 8
+        Align = alClient
+        Caption = 'Sicoob, AppLess'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = 5395026
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+        Layout = tlCenter
+      end
+    end
     object pnlMenu: TPanel
       AlignWithMargins = True
       Left = 100
