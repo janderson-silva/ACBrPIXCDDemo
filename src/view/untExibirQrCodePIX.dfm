@@ -395,6 +395,7 @@ object frmExibirQrCodePIX: TfrmExibirQrCodePIX
     Top = 477
   end
   object qrConfigPSP: TFDQuery
+    Connection = frmDmConexao.FDConnection
     Left = 72
     Top = 476
   end

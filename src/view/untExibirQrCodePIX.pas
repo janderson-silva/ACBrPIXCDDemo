@@ -19,6 +19,7 @@ uses
 
 type
   TFluxoPagtoDados = record
+    ID: Integer;
     TxID: String;
     E2E: String;
     QRCode: String;
@@ -96,6 +97,7 @@ type
     procedure CriarCobrancaPIX;
     procedure ConsultarCobranca;
     procedure CancelarCobranca;
+    function InserirMovimentoPIX: Integer;
     function GravarTransacaoPIX: Boolean;
     function AtualizarStatusPIX(const AStatus: string): Boolean;
 
@@ -132,6 +134,15 @@ begin
   fFluxoDados.QRCode := '';
   fInicializado := False;
   fCobrancaCriada := False;
+  
+  // Inserir registro na tabela MOVIMENTO_PIX
+  fFluxoDados.ID := InserirMovimentoPIX;
+  
+  if fFluxoDados.ID <= 0 then
+  begin
+    ShowMessage('Erro ao criar registro na tabela MOVIMENTO_PIX');
+    fFluxoDados.EmErro := True;
+  end;
 end;
 
 procedure TfrmExibirQrCodePIX.FormShow(Sender: TObject);
@@ -599,27 +610,28 @@ begin
 
     // Montar e executar UPDATE com todos os campos PIX
     qryUpdate.SQL.Text :=
-      'UPDATE C000042 SET ' +
-      '  TXID = :TXID, ' +
-      '  STATUS_PIX = :STATUS_PIX, ' +
-      '  DATA_CRIACAO_PIX = :DATA_CRIACAO_PIX, ' +
-      '  QR_CODE_COPIA_COLA = :QR_CODE_COPIA_COLA, ' +
-      '  LOCATION_URL = :LOCATION_URL, ' +
-      '  PSP_UTILIZADO = :PSP_UTILIZADO, ' +
-      '  CHAVE_PIX_UTILIZADA = :CHAVE_PIX_UTILIZADA, ' +
-      '  AMBIENTE = :AMBIENTE, ' +
-      '  EXPIRACAO_SEGUNDOS = :EXPIRACAO_SEGUNDOS ' +
-      'WHERE CODIGO = :CODIGO';
+      'UPDATE movimento_pix SET ' +
+      '  txid = :txid, ' +
+      '  status_pix = :status_pix, ' +
+      '  data_criacao_pix = :data_criacao_pix, ' +
+      '  qr_code_copia_cola = :qr_code_copia_cola, ' +
+      '  location_url = :location_url, ' +
+      '  psp_utilizado = :psp_utilizado, ' +
+      '  chave_pix_utilizada = :chave_pix_utilizada, ' +
+      '  ambiente = :ambiente, ' +
+      '  expiracao_segundos = :expiracao_segundos ' +
+      'WHERE id = :id';
 
-    qryUpdate.ParamByName('TXID').AsString := fFluxoDados.TxID;
-    qryUpdate.ParamByName('STATUS_PIX').AsString := 'ATIVA';
-    qryUpdate.ParamByName('DATA_CRIACAO_PIX').AsDateTime := Now;
-    qryUpdate.ParamByName('QR_CODE_COPIA_COLA').AsString := fFluxoDados.QRCode;
-    qryUpdate.ParamByName('LOCATION_URL').AsString := LocationURL;
-    qryUpdate.ParamByName('PSP_UTILIZADO').AsString := PSP;
-    qryUpdate.ParamByName('CHAVE_PIX_UTILIZADA').AsString := fFluxoDados.ChavePix;
-    qryUpdate.ParamByName('AMBIENTE').AsString := Ambiente;
-    qryUpdate.ParamByName('EXPIRACAO_SEGUNDOS').AsInteger := Expiracao;
+    qryUpdate.ParamByName('txid').AsString := fFluxoDados.TxID;
+    qryUpdate.ParamByName('status_pix').AsString := 'ATIVA';
+    qryUpdate.ParamByName('data_criacao_pix').AsDateTime := Now;
+    qryUpdate.ParamByName('qr_code_copia_cola').AsString := fFluxoDados.QRCode;
+    qryUpdate.ParamByName('location_url').AsString := LocationURL;
+    qryUpdate.ParamByName('psp_utilizado').AsString := PSP;
+    qryUpdate.ParamByName('chave_pix_utilizada').AsString := fFluxoDados.ChavePix;
+    qryUpdate.ParamByName('ambiente').AsString := Ambiente;
+    qryUpdate.ParamByName('expiracao_segundos').AsInteger := Expiracao;
+    qryUpdate.ParamByName('id').AsInteger := fFluxoDados.ID;
 
     qryUpdate.ExecSQL;
 
@@ -685,38 +697,39 @@ begin
       0: // CONCLUIDA
       begin
         qryUpdate.SQL.Text :=
-          'UPDATE C000042 SET ' +
-          '  STATUS_PIX = :STATUS_PIX, ' +
-          '  E2E = :E2E, ' +
-          '  DATA_PAGAMENTO_PIX = :DATA_PAGAMENTO_PIX, ' +
-          '  VALOR_PAGO = :VALOR_PAGO ' +
-          'WHERE CODIGO = :CODIGO';
+          'UPDATE movimento_pix SET ' +
+          '  status_pix = :status_pix, ' +
+          '  e2e = :e2e, ' +
+          '  data_pagamento_pix = :data_pagamento_pix, ' +
+          '  valor_pago = :valor_pago ' +
+          'WHERE id = :id';
 
-        qryUpdate.ParamByName('STATUS_PIX').AsString := 'CONCLUIDA';
-        qryUpdate.ParamByName('E2E').AsString := fFluxoDados.E2E;
-        qryUpdate.ParamByName('DATA_PAGAMENTO_PIX').AsDateTime := Now;
-        qryUpdate.ParamByName('VALOR_PAGO').AsExtended := ACBrPixCD1.PSP.epCob.CobCompleta.pix[0].valor;
+        qryUpdate.ParamByName('status_pix').AsString := 'CONCLUIDA';
+        qryUpdate.ParamByName('e2e').AsString := fFluxoDados.E2E;
+        qryUpdate.ParamByName('data_pagamento_pix').AsDateTime := Now;
+        qryUpdate.ParamByName('valor_pago').AsExtended := ACBrPixCD1.PSP.epCob.CobCompleta.pix[0].valor;
+        qryUpdate.ParamByName('id').AsInteger := fFluxoDados.ID;
       end;
 
       1, 2: // REMOVIDA_PSP ou CANCELADA
       begin
         qryUpdate.SQL.Text :=
-          'UPDATE C000042 SET ' +
-          '  STATUS_PIX = :STATUS_PIX, ' +
-          '  DATA_CANCELAMENTO_PIX = :DATA_CANCELAMENTO_PIX, ' +
-          '  INATIVO = :INATIVO ' +
-          'WHERE CODIGO = :CODIGO';
+          'UPDATE movimento_pix SET ' +
+          '  status_pix = :status_pix, ' +
+          '  data_cancelamento_pix = :data_cancelamento_pix ' +
+          'WHERE id = :id';
 
-        qryUpdate.ParamByName('STATUS_PIX').AsString := AStatus;
-        qryUpdate.ParamByName('DATA_CANCELAMENTO_PIX').AsDateTime := Now;
-        qryUpdate.ParamByName('INATIVO').AsInteger := 1;
+        qryUpdate.ParamByName('status_pix').AsString := AStatus;
+        qryUpdate.ParamByName('data_cancelamento_pix').AsDateTime := Now;
+        qryUpdate.ParamByName('id').AsInteger := fFluxoDados.ID;
       end;
 
     else // Outros status
       begin
         qryUpdate.SQL.Text :=
-          'UPDATE C000042 SET STATUS_PIX = :STATUS_PIX WHERE CODIGO = :CODIGO';
-        qryUpdate.ParamByName('STATUS_PIX').AsString := AStatus;
+          'UPDATE movimento_pix SET status_pix = :status_pix WHERE id = :id';
+        qryUpdate.ParamByName('status_pix').AsString := AStatus;
+        qryUpdate.ParamByName('id').AsInteger := fFluxoDados.ID;
       end;
     end;
 
@@ -853,6 +866,76 @@ procedure TfrmExibirQrCodePIX.btnCopiaEColaClick(Sender: TObject);
 begin
   Clipboard.AsText := edtCopiaECola.Text;
   ShowMessage('Código PIX copiado para a área de transferência!');
+end;
+
+function TfrmExibirQrCodePIX.InserirMovimentoPIX: Integer;
+var
+  qryInsert: TFDQuery;
+  TipoPessoa: string;
+begin
+  Result := 0;
+  qryInsert := TFDQuery.Create(nil);
+  
+  try
+    qryInsert.Connection := frmDmConexao.FDConnection;
+    
+    // Determinar tipo de pessoa (CPF ou CNPJ) baseado no tamanho do documento
+    if Length(fFluxoDados.DocumentoCliente) = 14 then
+      TipoPessoa := 'CNPJ'
+    else
+      TipoPessoa := 'CPF';
+    
+    // Montar INSERT com RETURNING ID
+    qryInsert.SQL.Text :=
+      'INSERT INTO movimento_pix (' +
+      '  status_pix,' +
+      '  valor_original,' +
+      '  pagador_nome,' +
+      '  pagador_cpf,' +
+      '  pagador_cnpj,' +
+      '  chave_pix_utilizada' +
+      ') VALUES (' +
+      '  :status_pix,' +
+      '  :valor_original,' +
+      '  :pagador_nome,' +
+      '  :pagador_cpf,' +
+      '  :pagador_cnpj,' +
+      '  :chave_pix_utilizada' +
+      ') RETURNING id';
+    
+    qryInsert.ParamByName('status_pix').AsString := 'PENDENTE';
+    qryInsert.ParamByName('valor_original').AsFloat := fFluxoDados.Total;
+    qryInsert.ParamByName('pagador_nome').AsString := fFluxoDados.NomeCliente;
+    
+    // Preencher CPF ou CNPJ conforme o tipo
+    if TipoPessoa = 'CNPJ' then
+    begin
+      qryInsert.ParamByName('pagador_cpf').Clear;
+      qryInsert.ParamByName('pagador_cnpj').AsString := fFluxoDados.DocumentoCliente;
+    end
+    else
+    begin
+      qryInsert.ParamByName('pagador_cpf').AsString := fFluxoDados.DocumentoCliente;
+      qryInsert.ParamByName('pagador_cnpj').Clear;
+    end;
+    
+    qryInsert.ParamByName('chave_pix_utilizada').AsString := fFluxoDados.ChavePix;
+    
+    // Executar e obter o ID retornado
+    qryInsert.Open;
+    
+    if not qryInsert.IsEmpty then
+      Result := qryInsert.FieldByName('id').AsInteger;
+      
+  except
+    on E: Exception do
+    begin
+      ShowMessage('ERRO ao inserir movimento PIX: ' + E.Message);
+      Result := 0;
+    end;
+  end;
+  
+  qryInsert.Free;
 end;
 
 end.
