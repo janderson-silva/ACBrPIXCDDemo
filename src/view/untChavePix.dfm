@@ -92,12 +92,10 @@ object frmChavePix: TfrmChavePix
     object btnNovo: TButton
       AlignWithMargins = True
       Left = 20
-      Top = 7
+      Top = 3
       Width = 100
-      Height = 31
+      Height = 39
       Margins.Left = 20
-      Margins.Top = 7
-      Margins.Bottom = 7
       Align = alLeft
       Caption = 'Novo'
       Font.Charset = ANSI_CHARSET
@@ -108,16 +106,15 @@ object frmChavePix: TfrmChavePix
       ParentFont = False
       TabOrder = 0
       OnClick = btnNovoClick
+      ExplicitTop = 7
+      ExplicitHeight = 31
     end
     object btnEditar: TButton
       AlignWithMargins = True
-      Left = 133
-      Top = 7
+      Left = 126
+      Top = 3
       Width = 100
-      Height = 31
-      Margins.Left = 10
-      Margins.Top = 7
-      Margins.Bottom = 7
+      Height = 39
       Align = alLeft
       Caption = 'Editar'
       Font.Charset = ANSI_CHARSET
@@ -128,16 +125,16 @@ object frmChavePix: TfrmChavePix
       ParentFont = False
       TabOrder = 1
       OnClick = btnEditarClick
+      ExplicitLeft = 133
+      ExplicitTop = 7
+      ExplicitHeight = 31
     end
     object btnExcluir: TButton
       AlignWithMargins = True
-      Left = 246
-      Top = 7
+      Left = 232
+      Top = 3
       Width = 100
-      Height = 31
-      Margins.Left = 10
-      Margins.Top = 7
-      Margins.Bottom = 7
+      Height = 39
       Align = alLeft
       Caption = 'Excluir'
       Font.Charset = ANSI_CHARSET
@@ -147,6 +144,9 @@ object frmChavePix: TfrmChavePix
       Font.Style = []
       ParentFont = False
       TabOrder = 2
+      ExplicitLeft = 246
+      ExplicitTop = 7
+      ExplicitHeight = 31
     end
   end
   object PanelGrid: TPanel

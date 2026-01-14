@@ -12,7 +12,7 @@ object frmExibirQrCodePIX: TfrmExibirQrCodePIX
   Font.Height = -11
   Font.Name = 'Segoe UI'
   Font.Style = []
-  Position = poDefault
+  Position = poOwnerFormCenter
   OnShow = FormShow
   TextHeight = 13
   object pnlTitulo: TPanel
