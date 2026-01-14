@@ -82,5 +82,6 @@ __recovery/
 modules/
 
 # Dispensavel para o projeto, pois o servico cria conforme a necessidade
+bin/db/
 bin/log/
 bin/temp/
