@@ -18,9 +18,9 @@ type
   private
     { Private declarations }
     function GetArquivoConfig: string;
-    procedure CarregarConfiguracoes;
   public
     { Public declarations }
+    procedure CarregarConfiguracoes;
     procedure ConectarBancoDados;
   end;
 

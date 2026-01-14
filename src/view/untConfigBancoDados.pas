@@ -8,7 +8,7 @@ uses
   System.IniFiles, FireDAC.Comp.Client, FireDAC.Stan.Intf, FireDAC.Stan.Option,
   FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.FB,
-  FireDAC.Phys.FBDef, FireDAC.VCLUI.Wait;
+  FireDAC.Phys.FBDef, FireDAC.VCLUI.Wait, untDmConexao;
 
 type
   TfrmConfigBancoDados = class(TForm)
@@ -100,7 +100,23 @@ begin
     IniFile.WriteString('Database', 'Usuario', edtUsuario.Text);
     IniFile.WriteString('Database', 'Senha', edtSenha.Text);
     
-    Application.MessageBox('Configurações salvas com sucesso!', 'Sucesso', MB_OK + MB_ICONINFORMATION);
+    // Reconectar o DataModule com as novas configurações
+    try
+      if Assigned(frmDmConexao) then
+      begin
+        frmDmConexao.CarregarConfiguracoes;
+        frmDmConexao.ConectarBancoDados;
+      end;
+    except
+      on E: Exception do
+      begin
+        Application.MessageBox(PChar('Configurações salvas, mas houve erro ao reconectar:' + #13#10 + E.Message),
+                             'Atenção', MB_OK + MB_ICONWARNING);
+        Exit;
+      end;
+    end;
+    
+    Application.MessageBox('Configurações salvas e banco reconectado com sucesso!', 'Sucesso', MB_OK + MB_ICONINFORMATION);
   finally
     IniFile.Free;
   end;
