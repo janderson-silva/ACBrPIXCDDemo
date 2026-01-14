@@ -27,9 +27,7 @@ type
     EmErro: Boolean;
     QtdConsultas: Integer;
     // Dados da transação
-    ContaBancaria: String;
     ChavePix: String;
-    TipoChave: String;
     NomeCliente: String;
     DocumentoCliente: String;
     CodigoLancamento: String;
@@ -91,7 +89,6 @@ type
     fCobrancaCriada: Boolean;
     function ObterDiretorioLog: string;
     function FormatarJSON(const AJSON: String): String;
-    function FormatarChavePIX(const AChave, ATipoChave: string): string;
     function ExportarBlobParaArquivo(const ANomeCampo, ANomeArquivo, APSP: string): string;
     procedure CarrgarConfigPSP;
     procedure ConfigurarACBrPSPs;
@@ -107,7 +104,7 @@ type
     procedure CriarCobrancaEstatico;
   public
     { Public declarations }
-    procedure Iniciar(AContaBancaria, AChavePix: string;
+    procedure Iniciar(AChavePix: string;
                       AValor: Currency; ANomeCliente, ADocumentoCliente: string;
                       const ACodigoLancamento: string = '');
   end;
@@ -121,12 +118,11 @@ uses untDmConexao;
 
 {$R *.dfm}
 
-procedure TfrmExibirQrCodePIX.Iniciar(AContaBancaria, AChavePix: string;
+procedure TfrmExibirQrCodePIX.Iniciar(AChavePix: string;
                                       AValor: Currency; ANomeCliente, ADocumentoCliente: string;
                                       const ACodigoLancamento: string = '');
 begin
   // Inicializar dados do fluxo
-  fFluxoDados.ContaBancaria := AContaBancaria;
   fFluxoDados.ChavePix := AChavePix;
   fFluxoDados.Total := AValor;
   fFluxoDados.NomeCliente := ANomeCliente;
@@ -175,18 +171,9 @@ begin
   qrConfigPSP.SQL.Clear;
   qrConfigPSP.SQL.Add('SELECT *');
   qrConfigPSP.SQL.Add('FROM CHAVE_PIX');
-  qrConfigPSP.SQL.Add('WHERE CODCONTA = :CODCONTA');
-  qrConfigPSP.SQL.Add('AND CHAVE = :CHAVE');
-  qrConfigPSP.ParamByName('CODCONTA').AsString := fFluxoDados.ContaBancaria;
+  qrConfigPSP.SQL.Add('WHERE CHAVE = :CHAVE');
   qrConfigPSP.ParamByName('CHAVE').AsString := fFluxoDados.ChavePix;
   qrConfigPSP.Open;
-
-  // Carregar o tipo de chave e formatar adequadamente
-  if not qrConfigPSP.IsEmpty then
-  begin
-    fFluxoDados.TipoChave := qrConfigPSP.FieldByName('TIPO_CHAVE').AsString;
-    fFluxoDados.ChavePix := FormatarChavePIX(fFluxoDados.ChavePix, fFluxoDados.TipoChave);
-  end;
 end;
 
 procedure TfrmExibirQrCodePIX.VerificarConfiguracao;
@@ -226,54 +213,6 @@ begin
 
   if not btnConfirmar.Visible then
     btnConfirmar.Visible := True;
-end;
-
-function TfrmExibirQrCodePIX.FormatarChavePIX(const AChave, ATipoChave: string): string;
-var
-  ChaveFormatada: string;
-begin
-  Result := AChave;
-
-  // Se tipo de chave não foi informado, retorna a chave original
-  if Trim(ATipoChave) = '' then
-    Exit;
-
-  ChaveFormatada := Trim(AChave);
-
-  // Formatar conforme o tipo de chave
-  if (ATipoChave = 'CPF/CNPJ') or (ATipoChave = 'CPF') or (ATipoChave = 'CNPJ') then
-  begin
-    // Remover formatação: pontos, traços, barras e espaços
-    ChaveFormatada := StringReplace(ChaveFormatada, '.', '', [rfReplaceAll]);
-    ChaveFormatada := StringReplace(ChaveFormatada, '-', '', [rfReplaceAll]);
-    ChaveFormatada := StringReplace(ChaveFormatada, '/', '', [rfReplaceAll]);
-    ChaveFormatada := StringReplace(ChaveFormatada, ' ', '', [rfReplaceAll]);
-    Result := ChaveFormatada;
-  end
-  else if (ATipoChave = 'Celular') or (ATipoChave = 'Telefone') then
-  begin
-    // Remover formatação: parênteses, espaços, traços
-    ChaveFormatada := StringReplace(ChaveFormatada, '(', '', [rfReplaceAll]);
-    ChaveFormatada := StringReplace(ChaveFormatada, ')', '', [rfReplaceAll]);
-    ChaveFormatada := StringReplace(ChaveFormatada, ' ', '', [rfReplaceAll]);
-    ChaveFormatada := StringReplace(ChaveFormatada, '-', '', [rfReplaceAll]);
-    
-    // Adicionar +55 no início se não tiver
-    if not ChaveFormatada.StartsWith('+55') then
-    begin
-      if ChaveFormatada.StartsWith('55') then
-        ChaveFormatada := '+' + ChaveFormatada
-      else
-        ChaveFormatada := '+55' + ChaveFormatada;
-    end;
-    
-    Result := ChaveFormatada;
-  end
-  else if (ATipoChave = 'E-mail') or (ATipoChave = 'Email') or (ATipoChave = 'Aleatória') or (ATipoChave = 'Aleatoria') then
-  begin
-    // Manter sem alteração
-    Result := ChaveFormatada;
-  end;
 end;
 
 function TfrmExibirQrCodePIX.ExportarBlobParaArquivo(const ANomeCampo, ANomeArquivo, APSP: string): string;

@@ -56,7 +56,7 @@ var
 
 implementation
 
-uses untDmConexao;
+uses untDmConexao, untExibirQrCodePIX;
 
 {$R *.dfm}
 
