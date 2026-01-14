@@ -38,6 +38,7 @@ type
     qrMovimentoPixPSP_UTILIZADO: TStringField;
     qrMovimentoPixCHAVE_PIX_UTILIZADA: TStringField;
     qrMovimentoPixAMBIENTE: TStringField;
+    btnEstornar: TButton;
     procedure FormCreate(Sender: TObject);
     procedure btnAtualizarClick(Sender: TObject);
     procedure btnFecharClick(Sender: TObject);

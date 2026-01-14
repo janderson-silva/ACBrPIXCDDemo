@@ -152,7 +152,7 @@ object frmCobranca: TfrmCobranca
     end
     object btnFechar: TButton
       AlignWithMargins = True
-      Left = 136
+      Left = 252
       Top = 3
       Width = 110
       Height = 39
@@ -169,6 +169,23 @@ object frmCobranca: TfrmCobranca
       ExplicitLeft = 1070
       ExplicitTop = 12
       ExplicitHeight = 36
+    end
+    object btnEstornar: TButton
+      AlignWithMargins = True
+      Left = 136
+      Top = 3
+      Width = 110
+      Height = 39
+      Align = alLeft
+      Caption = 'Estornar'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 2
+      ExplicitLeft = 196
     end
   end
   object qrMovimentoPix: TFDQuery
