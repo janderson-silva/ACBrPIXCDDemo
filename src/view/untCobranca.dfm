@@ -101,6 +101,7 @@ object frmCobranca: TfrmCobranca
       Margins.Bottom = 20
       Align = alClient
       DataSource = dsMovimentoPix
+      DrawingStyle = gdsClassic
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -12

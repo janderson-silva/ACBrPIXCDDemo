@@ -9,13 +9,13 @@ object frmChavePix: TfrmChavePix
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -13
+  Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
   Position = poOwnerFormCenter
   WindowState = wsMaximized
   OnCreate = FormCreate
-  TextHeight = 17
+  TextHeight = 15
   object pnlHeader: TPanel
     Left = 0
     Top = 0
@@ -72,7 +72,7 @@ object frmChavePix: TfrmChavePix
       Height = 15
       Caption = 'Visualize e gerencie suas contas banc'#225'rias'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = 12895428
+      Font.Color = 14211288
       Font.Height = -12
       Font.Name = 'Segoe UI'
       Font.Style = []
@@ -86,7 +86,7 @@ object frmChavePix: TfrmChavePix
     Height = 45
     Align = alBottom
     BevelOuter = bvNone
-    Color = 16448250
+    Color = 15987699
     ParentBackground = False
     TabOrder = 0
     object btnNovo: TButton
@@ -98,11 +98,11 @@ object frmChavePix: TfrmChavePix
       Margins.Left = 20
       Align = alLeft
       Caption = 'Novo'
-      Font.Charset = ANSI_CHARSET
+      Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -11
+      Font.Height = -13
       Font.Name = 'Segoe UI'
-      Font.Style = []
+      Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 0
       OnClick = btnNovoClick
@@ -117,9 +117,9 @@ object frmChavePix: TfrmChavePix
       Height = 39
       Align = alLeft
       Caption = 'Editar'
-      Font.Charset = ANSI_CHARSET
+      Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -11
+      Font.Height = -13
       Font.Name = 'Segoe UI'
       Font.Style = []
       ParentFont = False
@@ -137,9 +137,9 @@ object frmChavePix: TfrmChavePix
       Height = 39
       Align = alLeft
       Caption = 'Excluir'
-      Font.Charset = ANSI_CHARSET
+      Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -11
+      Font.Height = -13
       Font.Name = 'Segoe UI'
       Font.Style = []
       ParentFont = False
@@ -157,9 +157,9 @@ object frmChavePix: TfrmChavePix
       Height = 39
       Align = alLeft
       Caption = 'Atualizar'
-      Font.Charset = ANSI_CHARSET
+      Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -11
+      Font.Height = -13
       Font.Name = 'Segoe UI'
       Font.Style = []
       ParentFont = False
@@ -174,7 +174,7 @@ object frmChavePix: TfrmChavePix
     Height = 426
     Align = alClient
     BevelOuter = bvNone
-    Color = 16448250
+    Color = 15987699
     ParentBackground = False
     TabOrder = 1
     object DBGridChavePix: TDBGrid
@@ -192,7 +192,7 @@ object frmChavePix: TfrmChavePix
       DrawingStyle = gdsClassic
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -13
+      Font.Height = -12
       Font.Name = 'Segoe UI'
       Font.Style = []
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
@@ -200,9 +200,9 @@ object frmChavePix: TfrmChavePix
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
-      TitleFont.Height = -13
-      TitleFont.Name = 'Segoe UI Semibold'
-      TitleFont.Style = []
+      TitleFont.Height = -12
+      TitleFont.Name = 'Segoe UI'
+      TitleFont.Style = [fsBold]
     end
   end
   object qrChavePix: TFDQuery
