@@ -2,6 +2,15 @@
 
 Sistema gestão de pagamentos PIX desenvolvido em Delphi utilizando os componentes ACBr (Automação Comercial Brasil).
 
+## 🤝 Se este projeto te ajudou de alguma forma e você quiser apoiar o desenvolvimento, considere fazer uma doação via Pix:
+
+**Chave Pix:** `8af2a30e-41c1-409a-8a35-b7a8a864b985`  
+**Titular:** Janderson Aparecido da Silva
+
+<p align="center">
+  <img src="https://github.com/janderson-silva/Docs/blob/main/Pix/qrcode-pix.png" alt="QR Code Pix para doação" width="250">
+</p>
+
 ## 📋 Sobre o Projeto
 
 O ACBrPIXCD Demo é uma aplicação desktop que demonstra a integração com diversos PSPs (Provedores de Serviço de Pagamento) para gerenciamento completo de transações PIX, incluindo geração de cobranças, consultas, estornos.
